@@ -20,6 +20,8 @@ open class MisskeyKit {
     static public var notifications: MisskeyKit.Notifications = MisskeyKit.Notifications()
     static public var meta: MisskeyKit.Meta = MisskeyKit.Meta()
     
+    static public var streaming: MisskeyKit.Streaming = MisskeyKit.Streaming()
+    
     //MARK:- Internal Methods
     internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
         var params = params
