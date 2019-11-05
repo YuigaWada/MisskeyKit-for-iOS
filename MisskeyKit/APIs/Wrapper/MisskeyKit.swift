@@ -10,7 +10,8 @@ import Foundation
 
 open class MisskeyKit {
     
-    static public let auth: Auth = MisskeyKit.Auth() //Singleton
+    //MARK:- Singleton
+    static public let auth: Auth = MisskeyKit.Auth()
     static public var notes: MisskeyKit.Notes = MisskeyKit.Notes()
     static public var users: MisskeyKit.Users = MisskeyKit.Users()
     static public var groups: MisskeyKit.Groups = MisskeyKit.Groups()
@@ -18,6 +19,7 @@ open class MisskeyKit {
     static public var search: MisskeyKit.Search = MisskeyKit.Search()
     static public var notifications: MisskeyKit.Notifications = MisskeyKit.Notifications()
     
+    //MARK:- Internal Methods
     internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
         var params = params
         
