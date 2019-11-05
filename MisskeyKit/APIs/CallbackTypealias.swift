@@ -16,3 +16,4 @@ public typealias UsersCallBack = ([UserModel]?, Error?)->Void
 
 public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void
 
+public typealias MetaCallBack = (MetaModel?, Error?)->Void

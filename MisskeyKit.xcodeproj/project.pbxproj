@@ -32,6 +32,9 @@
 		8D71B80F237111BE00374F5A /* Notificaitons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B80E237111BE00374F5A /* Notificaitons.swift */; };
 		8D71B8112371161000374F5A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8102371161000374F5A /* NotificationModel.swift */; };
 		8D71B813237116EB00374F5A /* NotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B812237116EB00374F5A /* NotificationsTests.swift */; };
+		8D71B8152371844700374F5A /* MetaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8142371844700374F5A /* MetaModel.swift */; };
+		8D71B8172371859500374F5A /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8162371859500374F5A /* Meta.swift */; };
+		8D71B8192371864000374F5A /* MetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8182371864000374F5A /* MetaTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		8D71B80E237111BE00374F5A /* Notificaitons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificaitons.swift; sourceTree = "<group>"; };
 		8D71B8102371161000374F5A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		8D71B812237116EB00374F5A /* NotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTests.swift; sourceTree = "<group>"; };
+		8D71B8142371844700374F5A /* MetaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaModel.swift; sourceTree = "<group>"; };
+		8D71B8162371859500374F5A /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		8D71B8182371864000374F5A /* MetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 				8D71B7FE236F6C0800374F5A /* GetNotesTests.swift */,
 				8D71B800236F6F3E00374F5A /* PostNotesTests.swift */,
 				8D71B812237116EB00374F5A /* NotificationsTests.swift */,
+				8D71B8182371864000374F5A /* MetaTests.swift */,
 			);
 			path = MisskeyKitTests;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 				8D71B7F3236F26AC00374F5A /* UserModel.swift */,
 				8D71B7FC236F429E00374F5A /* NoteModel.swift */,
 				8D71B8102371161000374F5A /* NotificationModel.swift */,
+				8D71B8142371844700374F5A /* MetaModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 				8D71B80A23710A4700374F5A /* Lists.swift */,
 				8D71B80C23710B3200374F5A /* Search.swift */,
 				8D71B80E237111BE00374F5A /* Notificaitons.swift */,
+				8D71B8162371859500374F5A /* Meta.swift */,
 			);
 			path = Wrapper;
 			sourceTree = "<group>";
@@ -299,11 +308,13 @@
 				8D71B7EE236EFBAD00374F5A /* Dictionary+MisskeyKit.swift in Sources */,
 				8D71B7E9236EF61F00374F5A /* Requestor.swift in Sources */,
 				8D71B80F237111BE00374F5A /* Notificaitons.swift in Sources */,
+				8D71B8172371859500374F5A /* Meta.swift in Sources */,
 				8D71B80D23710B3200374F5A /* Search.swift in Sources */,
 				8D71B7F9236F3DDD00374F5A /* MisskeyKit.swift in Sources */,
 				8D71B80B23710A4700374F5A /* Lists.swift in Sources */,
 				8D71B7FD236F429E00374F5A /* NoteModel.swift in Sources */,
 				8D71B8072371081400374F5A /* Users.swift in Sources */,
+				8D71B8152371844700374F5A /* MetaModel.swift in Sources */,
 				8D71B7E3236EE6F200374F5A /* String+MisskeyKit.swift in Sources */,
 				8D71B8092371094700374F5A /* Groups.swift in Sources */,
 				8D71B7F4236F26AC00374F5A /* UserModel.swift in Sources */,
@@ -324,6 +335,7 @@
 				8D71B7D5236EE6C900374F5A /* MisskeyKitTests.swift in Sources */,
 				8D71B801236F6F3E00374F5A /* PostNotesTests.swift in Sources */,
 				8D71B7FF236F6C0800374F5A /* GetNotesTests.swift in Sources */,
+				8D71B8192371864000374F5A /* MetaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

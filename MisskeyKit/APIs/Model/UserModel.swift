@@ -38,13 +38,3 @@ public struct UserModel: Codable {
     var hasUnreadSpecifiedNotes, hasUnreadMentions: Bool?
 }
 
-struct Emoji: Codable {
-    let name: String?
-    let host: String?
-    let url: String?
-    let aliases: [String?]?
-    let id, updatedAt: String?
-    let category: String?
-    let uri: String?
-    let type: String?
-}

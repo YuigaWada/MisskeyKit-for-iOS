@@ -18,6 +18,7 @@ open class MisskeyKit {
     static public var lists: MisskeyKit.Lists = MisskeyKit.Lists()
     static public var search: MisskeyKit.Search = MisskeyKit.Search()
     static public var notifications: MisskeyKit.Notifications = MisskeyKit.Notifications()
+    static public var meta: MisskeyKit.Meta = MisskeyKit.Meta()
     
     //MARK:- Internal Methods
     internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
