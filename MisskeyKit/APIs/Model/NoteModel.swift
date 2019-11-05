@@ -88,7 +88,7 @@
  public struct Poll: Codable {
      let choices: [Choice?]?
      let multiple: Bool?
-     let expiresAt, expiredAfter: Int?
+     let expiresAt, expiredAfter: String?
      
      public init() {
          self.multiple = nil
