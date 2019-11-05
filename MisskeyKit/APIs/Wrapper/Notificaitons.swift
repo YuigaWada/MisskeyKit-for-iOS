@@ -30,6 +30,15 @@ extension MisskeyKit {
                 callback(users,nil)
             }
         }
+        
+        public func markAllAsRead(result callback: @escaping BooleanCallBack) {
+            var params = [:] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notifications/mark-all-as-read", params: params, type: [NoteModel].self) { _, error in
+                callback(error == nil, error)
+            }
+        }
     }
 }
 
