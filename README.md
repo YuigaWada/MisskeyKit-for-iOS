@@ -1,4 +1,6 @@
-# MisskeyKit for iOS
+<img src="./resources/logo.png" width=100%>
+
+## MisskeyKit for iOS
 
 MisskeyKit is a library of [Misskey](https://misskey.io) written in pure swift.
 
