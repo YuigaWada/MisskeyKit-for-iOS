@@ -1,2 +1,6 @@
 .DS_Store
 MisskeyKitTests/
+Carthage/Build
+Carthage/Checkouts
+project.pbxproj
+Starscream.framework
