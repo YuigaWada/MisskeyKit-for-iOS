@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "static MisskeyKit.detachReactions(_:):MisskeyKit.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "shapedJsonDic[2][&quot;text&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Auth.startSession(appSecret:completion:):Auth.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.token">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
