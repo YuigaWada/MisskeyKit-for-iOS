@@ -10,7 +10,7 @@ import Foundation
 import Starscream
 
 
-public typealias StreamingCallBack = (_ response: Any?, _ channel: SentStreamModel.Channel?, Error?)->Void
+public typealias StreamingCallBack = (_ response: Any?, _ channel: SentStreamModel.Channel?, _ responseType: String?, Error?)->Void
 extension MisskeyKit {
     public class Streaming {
         
@@ -53,18 +53,18 @@ extension MisskeyKit {
             
             socket.onDisconnect = { (error: Error?) in
                 self.isConnected = false
-                callback(nil, nil, error)
+                callback(nil, nil, nil, error)
             }
             
             socket.onText = { (text: String) in
-                let (response, channel) = self.handleEvent(rawJson: text)
-                callback(response, channel, nil)
+                let (response, channel, responseType) = self.handleEvent(rawJson: text)
+                callback(response, channel, responseType, nil)
             }
             
             socket.onData = { (data: Data) in
                 guard let text = String(data: data, encoding: .utf8) else { return }
-                let (response, channel) = self.handleEvent(rawJson: text)
-                callback(response, channel, nil)
+                let (response, channel, responseType) = self.handleEvent(rawJson: text)
+                callback(response, channel, responseType, nil)
             }
             
         }
@@ -83,7 +83,7 @@ extension MisskeyKit {
                 do {
                     jsonData = try JSONEncoder().encode(sentTarget)
                 } catch {
-                    callback(nil, nil, error)
+                    callback(nil, nil, nil, error)
                     return
                 }
                 
@@ -98,31 +98,31 @@ extension MisskeyKit {
         //MARK:- Handling Events
         
         // json = {type,body / id,type,body / UserModel, NoteModel}
-        private func handleEvent(rawJson: String)-> (response: Any?, channel: SentStreamModel.Channel?) {
-            guard let (body, otherParams) = self.disassembleJson(rawJson), let type = otherParams["type"] as? String else {return (nil,nil)}
+        private func handleEvent(rawJson: String)-> (response: Any?, channel: SentStreamModel.Channel?, responseType: String?) {
+            guard let (body, otherParams) = self.disassembleJson(rawJson), let type = otherParams["type"] as? String else {return (nil,nil,nil)}
             
             if type != "channel" {
                 //~~
-                return (nil,nil)
+                return (nil,nil,nil)
             }
             
             guard let (bodyInBody, otherParamsInBody) = self.disassembleJson(body),
                 let id = otherParamsInBody["id"] as? String,
-                let typeInBody = otherParamsInBody["type"] as? String else { return (nil,nil) }
+                let typeInBody = otherParamsInBody["type"] as? String,
+                let BinBjson = bodyInBody.toRawJson() else { return (nil,nil,nil) }
             
-            let notifNameList = ["notification", "unreadNotification", "readAllNotifications"]
-            if notifNameList.contains(typeInBody) {
-                //~~
-                
-                return (nil,nil)
+            
+            var response: Any?
+            if related2Notification(typeInBody) {
+                // Convert a raw json to StreamingModel.
+                response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(StreamingModel.self)
+            }
+            else {
+               // Convert a raw json to NoteModel.
+                response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
             }
             
-            // If not related to notifiaction.
-            let BinBjson = bodyInBody.toRawJson()!
-            let response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
-            if related2Notification(typeInBody) {
-            
-            return (response: response, channel: ids[id])
+            return (response: response, channel: ids[id], responseType: typeInBody)
         }
         
         
