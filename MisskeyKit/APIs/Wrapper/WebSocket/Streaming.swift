@@ -120,6 +120,7 @@ extension MisskeyKit {
             // If not related to notifiaction.
             let BinBjson = bodyInBody.toRawJson()!
             let response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
+            if related2Notification(typeInBody) {
             
             return (response: response, channel: ids[id])
         }
@@ -139,6 +140,11 @@ extension MisskeyKit {
             guard let bodyJson = json["body"] as? [String:Any] else { return nil }
         
             return (body: bodyJson, others: json)
+        }
+        
+        private func related2Notification(_ target: String)-> Bool {
+            let notifNameList = ["notification", "unreadNotification", "readAllNotifications"]
+             return notifNameList.contains(target)
         }
         
         
