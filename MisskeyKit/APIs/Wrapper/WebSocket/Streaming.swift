@@ -10,11 +10,12 @@ import Foundation
 import Starscream
 
 
-public typealias StreamingCallBack = (String?, Error?)->Void
+public typealias StreamingCallBack = (_ response: Any?, _ channel: SentStreamModel.Channel?, Error?)->Void
 extension MisskeyKit {
     public class Streaming {
         
         private var socket: WebSocket?
+        private var ids: [String:SentStreamModel.Channel] = [:]
         
         public var isConnected: Bool = false
         
@@ -24,22 +25,25 @@ extension MisskeyKit {
             self.socket = nil
         }
         
-        
+        //MARK:- Connection
         public func connect(apiKey: String, channels: [SentStreamModel.Channel], response callback: @escaping StreamingCallBack)-> Bool {
             let wsUrlString = "wss://misskey.io/streaming?i=" + apiKey
             guard let wsUrl = URL(string: wsUrlString) else { return false }
             
             self.socket = WebSocket(url: wsUrl)
-            self.socket!.connect()
-            
             setupConnection(channels: channels, callback: callback)
+            
+            self.socket!.connect()
             return true
         }
         
+        
+        
+        // Private Methods
         private func setupConnection(channels: [SentStreamModel.Channel], callback: @escaping StreamingCallBack) {
             guard let socket = self.socket else { return }
             
-//            socket.disableSSLCertValidation = true
+            //socket.disableSSLCertValidation = true
             socket.onConnect = {
                 self.isConnected = true
                 
@@ -49,17 +53,18 @@ extension MisskeyKit {
             
             socket.onDisconnect = { (error: Error?) in
                 self.isConnected = false
-                callback(nil, error)
+                callback(nil, nil, error)
             }
             
             socket.onText = { (text: String) in
-                callback(text, nil)
+                let (response, channel) = self.handleEvent(rawJson: text)
+                callback(response, channel, nil)
             }
             
             socket.onData = { (data: Data) in
-                let text = String(data: data, encoding: .utf8)
-                
-                callback(text, nil)
+                guard let text = String(data: data, encoding: .utf8) else { return }
+                let (response, channel) = self.handleEvent(rawJson: text)
+                callback(response, channel, nil)
             }
             
         }
@@ -70,14 +75,15 @@ extension MisskeyKit {
                 
                 let uuid = NSUUID().uuidString.sha256()!
                 let body = SentStreamModel.ChannelBody(channel: channel, id: uuid, params: [:])
-                
                 let sentTarget = SentStreamModel(type: "connect", body: body)
+                
+                ids[uuid] = channel //save uuid pairs.
                 
                 var jsonData: Data?
                 do {
                     jsonData = try JSONEncoder().encode(sentTarget)
                 } catch {
-                    callback(nil,error)
+                    callback(nil, nil, error)
                     return
                 }
                 
@@ -86,6 +92,55 @@ extension MisskeyKit {
                 self.socket!.write(string: rawJson)
             }
         }
+        
+        
+        
+        //MARK:- Handling Events
+        
+        // json = {type,body / id,type,body / UserModel, NoteModel}
+        private func handleEvent(rawJson: String)-> (response: Any?, channel: SentStreamModel.Channel?) {
+            guard let (body, otherParams) = self.disassembleJson(rawJson), let type = otherParams["type"] as? String else {return (nil,nil)}
+            
+            if type != "channel" {
+                //~~
+                return (nil,nil)
+            }
+            
+            guard let (bodyInBody, otherParamsInBody) = self.disassembleJson(body),
+                let id = otherParamsInBody["id"] as? String,
+                let typeInBody = otherParamsInBody["type"] as? String else { return (nil,nil) }
+            
+            let notifNameList = ["notification", "unreadNotification", "readAllNotifications"]
+            if notifNameList.contains(typeInBody) {
+                //~~
+                
+                return (nil,nil)
+            }
+            
+            // If not related to notifiaction.
+            let BinBjson = bodyInBody.toRawJson()!
+            let response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
+            
+            return (response: response, channel: ids[id])
+        }
+        
+        
+        
+        
+        private func disassembleJson(_ rawJson: String)-> (body: [String:Any], others: [String:Any])? {
+            do {
+                let json = try JSONSerialization.jsonObject(with: rawJson.data(using: .utf8)!) as! [String:Any]
+                return self.disassembleJson(json)
+            }
+            catch { return nil }
+        }
+        
+        private func disassembleJson(_ json: [String:Any])-> (body: [String:Any], others: [String:Any])? {
+            guard let bodyJson = json["body"] as? [String:Any] else { return nil }
+        
+            return (body: bodyJson, others: json)
+        }
+        
         
     }
 }

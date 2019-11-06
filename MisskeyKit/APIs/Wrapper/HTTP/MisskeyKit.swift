@@ -38,7 +38,7 @@ open class MisskeyKit {
         
         
         Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: Error?) in
-            
+             
             let resultJson = arrayReactions(rawJson: resultRawJson!) // Changes a form of reactions to array.
             
             if let response = response, response.statusCode == 200, resultJson.count == 0  {
