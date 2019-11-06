@@ -73,7 +73,7 @@ extension MisskeyKit {
             }
         }
         
-        public func getUserNotes(following:Bool = true, limit: Int=10, sinceId:String="", untilId: String="",visibility: Visibility = .public, completion callback: @escaping NotesCallBack) {
+        public func getMentionsForMe(following:Bool = true, limit: Int=10, sinceId:String="", untilId: String="",visibility: Visibility = .public, completion callback: @escaping NotesCallBack) {
             
             var params = ["following": following,
                           "visibility": visibility,
@@ -83,7 +83,7 @@ extension MisskeyKit {
             
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/notes", params: params, type: [NoteModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/mentions", params: params, type: [NoteModel].self) { posts, error in
                 
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
