@@ -104,6 +104,23 @@ extension MisskeyKit {
         
         
         
+        public func stopListening(channels: [SentStreamModel.Channel]) throws {
+            try channels.forEach{
+                do { try self.stopListening(channel: $0) }
+                catch { throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)}
+            }
+        }
+        
+        public func stopListening(channel: SentStreamModel.Channel) throws {
+            guard let socket = socket else {
+                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+            }
+            
+            let disconnectJson = "{\"type\":\"disconnect\",body:{id:\(String(describing: ids.searchKey(value: channel)))}}"
+            socket.write(string: disconnectJson)
+        }
+        
+        
         //MARK:- Handling Events
         
         // json = {type,body / id,type,body / UserModel, NoteModel}
@@ -131,7 +148,7 @@ extension MisskeyKit {
                 response = BinBjson.decodeJSON(UserModel.self)
             }
             else {
-               // Convert a raw json to NoteModel.
+                // Convert a raw json to NoteModel.
                 response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
             }
             
@@ -151,13 +168,13 @@ extension MisskeyKit {
         
         private func disassembleJson(_ json: [String:Any])-> (body: [String:Any], others: [String:Any])? {
             guard let bodyJson = json["body"] as? [String:Any] else { return nil }
-        
+            
             return (body: bodyJson, others: json)
         }
         
         private func related2Notification(_ target: String)-> Bool {
             let notifNameList = ["notification", "unreadNotification", "readAllNotifications"]
-             return notifNameList.contains(target)
+            return notifNameList.contains(target)
         }
         
         

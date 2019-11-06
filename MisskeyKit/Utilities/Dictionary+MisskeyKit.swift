@@ -42,7 +42,19 @@ extension Dictionary {
                 break
             }
             return true
-        } as! Dictionary
+            } as! Dictionary
     }
     
+    func searchKey<T>(value targetValue: T)-> Any? where T : Equatable { // T: value's type
+        
+        let result = self.filter { key, value in
+            if let value = value as? T {
+                return value == targetValue
+            }
+            return false
+        }
+        return result
+    }
+    
+  
 }
