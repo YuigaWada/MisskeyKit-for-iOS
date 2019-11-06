@@ -28,6 +28,8 @@ public struct SentStreamModel: Codable {
         case localTimeline = "localTimeline"
         case hybridTimeline = "hybridTimeline"
         case globalTimeline = "globalTimeline"
+        
+        case CapturedNoteUpdated = "CapturedNoteUpdated"
     }
     
     init(type: String, body: ChannelBody){

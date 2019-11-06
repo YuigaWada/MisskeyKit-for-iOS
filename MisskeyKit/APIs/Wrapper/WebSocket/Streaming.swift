@@ -120,6 +120,34 @@ extension MisskeyKit {
             socket.write(string: disconnectJson)
         }
         
+        public func stopListening(noteIds: [String]) throws {
+            try noteIds.forEach{
+                do { try self.stopListening(noteId: $0) }
+                catch { throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)}
+            }
+        }
+        
+        public func stopListening(noteId: String) throws {
+            guard let socket = socket else {
+                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+            }
+            
+            let disconnectJson = "{\"type\":\"unsubNote\",\"body\":{\"id\":\"\(noteId)\"}}"
+            socket.write(string: disconnectJson)
+        }
+        
+        
+        //MARK:- Capturing
+        
+        public func captureNote(noteId: String) throws {
+            guard let socket = socket else {
+                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+            }
+            
+            let requestJson = "{\"type\":\"subNote\",\"body\":{\"id\":\"\(noteId)\"}}"
+            socket.write(string: requestJson)
+        }
+        
         
         //MARK:- Handling Events
         
@@ -127,16 +155,25 @@ extension MisskeyKit {
         private func handleEvent(rawJson: String)-> (response: Any?, channel: SentStreamModel.Channel?, responseType: String?) {
             guard let (body, otherParams) = self.disassembleJson(rawJson), let type = otherParams["type"] as? String else {return (nil,nil,nil)}
             
-            if type != "channel" {
-                //~~
-                return (nil,nil,nil)
-            }
+            let isNoteUpdatedType: Bool = type == "noteUpdated"
             
             guard let (bodyInBody, otherParamsInBody) = self.disassembleJson(body),
                 let id = otherParamsInBody["id"] as? String,
                 let typeInBody = otherParamsInBody["type"] as? String,
                 let BinBjson = bodyInBody.toRawJson() else { return (nil,nil,nil) }
             
+            
+            if isNoteUpdatedType {
+                var response = BinBjson.decodeJSON(NoteUpdatedModel.self)
+                
+                guard response != nil, let updateType = NoteUpdatedModel.UpdateType(rawValue: typeInBody) else { return (nil,nil,nil) }
+                
+                
+                response!.targetNoteId = id
+                response!.type = updateType
+                
+                return (response: response, channel: .CapturedNoteUpdated , responseType: "CapturedNoteUpdated")
+            }
             
             var response: Any?
             if related2Notification(typeInBody) {

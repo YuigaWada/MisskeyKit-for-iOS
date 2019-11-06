@@ -17,6 +17,24 @@ public struct StreamingModel: Codable {
     let note: NoteModel?
 }
 
+public struct NoteUpdatedModel: Codable {
+    var type: UpdateType?
+    var targetNoteId: String?
+    
+    let deletedAt: String?
+    let choice: Int?
+    let uesrId: String?
+    let reaction: String?
+
+    
+    public enum UpdateType: String, Codable {
+        case reacted = "reacted"
+        case pollVoted = "pollVoted"
+        case deleted = "deleted"
+    }
+    
+}
+
 
 
 // ** for example **
