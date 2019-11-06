@@ -116,7 +116,7 @@ extension MisskeyKit {
                 throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
             }
             
-            let disconnectJson = "{\"type\":\"disconnect\",body:{id:\(String(describing: ids.searchKey(value: channel)))}}"
+            let disconnectJson = "{\"type\":\"disconnect\",\"body\":{\"id\":\"\(String(describing: ids.searchKey(value: channel)))\"}}"
             socket.write(string: disconnectJson)
         }
         
