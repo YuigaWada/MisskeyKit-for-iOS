@@ -58,11 +58,20 @@ extension MisskeyKit {
             
             socket.onText = { (text: String) in
                 let (response, channel, responseType) = self.handleEvent(rawJson: text)
+                
+                if response == nil {
+                    let error = NSError(domain: "Unknown type event was sent by server.", code:-1, userInfo: nil)
+                    callback(response, channel, responseType, error)
+                    return
+                }
+                
                 callback(response, channel, responseType, nil)
             }
             
             socket.onData = { (data: Data) in
-                guard let text = String(data: data, encoding: .utf8) else { return }
+                guard let text = String(data: data, encoding: .utf8) else {
+                    callback(nil, nil, nil, NSError(domain: "Unknown type data was sent by server.", code:-1, userInfo: nil))
+                    return }
                 let (response, channel, responseType) = self.handleEvent(rawJson: text)
                 callback(response, channel, responseType, nil)
             }
