@@ -117,6 +117,10 @@ extension MisskeyKit {
                 // Convert a raw json to StreamingModel.
                 response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(StreamingModel.self)
             }
+            else if typeInBody == "followed" {
+                // Convert a raw json to UserModel.
+                response = BinBjson.decodeJSON(UserModel.self)
+            }
             else {
                // Convert a raw json to NoteModel.
                 response = MisskeyKit.arrayReactions(rawJson: BinBjson).decodeJSON(NoteModel.self)
