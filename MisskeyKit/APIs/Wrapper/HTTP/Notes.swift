@@ -211,13 +211,17 @@ extension MisskeyKit {
         
         
         //MARK:- Featured
-        public func getFeatured(limit: Int=10, result callback: @escaping BooleanCallBack) {
+        public func getFeatured(limit: Int=10, result callback: @escaping NotesCallBack) {
             
             var params = ["limit":limit] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/featured", params: params, type: [NoteModel].self) { _, error in
-                callback(error == nil, error)
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/featured", params: params, type: [NoteModel].self) { posts, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
             }
         }
         
