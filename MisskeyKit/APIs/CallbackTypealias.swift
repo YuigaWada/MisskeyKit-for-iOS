@@ -22,4 +22,6 @@ public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void
 public typealias ListCallBack = (ListModel?, Error?)->Void
 public typealias ListsCallBack = ([ListModel]?, Error?)->Void
 
+public typealias BlockListCallBack = ([BlockList]?, Error?)->Void
+
 public typealias MetaCallBack = (MetaModel?, Error?)->Void

@@ -159,6 +159,43 @@ extension MisskeyKit {
             }
         }
         
+        //MARK:- For Blocking
+        public func block(userId: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "blocking/create", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        public func unblock(userId: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "blocking/delete", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        public func getBlockingList(limit: Int = 30, sinceId: String = "", untilId: String = "", result callback: @escaping BlockListCallBack) {
+            
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "blocking/list", params: params, type: [BlockList].self) { users, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users,nil)
+            }
+        }
+        
         
         //MARK:- User Report
         public func reportAsAbuse(userIds: [String], comment: String, result callback: @escaping BooleanCallBack) {
