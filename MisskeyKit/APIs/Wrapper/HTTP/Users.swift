@@ -55,6 +55,26 @@ extension MisskeyKit {
             }
         }
         
+        //MARK:- Follow / Unfollow someone
+        public func follow(userId: String = "", result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/create", params: params, type: [NoteModel].self) { _, error in
+                callback(error == nil, error)
+            }
+        }
+        
+        public func unfollow(userId: String = "", result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/delete", params: params, type: [NoteModel].self) { _, error in
+                callback(error == nil, error)
+            }
+        }
         
         
         
