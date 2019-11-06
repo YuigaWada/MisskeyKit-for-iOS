@@ -157,9 +157,14 @@ extension MisskeyKit {
             
             let isNoteUpdatedType: Bool = type == "noteUpdated"
             
+            guard let typeInBody = body["type"] as? String else { return (nil,nil,nil) }
+            
+            if typeInBody == "readAllNotifications" {
+                return ("readAllNotifications", SentStreamModel.Channel.main, "readAllNotifications")
+            }
+            
             guard let (bodyInBody, otherParamsInBody) = self.disassembleJson(body),
                 let id = otherParamsInBody["id"] as? String,
-                let typeInBody = otherParamsInBody["type"] as? String,
                 let BinBjson = bodyInBody.toRawJson() else { return (nil,nil,nil) }
             
             
@@ -174,6 +179,8 @@ extension MisskeyKit {
                 
                 return (response: response, channel: .CapturedNoteUpdated , responseType: "CapturedNoteUpdated")
             }
+            
+            // ↓ The type of this json data is "channel". ↓
             
             var response: Any?
             if related2Notification(typeInBody) {
