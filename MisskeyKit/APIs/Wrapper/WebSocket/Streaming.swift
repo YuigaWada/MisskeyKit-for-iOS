@@ -103,7 +103,7 @@ extension MisskeyKit {
         }
         
         
-        
+        //MARK:- Stop Listening
         public func stopListening(channels: [SentStreamModel.Channel]) throws {
             try channels.forEach{
                 do { try self.stopListening(channel: $0) }
@@ -201,7 +201,7 @@ extension MisskeyKit {
         
         
         
-        
+        //MARK:- Utilities
         private func disassembleJson(_ rawJson: String)-> (body: [String:Any], others: [String:Any])? {
             do {
                 let json = try JSONSerialization.jsonObject(with: rawJson.data(using: .utf8)!) as! [String:Any]
