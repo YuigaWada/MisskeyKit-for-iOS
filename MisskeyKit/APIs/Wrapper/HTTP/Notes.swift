@@ -374,6 +374,18 @@ extension MisskeyKit {
             }
         }
 
+        //MARK:- Marking
+        
+        public func readAllUnreadNotes(result callback: @escaping BooleanCallBack) {
+            
+            var params = [:] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/read-all-unread-notes", params: params, type: Bool.self) { _, error in
+                callback(error == nil, error)
+            }
+        }
+        
         
         
         

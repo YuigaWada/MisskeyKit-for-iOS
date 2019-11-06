@@ -55,6 +55,122 @@ extension MisskeyKit {
             }
         }
         
+        //MARK:- FOR ME
+        
+        public func getMyAccount(completion callback: @escaping UsersCallBack) {
+            self.i(completion: callback)
+        }
+        
+        //I believe that "i" means I (me).
+        public func i(completion callback: @escaping UsersCallBack) {
+            var params = [:] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(api: "i", params: params, type: [UserModel].self) { users, error in
+                if let error = error  { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users,nil)
+            }
+        }
+        
+        public func getAllFavorites(limit: Int = 10, sinceId: String = "", untilId: String = "", completion callback: @escaping NotesCallBack) {
+            
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(api: "i/favorites", params: params, type: [NoteModel].self) { notes, error in
+                if let error = error  { callback(nil, error); return }
+                guard let notes = notes else { callback(nil, error); return }
+                
+                callback(notes,nil)
+            }
+        }
+        
+        public func getLikedPages(limit: Int = 10, sinceId: String = "", untilId: String = "", completion callback: @escaping PagesCallBack) {
+            
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(api: "i/page-likes", params: params, type: [PageModel].self) { notes, error in
+                if let error = error  { callback(nil, error); return }
+                guard let notes = notes else { callback(nil, error); return }
+                
+                callback(notes,nil)
+            }
+        }
+        
+        public func getMyPages(limit: Int = 10, sinceId: String = "", untilId: String = "", completion callback: @escaping PagesCallBack) {
+            
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(api: "i/pages", params: params, type: [PageModel].self) { notes, error in
+                if let error = error  { callback(nil, error); return }
+                guard let notes = notes else { callback(nil, error); return }
+                
+                callback(notes,nil)
+            }
+        }
+        
+        public func updateMyAccount(name: String = "", description: String = "",  lang: String = "",location: String = "",birthday: String = "",avatarId: String = "",bannerId: String = "",fields: [Any] = [],isLocked: Bool?  = nil ,carefulBot: Bool?  = nil ,autoAcceptFollowed: Bool?  = nil ,isBot: Bool?  = nil ,isCat: Bool?  = nil ,autoWatch: Bool?  = nil ,alwaysMarkNsfw: Bool?  = nil ,pinnedPageId: String? = "", result callback: @escaping OneUserCallBack) {
+            
+            var params = ["name": name,
+                          "description": description,
+                          "lang": lang,
+                          "location": location,
+                          "birthday": birthday,
+                          "avatarId": avatarId,
+                          "bannerId": bannerId,
+                          "fields": fields,
+                          "isLocked": isLocked,
+                          "carefulBot": carefulBot,
+                          "autoAcceptFollowed": autoAcceptFollowed,
+                          "isBot": isBot,
+                          "isCat": isCat,
+                          "autoWatch": autoWatch,
+                          "alwaysMarkNsfw": alwaysMarkNsfw,
+                          "pinnedPageId": autoWatch] as [String : Any?]
+            
+            params = params.removeRedundant() as [String : Any]
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/update", params: params as [String : Any], type: UserModel.self) { myInfo, error in
+                if let error = error  { callback(nil, error); return }
+                guard let myInfo = myInfo else { callback(nil, error); return }
+                
+                callback(myInfo,nil)
+            }
+        }
+        
+        
+        
+        //MARK:- For Pin
+        public func pin(noteId: String = "", result callback: @escaping BooleanCallBack) {
+            
+            var params = ["noteId":noteId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/pin", params: params, type: Bool.self) { _, error in
+                callback(error == nil, error)
+            }
+        }
+        
+        public func unpin(noteId: String = "", result callback: @escaping BooleanCallBack) {
+             
+             var params = ["noteId":noteId] as [String : Any]
+             
+             params = params.removeRedundant()
+             MisskeyKit.handleAPI(needApiKey: true, api: "i/unpin", params: params, type: Bool.self) { _, error in
+                 callback(error == nil, error)
+             }
+         }
+        
+        
         //MARK:- Follow / Unfollow someone
         public func follow(userId: String = "", result callback: @escaping BooleanCallBack) {
             
