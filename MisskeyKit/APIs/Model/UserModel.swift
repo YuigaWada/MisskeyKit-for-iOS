@@ -32,13 +32,21 @@ public struct UserModel: Codable {
     var followersCount, followingCount, notesCount: Int?
     var pinnedNoteIds: [String?]?
     var pinnedNotes: [NoteModel?]?
-    var pinnedPageId, pinnedPage: String?
+    var pinnedPageId: String?
+    var pinnedPage: PageModel?
     var twoFactorEnabled, usePasswordLessLogin, securityKeys: Bool?
     var twitter, github, discord: String?
     var hasUnreadSpecifiedNotes, hasUnreadMentions: Bool?
 }
 
 public struct UserRelationship: Codable {
-    var id: String?
+    var id: String
     var isFollowing, hasPendingFollowRequestFromYou, hasPendingFollowRequestToYou, isFollowed, isBlocking, isBlocked, isMuted: Bool?
+}
+
+public struct BlockList: Codable {
+    var id: String
+    var createdAt: String?
+    var blockeeId: String?
+    var blockee: UserModel?
 }
