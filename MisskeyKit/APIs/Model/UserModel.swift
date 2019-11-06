@@ -38,3 +38,7 @@ public struct UserModel: Codable {
     var hasUnreadSpecifiedNotes, hasUnreadMentions: Bool?
 }
 
+public struct UserRelationship: Codable {
+    var id: String?
+    var isFollowing, hasPendingFollowRequestFromYou, hasPendingFollowRequestToYou, isFollowed, isBlocking, isBlocked, isMuted: Bool?
+}

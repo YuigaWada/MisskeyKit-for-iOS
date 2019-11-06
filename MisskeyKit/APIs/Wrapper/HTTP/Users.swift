@@ -130,6 +130,49 @@ extension MisskeyKit {
             }
         }
         
+          //MARK:- User Relationship
+        public func getUserRelationship(userId: String, result callback: @escaping UserRelationshipCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/relation", params: params, type: UserRelationship.self) { users, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users,nil)
+            }
+        }
+        
+        public func getUserRelationship(userIds: [String], result callback: @escaping UserRelationshipsCallBack) {
+            
+            var params = ["userId":userIds] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/relation", params: params, type: [UserRelationship].self) { users, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users,nil)
+            }
+        }
+        
+        
+        //MARK:- User Report
+        public func reportAsAbuse(userIds: [String], comment: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userIds,
+                          "comment":comment] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/report-abuse", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        
         
         //MARK:- User Recommendation
         public func getUserRecommendation(limit: Int = 10, offset: Int = 0, result callback: @escaping UsersCallBack) {
