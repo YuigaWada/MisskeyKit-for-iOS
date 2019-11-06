@@ -61,7 +61,7 @@ extension MisskeyKit {
             var params = ["userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "following/create", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/create", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -71,7 +71,7 @@ extension MisskeyKit {
             var params = ["userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "following/delete", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }

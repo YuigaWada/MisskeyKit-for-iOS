@@ -17,7 +17,7 @@ extension MisskeyKit {
             var params = ["inviteId":inviteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/accept", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/accept", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -27,7 +27,7 @@ extension MisskeyKit {
             var params = ["inviteId":inviteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/reject", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/reject", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -38,7 +38,7 @@ extension MisskeyKit {
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invite", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invite", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -49,7 +49,7 @@ extension MisskeyKit {
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/pull", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/pull", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -60,7 +60,7 @@ extension MisskeyKit {
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/transfer", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/transfer", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }

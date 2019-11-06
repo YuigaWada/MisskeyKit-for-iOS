@@ -258,7 +258,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/delete", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -269,7 +269,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/favorites/create", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/favorites/create", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -279,7 +279,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/favorites/delete", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/favorites/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -290,7 +290,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId,"reaction":reaction] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/reactions/create", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/reactions/create", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -300,7 +300,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/reactions/delete", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/reactions/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -329,7 +329,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/unrenote", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/unrenote", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -359,7 +359,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/watching/create", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/watching/create", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -369,7 +369,7 @@ extension MisskeyKit {
             var params = ["noteId":noteId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/watching/delete", params: params, type: NoteModel.self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/watching/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }

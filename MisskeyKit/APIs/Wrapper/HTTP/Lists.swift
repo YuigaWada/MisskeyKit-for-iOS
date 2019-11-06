@@ -18,7 +18,7 @@ extension MisskeyKit {
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/pull", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/pull", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -29,7 +29,7 @@ extension MisskeyKit {
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/push", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/push", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
@@ -51,7 +51,7 @@ extension MisskeyKit {
             var params = ["listId":listId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/delete", params: params, type: [NoteModel].self) { list, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/delete", params: params, type: Bool.self) { list, error in
                 callback(error == nil, error)
             }
         }
@@ -93,7 +93,7 @@ extension MisskeyKit {
                           "name":name] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/update", params: params, type: [NoteModel].self) { _, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/lists/update", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }

@@ -46,6 +46,16 @@ open class MisskeyKit {
             }
             
             guard let json = resultJson.decodeJSON(type) else {
+                if resultJson.count == 0 {
+                    guard String(reflecting: T.self) == "Swift.Bool" else {
+                        callback(nil, NSError(domain: "Internal Error: Failed to recieve json data correctly.", code: -1, userInfo: nil))
+                        return
+                    }
+                    
+                    callback(nil, nil)
+                    return
+                }
+                
                 let error = MisskeyError.checkNative(rawJson: resultJson, "Internal Error: Failed to decode json.")
                 callback(nil, error)
                 return

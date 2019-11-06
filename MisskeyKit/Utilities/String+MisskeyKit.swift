@@ -10,6 +10,8 @@ import Foundation
 
 internal extension String {
     func decodeJSON<T>(_ type: T.Type) -> T? where T : Decodable {
+        guard self.count > 0 else { return nil}
+        
         do {
             return try JSONDecoder().decode(type, from: self.data(using: .utf8)!)
         }
