@@ -20,12 +20,40 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 <!-- I've been writing test codes but because of problem about security I decided to postpone uploading test codes. -->
 
+<br>
+
 ## Dependencies
 
 - [Starscream](https://github.com/daltoniam/Starscream)
 - Swift 5
 
 <br>
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+## Contents
+
+- [How to use](#how-to-use)
+  - [Singleton](#singleton)
+  - [Authentication](#authentication)
+    - [CallBack Pattern](#callback-pattern)
+    - [Delegation Pattern](#delegation-pattern)
+  - [Authentication (Advanced)](#authentication-advanced)
+    - [Get a ```Session Token```](#get-a-session-token)
+    - [Get an ```Access Token```](#get-an-access-token)
+    - [Get an ```Api Key```](#get-an-api-key)
+  - [How to call API](#how-to-call-api)
+  - [Streaming API](#streaming-api)
+    - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
+    - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
+    - [```MisskeyKit.streaming.stopListening()```](#misskeykitstreamingstoplistening)
+- [Contribute](#contribute)
+- [Others](#others)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br><br>
 
 ## How to use
 
@@ -127,6 +155,8 @@ MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
 }
 ```
 
+<br>
+
 After getting, you need to let your user authenticate via safari.
 
 For example,
@@ -146,7 +176,6 @@ MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
 }
 ```
 
-<br>
 
 #### Get an ```Access Token```
 
@@ -158,7 +187,6 @@ MisskeyKit.auth.getAccessToken() { auth, error in
 }
 ```
 
-<br>
 
 #### Get an ```Api Key```
 
@@ -171,7 +199,8 @@ guard let apikey = MisskeyKit.auth.getAPIKey() else {
 }
 
 ```
-<br>
+
+<br><br>
 
 ### How to call API
 
@@ -212,7 +241,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 }
 ```
 
-<br><br>
+<br><br><br>
 
 ### Streaming API
 
@@ -227,7 +256,9 @@ MisskeyKit also provides wrapper of a [```streaming API```](https://misskey.kuru
 
 However it's so easy to connect via WebSocket by MisskeyKit !　
 
-### ```MisskeyKit.streaming.connect()```
+<br>
+
+#### ```MisskeyKit.streaming.connect()```
 
 
 All you have to do is just use ```MisskeyKit.streaming.connect()``` !
@@ -253,7 +284,7 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 ```
 <br><br>
 
-### ```MisskeyKit.streaming.captureNote()```
+#### ```MisskeyKit.streaming.captureNote()```
 
 Even if you use ```MisskeyKit.streaming.connect()``` and listen to events, there are some notes you cannot receive.
 
@@ -276,7 +307,7 @@ Once you capture a note, each events related to the note will sent to your callb
 
 <br><br>
 
-### ```MisskeyKit.streaming.stopListening()```
+#### ```MisskeyKit.streaming.stopListening()```
 
 If you want to disconnect specific channel, use ```MisskeyKit.streaming.stopListening()```.
 
@@ -309,7 +340,7 @@ Twitter         - [@YuigaWada](https://twitter.com/YuigaWada)
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/YuigaWada/MisskeyKit](https://github.com/YuigaWada/MisskeyKit)
+[https://github.com/YuigaWada/MisskeyKit-for-iOS](https://github.com/YuigaWada/MisskeyKit-for-iOS)
 
 
 
