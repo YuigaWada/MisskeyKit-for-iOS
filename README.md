@@ -69,7 +69,7 @@ There are 5 native steps for authentication.
 
 All you need is setup and present ```MisskeyKit.auth.viewController ``` , which launchs browser for authentication and does tedious process instead of you.
 
-Additionally, You can choose whether to use callback pattern or delegate pattern!
+Additionally, You can choose whether to use callback pattern or delegation pattern!
 
 <br>
 
@@ -84,12 +84,11 @@ MisskeyKit.auth.viewController.resultApiKey() { apiKey in
 
 }
 
-MisskeyKit.auth.viewController.delegate = self
 self.present(MisskeyKit.auth.viewController, animated: true)
 ```
 
 
-#### Delegate Pattern
+#### Delegation Pattern
 
 ```swift
 class ViewController: UIViewController, AuthViewControllerDelegate {
