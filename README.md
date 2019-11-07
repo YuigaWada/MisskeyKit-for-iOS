@@ -50,12 +50,11 @@ open class MisskeyKit {
 
 ```
 
+<br>
+
 ### Authentication
 
-**TODO: web認証あたりまで一括でやってくれるようなメソッドを用意する**
-
-
-You need just 5 steps.
+There are 5 steps for authentication.
 
 1. Access to [Developer Center](https://misskey.io/dev) and Get ```Secret Key``` (aka ```appSecret```).
 2. Get a ```Session Token```.
@@ -63,17 +62,70 @@ You need just 5 steps.
 4. Get an ```Access Token```.
 5. Finally, Get an ```Api Key``` !
 
-MisskeyKit supports for 2~5 steps.
+<!-- **TODO: web認証あたりまで一括でやってくれるようなメソッドを用意する** -->
 
 <br>
+
+**On the other hand, MisskeyKit is tooooo simple.**
+
+All you need is setup and present ```MisskeyKit.auth.viewController ``` , which launchs browser for authentication and does tedious process instead of you.
+
+Additionally, You can choose whether to use callback pattern or delegate pattern!
+
+<br>
+
+#### CallBack Pattern
+
+```swift
+MisskeyKit.auth.appSecret = "Enter your Secret Key"
+MisskeyKit.auth.viewController.resultApiKey() { apiKey in
+
+    guard let apiKey = apiKey else { return }
+    print(apiKey) // u can get uesr's apikey.
+
+}
+
+MisskeyKit.auth.viewController.delegate = self
+self.present(MisskeyKit.auth.viewController, animated: true)
+```
+
+
+#### Delegate Pattern
+
+```swift
+class ViewController: UIViewController, AuthViewControllerDelegate {
+
+  func something() {
+      MisskeyKit.auth.appSecret = "Enter your Secret Key"
+      MisskeyKit.auth.viewController.delegate = self
+
+      self.present(MisskeyKit.auth.viewController, animated: true)
+  }
+
+  //....
+
+  func resultApiKey(_ apiKey: String?) { // Need: AuthViewControllerDelegate
+      guard let apiKey = apiKey else { return }
+
+      print(apiKey) // u can get uesr's apikey.
+  }
+
+```
+
+<br><br>
+
+### Authentication (Advanced)
+
+You can also call API of Authentication in the right order.
+
 
 #### Get a ```Session Token```
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
-            guard let auth = auth, error != nil else { return }
+    guard let auth = auth, let token = auth.token, error != nil else { /* Error */ return }
 
-            print(auth.token) // u got a Session Token.
+    print(token) // u got a Session Token.
 }
 ```
 
@@ -83,14 +135,16 @@ For example,
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
-            guard let auth = auth, error != nil else { /* Error */ return }
+    guard let auth = auth, let token = auth.token, error != nil else { /* Error */ return }
 
-            print(auth.token) // u got a Session Token.
+    print(token) // u got a Session Token.
 
-            guard let url = URL(string: auth.url) else { /* Error */ return }
-              if( UIApplication.shared.canOpenURL(url) ) {
-                  UIApplication.shared.open(url)
-              }
+    guard let url = URL(string: token.url) else { /* Error */ return }
+    DispatchQueue.main.async {
+      if UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.open(url)
+      }
+    }
 }
 ```
 
@@ -100,9 +154,9 @@ MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
 
 ```swift
 MisskeyKit.auth.getAccessToken() { auth, error in
-            guard let auth = auth, error != nil else { return }
+    guard let auth = auth, error != nil else { return }
 
-            print(auth.me) // u got a Session Token.
+    print(auth.me) // u got a Session Token.
 }
 ```
 
@@ -116,7 +170,7 @@ guard let apikey = MisskeyKit.auth.getAPIKey() else {
 
       /* Error */
 
-  }
+}
 
 ```
 <br>
