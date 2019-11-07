@@ -9,22 +9,22 @@
 import Foundation
 
 public struct StreamingModel: Codable {
-    let id: String?
-    let createdAt: String?
-    let type: String?
-    let userId: String?
-    let user: UserModel?
-    let note: NoteModel?
+    public let id: String?
+    public let createdAt: String?
+    public let type: String?
+    public let userId: String?
+    public let user: UserModel?
+    public let note: NoteModel?
 }
 
 public struct NoteUpdatedModel: Codable {
-    var type: UpdateType?
-    var targetNoteId: String?
+    public var type: UpdateType?
+    public var targetNoteId: String?
     
-    let deletedAt: String?
-    let choice: Int?
-    let uesrId: String?
-    let reaction: String?
+    public let deletedAt: String?
+    public let choice: Int?
+    public let uesrId: String?
+    public let reaction: String?
 
     
     public enum UpdateType: String, Codable {

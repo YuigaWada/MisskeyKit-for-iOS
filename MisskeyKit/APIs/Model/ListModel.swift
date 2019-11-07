@@ -9,6 +9,6 @@
 import Foundation
 
 public struct ListModel: Codable {
-    let id, createdAt, name: String?
-    let userIds: [String?]?
+    public let id, createdAt, name: String?
+    public let userIds: [String?]?
 }

@@ -9,13 +9,13 @@
 import Foundation
 
 public struct SentStreamModel: Codable {
-    let type: String?
-    let body: ChannelBody?
+    public let type: String?
+    public let body: ChannelBody?
     
     public struct ChannelBody: Codable {
-        let channel: Channel?
-        let id: String?
-        let params: [String:String]?
+        public let channel: Channel?
+        public let id: String?
+        public let params: [String:String]?
         
         init(channel: Channel, id: String, params: [String:String]){
             self.channel = channel; self.id = id; self.params = params

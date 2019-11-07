@@ -10,7 +10,12 @@ import Foundation
 
 public extension MisskeyKit.Auth {
     struct Token: Codable {
-        var token: String
-        var url: String
+        public var token: String
+        public var url: String
+        
+        public init(token: String, url: String) {
+            self.token = token
+            self.url = url
+        }
     }
 }

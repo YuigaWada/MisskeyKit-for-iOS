@@ -9,55 +9,55 @@
 import Foundation
 
 public struct MetaModel: Codable{
-    let maintainerName, maintainerEmail, version, name: String?
-    let uri: String?
-    let welcomeDescription: String?
-    let langs: [String]?
-    let toSUrl: String?
-    let repositoryUrl, feedbackUrl: String?
-    let secure: Bool?
-    let machine, os, node, psql: String?
-    let redis: String?
-    let cpu: CPU?
-    let announcements: [Announcement]?
-    let disableRegistration, disableLocalTimeline, disableGlobalTimeline, enableEmojiReaction: Bool?
-    let driveCapacityPerLocalUserMB, driveCapacityPerRemoteUserMB: Int?
-    let cacheRemoteFiles, enableRecaptcha: Bool?
-    let recaptchaSiteKey, swPublickey, mascotImageUrl: String?
-    let bannerUrl: String?
-    let errorImageUrl, iconUrl: String?
-    let maxNoteTextLength: Int?
-    let emojis: [Emoji]?
-    let enableEmail, enableTwitterIntegration, enableGithubIntegration, enableDiscordIntegration: Bool?
-    let enableServiceWorker: Bool?
-    let features: Features?
+    public let maintainerName, maintainerEmail, version, name: String?
+    public let uri: String?
+    public let welcomeDescription: String?
+    public let langs: [String]?
+    public let toSUrl: String?
+    public let repositoryUrl, feedbackUrl: String?
+    public let secure: Bool?
+    public let machine, os, node, psql: String?
+    public let redis: String?
+    public let cpu: CPU?
+    public let announcements: [Announcement]?
+    public let disableRegistration, disableLocalTimeline, disableGlobalTimeline, enableEmojiReaction: Bool?
+    public let driveCapacityPerLocalUserMB, driveCapacityPerRemoteUserMB: Int?
+    public let cacheRemoteFiles, enableRecaptcha: Bool?
+    public let recaptchaSiteKey, swPublickey, mascotImageUrl: String?
+    public let bannerUrl: String?
+    public let errorImageUrl, iconUrl: String?
+    public let maxNoteTextLength: Int?
+    public let emojis: [Emoji]?
+    public let enableEmail, enableTwitterIntegration, enableGithubIntegration, enableDiscordIntegration: Bool?
+    public let enableServiceWorker: Bool?
+    public let features: Features?
 }
 
 // MARK: - Announcement
 public struct Announcement: Codable{
-    let text: String?
-    let image: String?
-    let title: String?
+    public let text: String?
+    public let image: String?
+    public let title: String?
 }
 
 // MARK: - CPU
 public struct CPU: Codable{
-    let model: String?
-    let cores: Int?
+    public let model: String?
+    public let cores: Int?
 }
 
 // MARK: - Emoji
 public struct Emoji: Codable{
-    let id: String?
-    let aliases: [String]?
-    let name: String?
-    let category: Category?
-    let url: String?
-    let uri: String?
-    let type: String?
+    public let id: String?
+    public let aliases: [String]?
+    public let name: String?
+    public let category: Category?
+    public let url: String?
+    public let uri: String?
+    public let type: String?
 }
 
-enum Category: String, Codable{
+public enum Category: String, Codable{
     case logo = "Logo"
     case os = "OS"
     case cute = "かわいい"
@@ -73,7 +73,7 @@ enum Category: String, Codable{
 
 // MARK: - Features
 public struct Features: Codable{
-    let registration, localTimeLine, globalTimeLine, elasticsearch: Bool?
-    let recaptcha, objectStorage, twitter, github: Bool?
-    let discord, serviceWorker: Bool?
+    public let registration, localTimeLine, globalTimeLine, elasticsearch: Bool?
+    public let recaptcha, objectStorage, twitter, github: Bool?
+    public let discord, serviceWorker: Bool?
 }

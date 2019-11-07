@@ -17,7 +17,7 @@ extension MisskeyKit {
         public var me: Me? // infomation of logedin account, which have accessToken
         public var token: Token? // token of SESSION
         
-        func startSession(appSecret: String, completion callback: @escaping AuthCallBack) {
+        public func startSession(appSecret: String, completion callback: @escaping AuthCallBack) {
             self.appSecret = appSecret
             
             let params = ["appSecret": appSecret]
@@ -31,7 +31,7 @@ extension MisskeyKit {
             }
         }
         
-        func getAccessToken(completion callback: @escaping AuthCallBack) {
+        public func getAccessToken(completion callback: @escaping AuthCallBack) {
             guard let token = self.token, let appSecret = appSecret else { return }
             
             let params = ["appSecret": appSecret, "token": token.token]
@@ -45,7 +45,7 @@ extension MisskeyKit {
             }
         }
         
-        func getAPIKey()-> String? {
+        public func getAPIKey()-> String? {
             guard let me = me, let appSecret = appSecret else { return nil }
             let seed = me.accessToken + appSecret
             

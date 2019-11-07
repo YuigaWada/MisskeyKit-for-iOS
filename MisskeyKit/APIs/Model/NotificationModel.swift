@@ -10,13 +10,13 @@ import Foundation
 
 
 public struct NotificationModel: Codable {
-    let id: String?
-    let createdAt: String?
-    let type: ActionType?
-    let userId: String?
-    let user: UserModel?
-    let reaction: String?
-    let note: NoteModel?
+    public let id: String?
+    public let createdAt: String?
+    public let type: ActionType?
+    public let userId: String?
+    public let user: UserModel?
+    public let reaction: String?
+    public let note: NoteModel?
 }
 
 
