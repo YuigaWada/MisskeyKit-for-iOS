@@ -54,7 +54,7 @@ open class MisskeyKit {
 
 ### Authentication
 
-There are 5 steps for authentication.
+There are 5 native steps for authentication.
 
 1. Access to [Developer Center](https://misskey.io/dev) and Get ```Secret Key``` (aka ```appSecret```).
 2. Get a ```Session Token```.
@@ -62,7 +62,6 @@ There are 5 steps for authentication.
 4. Get an ```Access Token```.
 5. Finally, Get an ```Api Key``` !
 
-<!-- **TODO: web認証あたりまで一括でやってくれるようなメソッドを用意する** -->
 
 <br>
 
