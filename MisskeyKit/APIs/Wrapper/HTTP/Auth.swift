@@ -16,6 +16,7 @@ extension MisskeyKit {
         
         public var me: Me? // infomation of logedin account, which have accessToken
         public var token: Token? // token of SESSION
+        public lazy var viewController: AuthViewController = .init()
         
         public func startSession(appSecret: String, completion callback: @escaping AuthCallBack) {
             self.appSecret = appSecret
