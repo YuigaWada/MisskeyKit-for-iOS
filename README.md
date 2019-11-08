@@ -147,7 +147,7 @@ You can also call API of Authentication in the right order.
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
-    guard let auth = auth, let token = auth.token, error != nil else { /* Error */ return }
+    guard let auth = auth, let token = auth.token, error == nil else { /* Error */ return }
 
     print(token) // u got a Session Token.
 }
@@ -161,7 +161,7 @@ For example,
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
-    guard let auth = auth, let token = auth.token, error != nil else { /* Error */ return }
+    guard let auth = auth, let token = auth.token, error == nil else { /* Error */ return }
 
     print(token) // u got a Session Token.
 
@@ -179,7 +179,7 @@ MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
 
 ```swift
 MisskeyKit.auth.getAccessToken() { auth, error in
-    guard let auth = auth, error != nil else { return }
+    guard let auth = auth, error == nil else { return }
 
     print(auth.me) // u got a Session Token.
 }
