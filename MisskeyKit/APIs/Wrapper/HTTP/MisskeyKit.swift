@@ -22,6 +22,11 @@ open class MisskeyKit {
     
     static public var streaming: MisskeyKit.Streaming = MisskeyKit.Streaming()
     
+    
+    public static func changeInstance(instance: String = "misskey.io") {
+        Api.instance = instance
+    }
+    
     //MARK:- Internal Methods
     internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
         var params = params
