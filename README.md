@@ -42,6 +42,7 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
     - [Get an ```Access Token```](#get-an-access-token)
     - [Get an ```Api Key```](#get-an-api-key)
   - [How to call API](#how-to-call-api)
+  - [Api-Method correspondence table](#api-method-correspondence-table)
   - [Streaming API](#streaming-api)
     - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
     - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
@@ -240,6 +241,73 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 ```
 
 <br><br><br>
+
+
+### Api-Method correspondence table
+
+|Misskey API|MisskeyKit Methods|
+|---|---|
+|users/show|Users.showUser|
+|i|Users.i|
+|i/favorites|Users.getAllFavorites|
+|i/page-likes|Users.getLikedPages|
+|i/pages|Users.getMyPages|
+|i/update|Users.updateMyAccount|
+|i/pin|Users.pin|
+|i/unpin|Users.unpin|
+|following/create|Users.follow|
+|following/delete|Users.unfollow|
+|users/followers|Users.getFollowers|
+|users/following|Users.getFollowing|
+|users/get-frequently-replied-users|Users.getFrequentlyRepliedUsers|
+|users/relation|Users.getUserRelationship|
+|blocking/create|Users.block|
+|blocking/delete|Users.unblock|
+|blocking/list|Users.getBlockingList|
+|users/report-abuse|Users.reportAsAbuse|
+|users/recommendation|Users.getUserRecommendation|
+|notes|Notes.getAllNotes|
+|notes/show|Notes.showNote|
+|users/notes|Notes.getUserNotes|
+|notes/mentions|Notes.getMentionsForMe|
+|notes/timeline|Notes.getTimeline|
+|notes/global-timeline|Notes.getGlobalTimeline|
+|notes/hybrid-timeline|Notes.getHybridTimeline, Notes.getLocalTimeline|
+|notes/user-list-timeline|Notes.getUserListTimeline|
+|notes/featured|Notes.getFeatured|
+|notes/create|Notes.createNote, Notes.renote|
+|notes/delete|Notes.deletePost|
+|notes/favorites/create|Notes.createFavorite|
+|notes/favorites/delete|Notes.deleteFavorite|
+|notes/reactions/create|Notes.createReaction|
+|notes/reactions/delete|Notes.deleteReaction|
+|notes/renotes|Notes.getRenotes|
+|notes/unrenote|Notes.unrenote|
+|notes/replies|Notes.getReplies|
+|notes/watching/create|Notes.watchNote|
+|notes/watching/delete|Notes.unWatchNote|
+|i/read-all-unread-notes|Notes.readAllUnreadNotes|
+|auth/session/generate|Auth.startSession|
+|meta|Meta.get|
+|users/groups/invitations/accept|Groups.acceptInvitation|
+|users/groups/invitations/reject|Groups.rejectInvitation|
+|users/groups/invite|Groups.invite|
+|users/groups/pull|Groups.pullUser|
+|users/groups/transfer|Groups.transferUser|
+|users/lists/pull|Lists.pullUser|
+|users/lists/push|Lists.pushUser|
+|users/lists/create|Lists.create|
+|users/lists/delete|Lists.delete|
+|users/lists/show|Lists.show|
+|users/lists/list|Lists.getMyLists|
+|users/lists/update|Lists.update|
+|users/search|Search.user|
+|notes/search|Search.notes|
+|notes/search-by-tag|Search.notesByTag|
+|i/notifications|Notificaitons.get|
+|notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
+<br><br>
 
 ### Streaming API
 
