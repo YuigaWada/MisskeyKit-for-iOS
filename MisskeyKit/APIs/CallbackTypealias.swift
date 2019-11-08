@@ -8,13 +8,13 @@
 
 public typealias AuthCallBack = (MisskeyKit.Auth?, Error?)->Void
 public typealias BooleanCallBack = (Bool, Error?)->Void
-public typealias NotesCallBack = ([NoteModel]?, Error?)->Void
 public typealias OneNoteCallBack = (NoteModel?, Error?)->Void
+public typealias NotesCallBack = ([NoteModel]?, Error?)->Void
 
 public typealias OneUserCallBack = (UserModel?, Error?)->Void
 public typealias UsersCallBack = ([UserModel]?, Error?)->Void
 
-public typealias UserRelationshipCallBack = (UserRelationship?, Error?)->Void
+public typealias OneUserRelationshipCallBack = (UserRelationship?, Error?)->Void
 public typealias UserRelationshipsCallBack = ([UserRelationship]?, Error?)->Void
 
 public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void

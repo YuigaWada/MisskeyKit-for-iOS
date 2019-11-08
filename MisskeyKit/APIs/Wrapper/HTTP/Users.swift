@@ -247,7 +247,7 @@ extension MisskeyKit {
         }
         
           //MARK:- User Relationship
-        public func getUserRelationship(userId: String, result callback: @escaping UserRelationshipCallBack) {
+        public func getUserRelationship(userId: String, result callback: @escaping OneUserRelationshipCallBack) {
             
             var params = ["userId":userId] as [String : Any]
             
