@@ -19,8 +19,12 @@
 |blocking/list|Users.getBlockingList|
 |users/report-abuse|Users.reportAsAbuse|
 |users/recommendation|Users.getUserRecommendation|
+|following/requests/accept|Users.acceptFollowRequest|
+|following/requests/cancel|Users.cancelFollowRequest|
+|following/requests/reject|Users.rejectFollowRequest|
 |notes|Notes.getAllNotes|
 |notes/show|Notes.showNote|
+|notes/conversation|Notes.getConversation, Notes.getChildren|
 |users/notes|Notes.getUserNotes|
 |notes/mentions|Notes.getMentionsForMe|
 |notes/timeline|Notes.getTimeline|
@@ -33,6 +37,7 @@
 |notes/delete|Notes.deletePost|
 |notes/favorites/create|Notes.createFavorite|
 |notes/favorites/delete|Notes.deleteFavorite|
+|notes/reactions|Notes.getReactions|
 |notes/reactions/create|Notes.createReaction|
 |notes/reactions/delete|Notes.deleteReaction|
 |notes/renotes|Notes.getRenotes|
@@ -41,6 +46,7 @@
 |notes/watching/create|Notes.watchNote|
 |notes/watching/delete|Notes.unWatchNote|
 |i/read-all-unread-notes|Notes.readAllUnreadNotes|
+|notes/polls/vote|Notes.vote|
 |auth/session/generate|Auth.startSession|
 |meta|Meta.get|
 |users/groups/invitations/accept|Groups.acceptInvitation|

@@ -266,8 +266,12 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |blocking/list|Users.getBlockingList|
 |users/report-abuse|Users.reportAsAbuse|
 |users/recommendation|Users.getUserRecommendation|
+|following/requests/accept|Users.acceptFollowRequest|
+|following/requests/cancel|Users.cancelFollowRequest|
+|following/requests/reject|Users.rejectFollowRequest|
 |notes|Notes.getAllNotes|
 |notes/show|Notes.showNote|
+|notes/conversation|Notes.getConversation, Notes.getChildren|
 |users/notes|Notes.getUserNotes|
 |notes/mentions|Notes.getMentionsForMe|
 |notes/timeline|Notes.getTimeline|
@@ -280,6 +284,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/delete|Notes.deletePost|
 |notes/favorites/create|Notes.createFavorite|
 |notes/favorites/delete|Notes.deleteFavorite|
+|notes/reactions|Notes.getReactions|
 |notes/reactions/create|Notes.createReaction|
 |notes/reactions/delete|Notes.deleteReaction|
 |notes/renotes|Notes.getRenotes|
@@ -288,6 +293,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/watching/create|Notes.watchNote|
 |notes/watching/delete|Notes.unWatchNote|
 |i/read-all-unread-notes|Notes.readAllUnreadNotes|
+|notes/polls/vote|Notes.vote|
 |auth/session/generate|Auth.startSession|
 |meta|Meta.get|
 |users/groups/invitations/accept|Groups.acceptInvitation|
@@ -307,6 +313,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
 
 
 <br><br>

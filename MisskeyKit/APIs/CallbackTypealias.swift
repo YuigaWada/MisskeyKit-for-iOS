@@ -17,6 +17,8 @@ public typealias UsersCallBack = ([UserModel]?, Error?)->Void
 public typealias OneUserRelationshipCallBack = (UserRelationship?, Error?)->Void
 public typealias UserRelationshipsCallBack = ([UserRelationship]?, Error?)->Void
 
+public typealias ReactionsCallBack = ([ReactionModel]?, Error?)->Void
+
 public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void
 
 public typealias ListCallBack = (ListModel?, Error?)->Void

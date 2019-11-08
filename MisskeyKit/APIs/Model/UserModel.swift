@@ -79,3 +79,10 @@ public struct BlockList: Codable {
     public var blockeeId: String?
     public var blockee: UserModel?
 }
+
+public struct FollowRequestModel: Codable {
+    public var id: String
+    public var followee: UserModel?
+    public var follower: UserModel?
+}
+

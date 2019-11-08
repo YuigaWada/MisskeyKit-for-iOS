@@ -16,7 +16,7 @@
     public let viaMobile: Bool?
     public let isHidden: Bool?
     public let renoteCount, repliesCount: Int?
-    public let reactions: [Reaction?]?
+    public let reactions: [ReactionCount?]?
     public let emojis: [EmojiModel?]?
     public let files: [File?]?
     public let replyId, renoteId: String?
@@ -55,7 +55,7 @@
  }
 
  // MARK: - Reaction
- public struct Reaction: Codable {
+ public struct ReactionCount: Codable {
     public let name: String?
     public let count: String?
  }
@@ -84,6 +84,12 @@
      }
  }
 
+ public struct ReactionModel: Codable {
+     public let id, createdAt, type: String?
+     public let user: UserModel?
+ }
+ 
+ 
  // MARK: - Poll
  public struct Poll: Codable {
      public let choices: [Choice?]?
@@ -105,6 +111,9 @@
      public let isVoted: Bool?
  }
 
+ public struct NoteState: Codable {
+     public let isFavorited, isWatching: Bool?
+ }
 
  
  extension Geo {

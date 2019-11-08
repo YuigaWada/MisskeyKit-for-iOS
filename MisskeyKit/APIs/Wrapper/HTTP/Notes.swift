@@ -47,6 +47,54 @@ extension MisskeyKit {
             }
         }
         
+        public func getState(noteId: String, result callback: @escaping (NoteState?,Error?)->()) {
+            
+            var params = ["noteId":noteId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/state", params: params, type: NoteState.self) { posts, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
+        
+        public func getConversation(noteId: String, limit: Int =  10, offset: Int = 0, result callback: @escaping NotesCallBack) {
+            
+            var params = ["noteId":noteId,
+                          "limit":limit,
+                          "offset":offset] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/conversation", params: params, type: [NoteModel].self) { posts, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
+        public func getChildren(noteId: String, limit: Int =  10, sinceId:String="", untilId: String="", result callback: @escaping NotesCallBack) {
+            
+            var params = ["noteId":noteId,
+                          "limit":limit,
+                          "sinceId":sinceId,
+                          "sinceId":sinceId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/conversation", params: params, type: [NoteModel].self) { posts, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
         
         public func getUserNotes(includeReplies:Bool = true, includeMyRenotes: Bool = true, userId: String = "", fileType: [String] = [], excludeNsfw: Bool = true, withFiles: Bool = false, limit: Int=10, sinceDate:Int=0, untilDate: Int=0, sinceId:String="", untilId: String="", completion callback: @escaping NotesCallBack) {
             
@@ -285,6 +333,27 @@ extension MisskeyKit {
         }
         
         //MARK:- Reaction
+        
+        //ReactionModel
+        public func getReactions(noteId: String, limit: Int = 10, sinceId: String="", untilId: String = "", offset: Int = 0, result callback: @escaping ReactionsCallBack) {
+            
+            var params = ["noteId":noteId,
+                          "limit":limit,
+                          "sinceId":sinceId,
+                          "untilId":untilId,
+                          "offset":offset] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/reactions", params: params, type: [ReactionModel].self) { posts, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+
+        
         public func createReaction(noteId: String, reaction:String, result callback: @escaping BooleanCallBack) {
             
             var params = ["noteId":noteId,"reaction":reaction] as [String : Any]
@@ -415,6 +484,18 @@ extension MisskeyKit {
             }
         }
         
+        //MARK:- Voting
+        
+        public func vote(noteId: String, choice: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["noteId":noteId,
+                          "choice":choice] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/polls/vote", params: params, type: Bool.self) { _, error in
+                callback(error == nil, error)
+            }
+        }
         
         
         

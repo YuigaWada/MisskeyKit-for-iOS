@@ -344,5 +344,52 @@ extension MisskeyKit {
         }
         
         
+        //MARK:- Follow Requests
+        public func acceptFollowRequest(userId: String, comment: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/requests/accept", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        //自分が送ったフォローリクエストをキャンセル
+        public func cancelFollowRequest(userId: String, comment: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/requests/cancel", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        //自分に届いたフォローリクエストをキャンセル
+        public func rejectFollowRequest(userId: String, comment: String, result callback: @escaping BooleanCallBack) {
+            
+            var params = ["userId":userId] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/requests/reject", params: params, type: Bool.self) { _, error in
+                callback(error == nil,nil)
+            }
+        }
+        
+        public func getFollowRequests(result callback: @escaping ([FollowRequestModel]?,Error?)->()) {
+            
+            var params = [:] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "following/requests/list", params: params, type: [FollowRequestModel].self) { users, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users,nil)
+            }
+        }
+        
     }
 }
