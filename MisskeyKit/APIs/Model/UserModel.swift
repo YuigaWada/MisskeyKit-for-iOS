@@ -41,8 +41,31 @@ public struct UserModel: Codable {
     public var pinnedPageId: String?
     public var pinnedPage: PageModel?
     public var twoFactorEnabled, usePasswordLessLogin, securityKeys: Bool?
-    public var twitter, github, discord: String?
+    public var twitter: Twitter?
+    public var github: GitHub?
+    public var discord: Discord?
     public var hasUnreadSpecifiedNotes, hasUnreadMentions: Bool?
+    public var avatarId, bannerId: String?
+    public var autoWatch, alwaysMarkNsfw, carefulBot, autoAcceptFollowed: Bool?
+    public var hasUnreadMessagingMessage, hasUnreadNotification: Bool?
+    public var pendingReceivedFollowRequestsCount: Int?
+    
+    
+    public struct Twitter: Codable {
+        public var id: String?
+        public var screenName: String?
+    }
+    
+    public struct GitHub: Codable {
+        public var id: String?
+        public var login: String?
+    }
+    
+    public struct Discord: Codable {
+        public var id: String?
+        public var username: String?
+        public var discriminator: String?
+    }
 }
 
 public struct UserRelationship: Codable {
