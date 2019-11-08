@@ -272,7 +272,8 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/mentions|Notes.getMentionsForMe|
 |notes/timeline|Notes.getTimeline|
 |notes/global-timeline|Notes.getGlobalTimeline|
-|notes/hybrid-timeline|Notes.getHybridTimeline, Notes.getLocalTimeline|
+|notes/hybrid-timeline|Notes.getHybridTimeline|
+|notes/local-timeline|Notes.getLocalTimeline|
 |notes/user-list-timeline|Notes.getUserListTimeline|
 |notes/featured|Notes.getFeatured|
 |notes/create|Notes.createNote, Notes.renote|
@@ -306,6 +307,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
 
 <br><br>
 

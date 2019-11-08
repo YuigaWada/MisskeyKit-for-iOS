@@ -25,7 +25,8 @@
 |notes/mentions|Notes.getMentionsForMe|
 |notes/timeline|Notes.getTimeline|
 |notes/global-timeline|Notes.getGlobalTimeline|
-|notes/hybrid-timeline|Notes.getHybridTimeline, Notes.getLocalTimeline|
+|notes/hybrid-timeline|Notes.getHybridTimeline|
+|notes/local-timeline|Notes.getLocalTimeline|
 |notes/user-list-timeline|Notes.getUserListTimeline|
 |notes/featured|Notes.getFeatured|
 |notes/create|Notes.createNote, Notes.renote|
