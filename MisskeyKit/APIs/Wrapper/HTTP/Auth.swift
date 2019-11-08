@@ -18,6 +18,15 @@ extension MisskeyKit {
         public var token: Token? // token of SESSION
         public lazy var viewController: AuthViewController = .init()
         
+        private var apiKey: String?
+        
+        //MARK:- SET
+        public func setAPIKey(_ apiKey: String) {
+            self.apiKey = apiKey
+        }
+        
+        
+        //MARK:- GET
         public func startSession(appSecret: String, completion callback: @escaping AuthCallBack) {
             self.appSecret = appSecret
             
@@ -47,10 +56,15 @@ extension MisskeyKit {
         }
         
         public func getAPIKey()-> String? {
-            guard let me = me, let appSecret = appSecret else { return nil }
-            let seed = me.accessToken + appSecret
-            
-            return seed.sha256()
+            if let apiKey = apiKey {
+                return apiKey
+            }
+            else {
+                guard let me = me, let appSecret = appSecret else { return nil }
+                let seed = me.accessToken + appSecret
+                
+                return seed.sha256()
+            }
         }
         
     }
