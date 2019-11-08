@@ -8,9 +8,7 @@
 
 ## MisskeyKit for iOS
 
-MisskeyKit is a library of [Misskey](https://misskey.io) written in swift.
-
-You can call Misskey API almost intuitively!
+MisskeyKit is a framework for [Misskey](https://misskey.io) written in swift. You can call Misskey API intuitively.
 
 <br>
 
@@ -95,7 +93,7 @@ There are 5 native steps for authentication.
 
 **On the other hand, MisskeyKit is tooooo simple.**
 
-All you need is setup and present ```MisskeyKit.auth.viewController ``` , which launchs browser for authentication and does tedious process instead of you.
+All you need is setup and present ```MisskeyKit.auth.viewController``` , which launchs browser for authentication and does tedious process instead of you.
 
 Additionally, You can choose whether to use callback pattern or delegation pattern!
 
