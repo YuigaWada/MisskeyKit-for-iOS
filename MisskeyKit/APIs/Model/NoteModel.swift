@@ -17,7 +17,7 @@
     public let isHidden: Bool?
     public let renoteCount, repliesCount: Int?
     public let reactions: [Reaction?]?
-    public let emojis: [Emoji?]?
+    public let emojis: [EmojiModel?]?
     public let files: [File?]?
     public let replyId, renoteId: String?
     public let renote: NoteModel?

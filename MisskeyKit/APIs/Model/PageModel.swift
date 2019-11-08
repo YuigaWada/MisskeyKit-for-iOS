@@ -38,7 +38,7 @@ public struct PageModel: Codable {
         public let avatarURL: String?
         public let avatarColor: String?
         public let isBot, isCat: Bool?
-        public let emojis: [Emoji?]?
+        public let emojis: [EmojiModel?]?
     }
 
 }

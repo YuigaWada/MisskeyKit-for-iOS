@@ -27,7 +27,7 @@ public struct MetaModel: Codable{
     public let bannerUrl: String?
     public let errorImageUrl, iconUrl: String?
     public let maxNoteTextLength: Int?
-    public let emojis: [Emoji]?
+    public let emojis: [EmojiModel]?
     public let enableEmail, enableTwitterIntegration, enableGithubIntegration, enableDiscordIntegration: Bool?
     public let enableServiceWorker: Bool?
     public let features: Features?
@@ -47,7 +47,7 @@ public struct CPU: Codable{
 }
 
 // MARK: - Emoji
-public struct Emoji: Codable{
+public struct EmojiModel: Codable{
     public let id: String?
     public let aliases: [String]?
     public let name: String?
