@@ -323,8 +323,37 @@ extension MisskeyKit {
             }
         }
         
-        // 注: renoteする場合はnotes/createを使う
-        public func unRenote(noteId: String, result callback: @escaping BooleanCallBack) {
+        
+        public func renote(renoteId: String, quote: String = "", visibility:Visibility = Visibility.public, visibleUserIds: [String]=[], cw:String = "", viaMobile: Bool = true, localOnly: Bool = false, noExtractMentions: Bool = true, noExtractHashtags: Bool = true, noExtractEmojis: Bool = true, geo: Geo? = nil, fileIds: [String] = [ ], replyId: String = "", poll: Poll? = nil,  completion callback: @escaping OneNoteCallBack) {
+            
+            var params = ["renoteId": renoteId,
+                          "text": quote,
+                          "visibility": visibility.rawValue,
+                          "visibleUserIds": visibleUserIds,
+                          "viaMobile": viaMobile,
+                          "localOnly": localOnly,
+                          "noExtractMentions": noExtractMentions,
+                          "noExtractHashtags": noExtractHashtags,
+                          "noExtractEmojis": noExtractEmojis,
+                          "fileIds": fileIds,
+                          "replyId": replyId,
+                          "geo": geo != nil ? geo!.toDictionary() : geo as Any,
+                          "poll": poll != nil ? poll!.toDictionary() : poll as Any] as [String : Any]
+            
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/create", params: params, type: NoteModel.self) { posts, error in
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
+        
+        
+        
+        public func unrenote(noteId: String, result callback: @escaping BooleanCallBack) {
             
             var params = ["noteId":noteId] as [String : Any]
             
@@ -373,7 +402,7 @@ extension MisskeyKit {
                 callback(error == nil, error)
             }
         }
-
+        
         //MARK:- Marking
         
         public func readAllUnreadNotes(result callback: @escaping BooleanCallBack) {
