@@ -9,7 +9,6 @@
 ## MisskeyKit for iOS
 
 MisskeyKitは直観性を重視した、Swift用[Misskey](https://misskey.io)フレームワークです。
-
 ([English README](https://github.com/YuigaWada/MisskeyKit-for-iOS))
 
 <br>
@@ -36,15 +35,15 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 - [使い方](#how-to-use)
   - [Singleton](#singleton)
-  - [ユーザー認証](#authentication)
+  - [ユーザー認証](#ユーザー認証)
     - [CallBack Pattern](#callback-pattern)
     - [Delegation Pattern](#delegation-pattern)
-  - [ユーザー認証 (上級者向け)](#authentication-advanced)
-    - [```Session Token```の取得](#get-a-session-token)
-    - [```Access Token```の取得](#get-an-access-token)
-    - [ ```Api Key```の取得](#get-an-api-key)
-  - [APIの操作](#how-to-call-api)
-  - [Api-Method c対応表](#api-method-correspondence-table)
+  - [ユーザー認証 (上級者向け)](#ユーザー認証-上級者向け)
+    - [```Session Token```の取得](#session-tokenの取得)
+    - [```Access Token```の取得](#access-tokenの取得)
+    - [ ```Api Key```の取得](#api-keyの取得)
+  - [APIの操作](#apiの操作)
+  - [Api-Method 対応表](#api-method-対応表)
   - [Streaming API](#streaming-api)
     - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
     - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
