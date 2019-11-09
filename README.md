@@ -9,7 +9,7 @@
 ## MisskeyKit for iOS
 
 MisskeyKit is a framework for [Misskey](https://misskey.io) written in swift. You can call Misskey API intuitively.
-(日本語は[こちら](https://github.com/YuigaWada/MisskeyKit-for-iOS/README_JP.md))
+(日本語は[こちら](https://github.com/YuigaWada/MisskeyKit-for-iOS/blob/master/README_JP.md))
 
 <br>
 
