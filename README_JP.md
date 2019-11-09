@@ -8,8 +8,9 @@
 
 ## MisskeyKit for iOS
 
-MisskeyKit is a framework for [Misskey](https://misskey.io) written in swift. You can call Misskey API intuitively.
-(日本語は[こちら](https://github.com/YuigaWada/MisskeyKit-for-iOS/README_JP.md))
+MisskeyKitは直観性を重視した、Swift用[Misskey](https://misskey.io)フレームワークです。
+
+([English README](https://github.com/YuigaWada/MisskeyKit-for-iOS))
 
 <br>
 
@@ -21,7 +22,7 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 <br>
 
-## Dependencies
+## 必要なもの
 
 - [Starscream](https://github.com/daltoniam/Starscream)
 - Swift 5
@@ -31,19 +32,19 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-## Contents
+## 目次
 
-- [How to use](#how-to-use)
+- [使い方](#how-to-use)
   - [Singleton](#singleton)
-  - [Authentication](#authentication)
+  - [ユーザー認証](#authentication)
     - [CallBack Pattern](#callback-pattern)
     - [Delegation Pattern](#delegation-pattern)
-  - [Authentication (Advanced)](#authentication-advanced)
-    - [Get a ```Session Token```](#get-a-session-token)
-    - [Get an ```Access Token```](#get-an-access-token)
-    - [Get an ```Api Key```](#get-an-api-key)
-  - [How to call API](#how-to-call-api)
-  - [Api-Method correspondence table](#api-method-correspondence-table)
+  - [ユーザー認証 (上級者向け)](#authentication-advanced)
+    - [```Session Token```の取得](#get-a-session-token)
+    - [```Access Token```の取得](#get-an-access-token)
+    - [ ```Api Key```の取得](#get-an-api-key)
+  - [APIの操作](#how-to-call-api)
+  - [Api-Method c対応表](#api-method-correspondence-table)
   - [Streaming API](#streaming-api)
     - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
     - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
@@ -55,13 +56,13 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 <br><br>
 
-## How to use
+## 使い方
 
 ### Singleton
 
-MisskeyKit adopts [singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern), because of keeping account information instead of developers.
+MisskeyKitでは、apiキーなどのユーザー情報を何度もメソッドに渡さなくてもいいよう、[Singletonパターン](https://en.wikipedia.org/wiki/Singleton_pattern)を採用しています。
 
-So you always have to communicate MisskeyKit via the following instances.
+したがって、常に下記のインスタンスを使ってください。
 
 ```swift
 open class MisskeyKit {
@@ -80,24 +81,24 @@ open class MisskeyKit {
 
 <br>
 
-### Authentication
+### ユーザー認証
 
-There are 5 native steps for authentication.
+Misskeyのユーザー認証には本来、5つのステップが存在します。
 
-1. Access to [Developer Center](https://misskey.io/dev) and Get ```Secret Key``` (aka ```appSecret```).
-2. Get a ```Session Token```.
-3. User authenticates via safari.
-4. Get an ```Access Token```.
-5. Finally, Get an ```Api Key``` !
+1. [デベロッパーセンター](https://misskey.io/dev) にアクセスし、 ```Secret Key``` (いわゆる```appSecret```)を取得する
+2. APIを叩き```Session Token```を取得する
+3. ユーザーに、ブラウザ上から認証させる
+4. ```Access Token```を取得する
+5. sha256の計算を経て```Api Key``` を取得する。
 
 
 <br>
 
-**On the other hand, MisskeyKit is tooooo simple.**
+しかし **MisskeyKitはたったワンステップでユーザー認証を行うことができます**。
 
-All you need is setup and present ```MisskeyKit.auth.viewController``` , which launchs browser for authentication and does tedious process instead of you.
+実装すべきことはただ一つ。```MisskeyKit.auth.viewController```と呼ばれるViewControllerを呼び出すだけです。このVCがアプリ内safariを起動し、必要なトークン、sha256の計算などをやってくれます。
 
-Additionally, You can choose whether to use callback pattern or delegation pattern!
+ちなみに、ここではコールバックパターンとデリゲートパターン、どちらとも使えるような設計になっています。
 
 <br>
 
@@ -108,7 +109,7 @@ MisskeyKit.auth.appSecret = "Enter your Secret Key"
 MisskeyKit.auth.viewController.resultApiKey() { apiKey in
 
     guard let apiKey = apiKey else { return }
-    print(apiKey) // u can get uesr's apikey.
+    print(apiKey) // apiキーが取得できているのを確認できます
 
 }
 
@@ -130,42 +131,42 @@ class ViewController: UIViewController, AuthViewControllerDelegate {
 
   //....
 
-  func resultApiKey(_ apiKey: String?) { // Need: AuthViewControllerDelegate
+  func resultApiKey(_ apiKey: String?) { // AuthViewControllerDelegateが必要
       guard let apiKey = apiKey else { return }
 
-      print(apiKey) // u can get uesr's apikey.
+      print(apiKey) // apiキーが取得できているのを確認できます
   }
 
 ```
 
 <br><br>
 
-### Authentication (Advanced)
+### ユーザー認証 (上級者向け)
 
-You can also call API of Authentication in the right order.
+APIを直接叩き、先程書いた5つのステップをそれぞれ個別に辿っていくことも可能です。
 
 
-#### Get a ```Session Token```
+#### ```Session Token```の取得
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
     guard let auth = auth, let token = auth.token, error == nil else { /* Error */ return }
 
-    print(token) // u got a Session Token.
+    print(token) // Session Tokenが取得できているのを確認できます
 }
 ```
 
 <br>
 
-After getting, you need to let your user authenticate via safari.
+取得できたら、safari等のwebブラウザを経由してMisskeyのページからユーザーにユーザー認証させましょう。
 
-For example,
+たとえばこんな感じ。
 
 ```swift
 MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
     guard let auth = auth, let token = auth.token, error == nil else { /* Error */ return }
 
-    print(token) // u got a Session Token.
+    print(token) // Session Tokenが取得できているのを確認できます
 
     guard let url = URL(string: token.url) else { /* Error */ return }
     DispatchQueue.main.async {
@@ -177,21 +178,21 @@ MisskeyKit.auth.startSession(appSecret: "Enter your appSecret") { auth, error in
 ```
 
 
-#### Get an ```Access Token```
+#### ```Access Token```の取得
 
 ```swift
 MisskeyKit.auth.getAccessToken() { auth, error in
     guard let auth = auth, error == nil else { return }
 
-    print(auth.me) // u got a Session Token.
+    print(auth.me) // Access Tokenが取得できているのを確認できます
 }
 ```
 
 
-#### Get an ```Api Key```
+#### ```Api Key```の取得
 
 ```swift
-// If u get user's Access Token correctly, u can get Api key.
+// 正常にAccess Tokenが取得できていればapiキーを取得できます
 guard let apikey = MisskeyKit.auth.getAPIKey() else {
 
       /* Error */
@@ -202,49 +203,55 @@ guard let apikey = MisskeyKit.auth.getAPIKey() else {
 
 <br><br>
 
-### How to call API
+### APIの操作
 
-Look into my code of MisskeyKit and see how to describe.
+APIが無数にあるので、全て個別に説明していくことはすいませんが面倒くさいので出来ません。
 
-Oh, it's too much hassle? Hmmm... Okay, I'll give you two examples.
+一応2つだけ具体例を書いておくことにします。
 
 <br>
 
-For example, if you wanna post a note, check the following code.
+例えば、ユーザーの投稿を実装したい場合、下記のコードを参考にしてください。
 
-(Once you get or set user's api key, you don't have to send Api key to each methods.)
+(Singletonパターンを採用しているため、一度apiキーをMisskeyKitに渡してしまえば、全メソッドにapiキーが行き渡ります。そのため何度もapiキーをメソッドに送る必要はありません。)
 
 <br>
 
 ```swift
 
- // Type of the first parameter "posts" will change according to purpose of methods you use.
- // In this method, type is NoteModel. You can see model class in "./MisskeyKit/APIs/Model".
+ // 一番目の引数"posts"については、apiの目的によって型が変わります。
+ // ここでは、投稿したデータそのものがMisskeyのサーバーから返ってくるので、NoteModelが返ってきます。
+ // 各モデルについては "./MisskeyKit/APIs/Model"を参照してください。
 
  MisskeyKit.notes.createNote(text: "Enter some text!") { posts, error in  
             guard let posts = posts, error == nil else { /* Error */ return }
 
-            // MisskeyKit.notes.createNote returns information of your post that you've just posted.
-            // The fact itself that you receive it means that your request was accepted successfully.
+            // createNoteでは投稿したデータそのもののモデルが返ってきます。
+            // 投稿したデータが返ってくるという事実自体が、正常にリクエストが処理されたということを意味わけです。
 
             print(posts)
 }
 ```
 
-Second Example: If you wanna get one hundred notes from user's timeline, write like this code.
+２つ目の具体例として、例えばタイムラインを上から100個取得したい時、下記のコードが参考になると思います。
+
 
 ```swift
 MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
             guard let posts = posts, error == nil else { /* Error */ return }
 
-            print(posts) // You can check 100 notes if your request was accepted successfully.
+            print(posts) // 100個確認できます
 }
 ```
+
+こんな感じで、apiに対応するメソッドを叩き、コールバックでサーバーからのレスポンスを取得していきます。この形態がMisskeyKitの大原則で、基本的には全てのメソッドが同じ形をしています。
+
+次の項目でAPIとメソッドの対応表を記載しておくので、メソッド探しにお使いください。
 
 <br><br><br>
 
 
-### Api-Method correspondence table
+### Api-Method 対応表
 
 |Misskey API|MisskeyKit Methods|
 |---|---|
@@ -321,23 +328,23 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 
 ### Streaming API
 
-MisskeyKit also provides wrapper of a [```streaming API```](https://misskey.kurume-nct.com/docs/ja-JP/stream) as well as REST API!
+MisskeyKitはREST APIだけでなく[```streaming API```](https://misskey.kurume-nct.com/docs/ja-JP/stream)にも対応しています。
 
 
-(```Streaming API``` is a subscription mechanism for binding client to server so that you can receive events **in near real time**.)
+(```Streaming API``` とはクライアントとサーバーを常時つなぎ合わせ、 **ほとんど遅延なしにリアルタイムで** 情報を取得できるような技術です。)
 
 <br>
 
-```Streaming API``` adopts not HTTP protocol but WebSocket, so you need to connect to server by other methods.
+```Streaming API``` ではHTTPプロトコルではなくWebSocketが使われています。そのため、今まで説明したようなメソッドとは違うメソッドからサーバーとやり取りする必要があるわけです。
 
-However it's so easy to connect via WebSocket by MisskeyKit !　
+MisskeyKitでは、WebSocketについても直感的に操作できるようなメソッドを提供しています。
 
 <br>
 
 #### ```MisskeyKit.streaming.connect()```
 
 
-All you have to do is just use ```MisskeyKit.streaming.connect()``` !
+Streaming APIと接続するのもたったワンステップ、 ```MisskeyKit.streaming.connect()```を使うだけです。
 
 ```swift
 guard let apiKey = MisskeyKit.auth.getAPIKey() else { return }
@@ -346,14 +353,14 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 
         // Do something ...
 
-        //apiKey: Your Api Key.
-        //channels: [SentStreamModel.Channel] Type / channels which you wanna connect to.
+        //apiKey:ユーザーごとのapiキー
+        //channels: [SentStreamModel.Channel] 型 / 繋ぎたいチャンネルの種類
 
-        //This closure captures and sends you events through channels which you subscribed.
-        //response: Any? Type / events itself. You have to cast it according to type(third params of callback).
-        //channel: SentStreamModel.Channel? Type / shows which channel sent events.
-        //type: String? Type / shows what kind of events was sent. You'll use it to cast response.
-        //error: Error? Type / If something wrong happens, error is sent
+        //このクロージャーには開発者がつないだチャンネルからイベントが送られてきます。
+        //response: Any? 型 / イベントそのものです. 3つめの引数から型を場合分けし、キャストする必要があります
+        //channel: SentStreamModel.Channel? 型 / どのチャンネルから送られてきたのかがわかります
+        //type: String? Type / どのタイプのデータが返ってきたのかがわかります。この引数からresponseをキャストしてください。
+        //error: Error? Type / 正常に処理できなかった場合、エラーが返ってきます
 
 }
 
@@ -362,13 +369,15 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 
 #### ```MisskeyKit.streaming.captureNote()```
 
-Even if you use ```MisskeyKit.streaming.connect()``` and listen to events, there are some notes you cannot receive.
+```MisskeyKit.streaming.connect()``` を使ってもキャッチ出来ないイベントが存在します。
 
-For these notes, you have to call API that provides you capturing functions.(Click [here](https://misskey.kurume-nct.com/docs/ja-JP/stream) for details.)
+たとえば、TLをstreaming apiで取得しても、すでに送られてきた投稿に対して新規のリアクションがついた場合、イベントは送られてきません。
+
+そこでこの問題を対処するために、Misskeyには投稿のキャプチャ機能というものが存在します。(詳しくは [ここ](https://misskey.kurume-nct.com/docs/ja-JP/stream))
 
 <br>
 
-If you wanna capture some notes, use ```MisskeyKit.streaming.captureNote()```
+MisskeyKitでは投稿のキャプチャをするメソッド ```MisskeyKit.streaming.captureNote()```を用意しています。
 
 ```swift
 do {
@@ -379,13 +388,13 @@ catch {
 }
 ```
 
-Once you capture a note, each events related to the note will sent to your callback method of ```MisskeyKit.streaming.connect()```.
+投稿をキャプチャした場合その投稿に何らかのアクションがあれば、上で説明した ```MisskeyKit.streaming.connect()```メソッドのコールバック(クロージャー)に随時イベントが送られていきます。
 
 <br><br>
 
 #### ```MisskeyKit.streaming.stopListening()```
 
-If you want to disconnect specific channel, use ```MisskeyKit.streaming.stopListening()```.
+もし特定のチャンネル、キャプチャについて接続を切断したい場合は、 ```MisskeyKit.streaming.stopListening()```を使ってください。
 
 
 ```swift
@@ -401,7 +410,8 @@ MisskeyKit.streaming.stopListening(noteIds: [String])
 
 ## Contribute
 
-We would love you for the contribution to **MisskeyKit**, check the ``LICENSE`` file for more info.
+ **MisskeyKit** はContributeどしどしお待ちしております。
+ ライセンスはMITです。詳しくはLICENSEを読んでください。
 
 
 
