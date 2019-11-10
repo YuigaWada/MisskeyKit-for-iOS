@@ -1,9 +1,9 @@
 {
-  "commitish" : "06b80af424e2725f412aced265f98957f7ae80d0",
+  "commitish" : "a437d89674cd83e590632f8a55ea3106314ff83a",
   "iOS" : [
     {
       "name" : "MisskeyKit",
-      "hash" : "3e89ffbb8f5fb3f8d15ac714eb3a1782e39b39191063b82add53c603a0e37fa6",
+      "hash" : "2e221dea993f5f6fa9195ac29647fd8925659d46badd1fd96d2d98e2ba67759d",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]

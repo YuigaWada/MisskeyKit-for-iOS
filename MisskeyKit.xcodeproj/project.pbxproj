@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,8 +36,6 @@
 		8D71B8152371844700374F5A /* MetaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8142371844700374F5A /* MetaModel.swift */; };
 		8D71B8172371859500374F5A /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8162371859500374F5A /* Meta.swift */; };
 		8D71B8192371864000374F5A /* MetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8182371864000374F5A /* MetaTests.swift */; };
-		8D71B8222371995B00374F5A /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B8212371995B00374F5A /* Starscream.framework */; platformFilter = ios; };
-		8D71B8232371995C00374F5A /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B8212371995B00374F5A /* Starscream.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D71B8292371A57900374F5A /* Streaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8282371A57900374F5A /* Streaming.swift */; };
 		8D71B82B2371A8C700374F5A /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B82A2371A8C700374F5A /* ChannelModel.swift */; };
 		8D71B82D2371A9BC00374F5A /* StreamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B82C2371A9BC00374F5A /* StreamingTests.swift */; };
@@ -48,6 +46,8 @@
 		8D7CD46023782AED00EF97A2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD45F23782AED00EF97A2 /* MessageModel.swift */; };
 		8D7CD46223782ECC00EF97A2 /* Mute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46123782ECC00EF97A2 /* Mute.swift */; };
 		8D7CD46423782F7200EF97A2 /* MuteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46323782F7200EF97A2 /* MuteModel.swift */; };
+		8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; };
+		8D8CDD90237848F000369EFF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DD4559023745324003FA3C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD4558F23745324003FA3C4 /* AuthViewController.swift */; };
 		8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455942375C00A003FA3C4 /* Emoji.swift */; };
 		8DD455972375C3C9003FA3C4 /* EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455962375C3C9003FA3C4 /* EmojiTests.swift */; };
@@ -64,13 +64,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8D71B8242371995C00374F5A /* Embed Frameworks */ = {
+		8D8CDD91237848F000369EFF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8D71B8232371995C00374F5A /* Starscream.framework in Embed Frameworks */,
+				8D8CDD90237848F000369EFF /* Starscream.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D71B8222371995B00374F5A /* Starscream.framework in Frameworks */,
+				8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,8 +302,8 @@
 				8D71B7C2236EE6C900374F5A /* Sources */,
 				8D71B7C3236EE6C900374F5A /* Frameworks */,
 				8D71B7C4236EE6C900374F5A /* Resources */,
-				8D71B8242371995C00374F5A /* Embed Frameworks */,
 				8D71B8252371997100374F5A /* ShellScript */,
+				8D8CDD91237848F000369EFF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

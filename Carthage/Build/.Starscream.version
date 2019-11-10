@@ -3,7 +3,7 @@
   "iOS" : [
     {
       "name" : "Starscream",
-      "hash" : "cfc00b11a7c7ee6e6db778953c2b8a67ee374bbac4c396b03a2d40d9a086280e",
+      "hash" : "cda50a2d716471d1c7e119b0727353611fe3f3afcf694fc399aa9ff874479796",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]
