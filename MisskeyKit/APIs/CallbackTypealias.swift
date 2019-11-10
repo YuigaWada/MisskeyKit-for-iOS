@@ -21,7 +21,7 @@ public typealias ReactionsCallBack = ([ReactionModel]?, Error?)->Void
 
 public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void
 
-public typealias OneMessageCallBack = ([MessageModel]?, Error?)->Void
+public typealias OneMessageCallBack = (MessageModel?, Error?)->Void
 public typealias MessagesCallBack = ([MessageModel]?, Error?)->Void
 
 public typealias ListCallBack = (ListModel?, Error?)->Void
