@@ -2,11 +2,11 @@
 MisskeyKitTests/
 Carthage/Build
 Carthage/Checkouts
-project.pbxproj
+
 Starscream.framework
-*.xcexplist
-*.xcbkptlist
-*.pbxproj
-*.xcuserstate
+
+
+
+
 API_MEMO
 
