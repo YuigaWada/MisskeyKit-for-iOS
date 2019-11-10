@@ -47,7 +47,6 @@
 		8D7CD46223782ECC00EF97A2 /* Mute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46123782ECC00EF97A2 /* Mute.swift */; };
 		8D7CD46423782F7200EF97A2 /* MuteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46323782F7200EF97A2 /* MuteModel.swift */; };
 		8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; };
-		8D8CDD90237848F000369EFF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DD4559023745324003FA3C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD4558F23745324003FA3C4 /* AuthViewController.swift */; };
 		8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455942375C00A003FA3C4 /* Emoji.swift */; };
 		8DD455972375C3C9003FA3C4 /* EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455962375C3C9003FA3C4 /* EmojiTests.swift */; };
@@ -62,20 +61,6 @@
 			remoteInfo = MisskeyKit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8D8CDD91237848F000369EFF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8D8CDD90237848F000369EFF /* Starscream.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8D4A29D923733A6E00503685 /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
@@ -302,8 +287,7 @@
 				8D71B7C2236EE6C900374F5A /* Sources */,
 				8D71B7C3236EE6C900374F5A /* Frameworks */,
 				8D71B7C4236EE6C900374F5A /* Resources */,
-				8D71B8252371997100374F5A /* ShellScript */,
-				8D8CDD91237848F000369EFF /* Embed Frameworks */,
+				8D0491D123785C8A000433CD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -389,7 +373,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8D71B8252371997100374F5A /* ShellScript */ = {
+		8D0491D123785C8A000433CD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
