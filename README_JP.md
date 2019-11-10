@@ -8,7 +8,7 @@
 
 ## MisskeyKit for iOS
 
-MisskeyKitは直観性を重視した、Swift用[Misskey](https://misskey.io)フレームワークです。
+MisskeyKitは直観性を重視したSwift用[Misskey](https://misskey.io)フレームワークです。
 ([English README](https://github.com/YuigaWada/MisskeyKit-for-iOS))
 
 <br>
@@ -35,6 +35,7 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 - [使い方](#how-to-use)
   - [Singleton](#singleton)
+  - [インスタンスの変更](#インスタンスの変更)
   - [ユーザー認証](#ユーザー認証)
     - [CallBack Pattern](#callback-pattern)
     - [Delegation Pattern](#delegation-pattern)
@@ -42,8 +43,10 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
     - [```Session Token```の取得](#session-tokenの取得)
     - [```Access Token```の取得](#access-tokenの取得)
     - [ ```Api Key```の取得](#api-keyの取得)
+  - [APIキーの再利用](#APIキーの再利用)
   - [APIの操作](#apiの操作)
   - [Api-Method 対応表](#api-method-対応表)
+  - [絵文字](#絵文字)
   - [Streaming API](#streaming-api)
     - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
     - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
@@ -79,6 +82,18 @@ open class MisskeyKit {
 ```
 
 <br>
+
+### インスタンスの変更
+
+Misskeyのインスタンスを変更する場合は```MisskeyKit.changeInstance()```をお使いください。
+
+```swift
+MisskeyKit.changeInstance(instance: "misskey.dev")
+
+```
+
+<br>
+
 
 ### ユーザー認証
 
@@ -200,6 +215,18 @@ guard let apikey = MisskeyKit.auth.getAPIKey() else {
 
 ```
 
+<br>
+
+### APIキーの再利用
+
+ユーザー認証後、Apiキーを保存してログインを半永続化したい場合は、```MisskeyKit.auth.setAPIKey()```から直接Apiキーを設定することができます。
+
+
+```swift
+MisskeyKit.auth.setAPIKey("Enter saved api key!")
+
+```
+
 <br><br>
 
 ### APIの操作
@@ -308,6 +335,9 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |users/groups/invite|Groups.invite|
 |users/groups/pull|Groups.pullUser|
 |users/groups/transfer|Groups.transferUser|
+|mute/create|Mute.create|
+|mute/delete|Mute.delete|
+|mute/list|Mute.getList|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|
@@ -315,11 +345,50 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |users/lists/show|Lists.show|
 |users/lists/list|Lists.getMyLists|
 |users/lists/update|Lists.update|
+|i/read-all-messaging-messages|Messaging.readAllMessaging|
+|messaging/history|Messaging.getHistory|
+|messaging/messages|Messaging.getMessageWithUser, Messaging.create|
+|messaging/messages/delete|Messaging.delete|
+|messaging/messages/read|Messaging.read|
 |users/search|Search.user|
 |notes/search|Search.notes|
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
+
+
+
+<br><br>
+
+### 絵文字
+
+Misskeyのインスタンスはそれぞれに固有なカスタム絵文字というものを持っていて、そのインスタンス上にいるユーザーはそれらのカスタム絵文字をリアクションや投稿内容に使用することができます。
+
+しかしMisskeyAPIでは、必ずしも投稿やリアクションに使用されているカスタム絵文字の情報がサーバーから送られてくるとは限りません。
+
+またもし絵文字ピッカーのようなものを実装したいとなると、デフォルト絵文字・カスタム絵文字両方のデータが必要となります。
+
+したがって、それらの絵文字情報を取得するメソッドをMisskeyKitは提供しています。
+
+
+```swift
+MisskeyKit.Emojis.getDefault{ result in
+guard let result = result else { /* Error */ return }
+
+   dump(result) // デフォルト絵文字の情報が確認できます
+}
+```
+
+```swift
+MisskeyKit.Emojis.getCustom{ result in
+guard let result = result else { /* Error */ return }
+
+   dump(result) // カスタム絵文字の情報が確認できます
+}
+```
+
+一度Misskeyインスタンスのサーバーから絵文字情報を取得してしまえば、MisskeyKit上でデータは再利用されます。したがって、ユーザーがあなたのアプリを終了してしまうまではずっと、絵文字情報を何度もサーバーから取得する必要はなく、オーバーヘッドの軽減が期待されます。
 
 
 

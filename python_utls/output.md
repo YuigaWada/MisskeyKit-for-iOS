@@ -54,6 +54,9 @@
 |users/groups/invite|Groups.invite|
 |users/groups/pull|Groups.pullUser|
 |users/groups/transfer|Groups.transferUser|
+|mute/create|Mute.create|
+|mute/delete|Mute.delete|
+|mute/list|Mute.getList|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|
@@ -61,6 +64,11 @@
 |users/lists/show|Lists.show|
 |users/lists/list|Lists.getMyLists|
 |users/lists/update|Lists.update|
+|i/read-all-messaging-messages|Messaging.readAllMessaging|
+|messaging/history|Messaging.getHistory|
+|messaging/messages|Messaging.getMessageWithUser, Messaging.create|
+|messaging/messages/delete|Messaging.delete|
+|messaging/messages/read|Messaging.read|
 |users/search|Search.user|
 |notes/search|Search.notes|
 |notes/search-by-tag|Search.notesByTag|

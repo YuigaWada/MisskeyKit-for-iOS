@@ -35,6 +35,7 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 - [How to use](#how-to-use)
   - [Singleton](#singleton)
+  - [How to change Misskey Instance](#how-to-change-misskey-instance)
   - [Authentication](#authentication)
     - [CallBack Pattern](#callback-pattern)
     - [Delegation Pattern](#delegation-pattern)
@@ -42,8 +43,10 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
     - [Get a ```Session Token```](#get-a-session-token)
     - [Get an ```Access Token```](#get-an-access-token)
     - [Get an ```Api Key```](#get-an-api-key)
+  - [Recycle Api Key](#recycle-api-key)
   - [How to call API](#how-to-call-api)
   - [Api-Method correspondence table](#api-method-correspondence-table)
+  - [Emojis](#emojis)
   - [Streaming API](#streaming-api)
     - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
     - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
@@ -79,6 +82,18 @@ open class MisskeyKit {
 ```
 
 <br>
+
+### How to change Misskey Instance
+
+To change Misskey Instance, use  ```MisskeyKit.changeInstance()```.
+
+```swift
+MisskeyKit.changeInstance(instance: "misskey.dev")
+
+```
+
+<br>
+
 
 ### Authentication
 
@@ -202,6 +217,17 @@ guard let apikey = MisskeyKit.auth.getAPIKey() else {
 
 <br><br>
 
+### Recycle Api Key
+
+If wanting to recycle user's api key, you have to send it to MisskeyKit so use  ```MisskeyKit.auth.setAPIKey()```.
+
+```swift
+MisskeyKit.auth.setAPIKey("Enter saved api key!")
+
+```
+
+<br><br>
+
 ### How to call API
 
 Look into my code of MisskeyKit and see how to describe.
@@ -302,6 +328,9 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |users/groups/invite|Groups.invite|
 |users/groups/pull|Groups.pullUser|
 |users/groups/transfer|Groups.transferUser|
+|mute/create|Mute.create|
+|mute/delete|Mute.delete|
+|mute/list|Mute.getList|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|
@@ -309,11 +338,53 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |users/lists/show|Lists.show|
 |users/lists/list|Lists.getMyLists|
 |users/lists/update|Lists.update|
+|i/read-all-messaging-messages|Messaging.readAllMessaging|
+|messaging/history|Messaging.getHistory|
+|messaging/messages|Messaging.getMessageWithUser, Messaging.create|
+|messaging/messages/delete|Messaging.delete|
+|messaging/messages/read|Messaging.read|
 |users/search|Search.user|
 |notes/search|Search.notes|
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
+
+
+
+<br><br>
+
+
+### Emojis
+
+Misskey Instances have their own custom emojis and user can use them for reactions and posts.
+
+Sometimes, however, data of user's posts(notes) and reactions that Misskey server sent to us don't contain information of custom emojis user used.
+
+Moreover, if you want to develop stuff like emoji pickers, you have to get default and custom emojis data.
+
+So MisskeyKit provides some methods for getting default / custom emojis data.
+
+```swift
+MisskeyKit.Emojis.getDefault{ result in
+guard let result = result else { /* Error */ return }
+
+   dump(result) // you can see information of default emojis
+}
+```
+
+```swift
+MisskeyKit.Emojis.getCustom{ result in
+guard let result = result else { /* Error */ return }
+
+   dump(result) // you can see information of custom emojis
+}
+```
+
+Once you get information of emojis from Misskey Instance server, MisskeyKit keeps the data unless user killing your app.
+
+Hence you don't have to communicate with Misskey Instance Server many times and overhead will be reduced.
+
 
 
 
