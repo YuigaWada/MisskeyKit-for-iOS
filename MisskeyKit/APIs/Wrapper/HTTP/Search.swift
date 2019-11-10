@@ -72,5 +72,21 @@ extension MisskeyKit {
             }
         }
         
+        
+        public func hashtags( limit: Int = 10, query: String, offset: Int = 0, completion callback: @escaping ([String]?,Error?)->()) {
+            
+            var params = ["query": query,
+                          "limit": limit,
+                          "offset": offset] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(api: "hashtags/search", params: params, type: [String].self) { posts, error in
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
     }
 }
