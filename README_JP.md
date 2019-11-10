@@ -33,7 +33,8 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 ## 目次
 
-- [使い方](#how-to-use)
+- [導入方法](#導入方法)
+- [使い方](#使い方)
   - [Singleton](#singleton)
   - [インスタンスの変更](#インスタンスの変更)
   - [ユーザー認証](#ユーザー認証)
@@ -55,6 +56,37 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 - [Others](#others)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<br><br>
+
+## 導入方法
+
+#### CocoaPods
+MisskeyKitは[CocoaPods](http://cocoapods.org/)からインストールすることができます。
+
+```ruby
+pod 'MisskeyKit'
+```
+
+インストール後、```MisskeyKit```を```import```してください
+
+
+``` swift
+import MisskeyKit
+```
+
+<!-- #### Carthage
+Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/PolioPager.framework` to an iOS project.
+
+```
+github "YuigaWada/PolioPager"
+``` -->
+
+
+#### 直接導入するには
+
+ ```MisskeyKit``` ダウンロード後、```carthage update``` を叩いてプロジェクトに追加してください。
+
 
 <br><br>
 
