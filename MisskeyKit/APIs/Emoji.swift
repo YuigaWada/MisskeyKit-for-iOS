@@ -63,9 +63,9 @@ extension MisskeyKit {
 
 
 public struct DefaultEmojiModel: Codable {
-    let category: Category?
-    let char, name: String?
-    let keywords: [String]?
+    public let category: Category?
+    public let char, name: String?
+    public let keywords: [String]?
     
     public enum Category: String, Codable {
         case activity = "activity"
