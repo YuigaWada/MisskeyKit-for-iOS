@@ -51,25 +51,24 @@ public struct EmojiModel: Codable{
     public let id: String?
     public let aliases: [String]?
     public let name: String?
-    public let category: Category?
     public let url: String?
     public let uri: String?
     public let type: String?
 }
 
-public enum Category: String, Codable{
-    case logo = "Logo"
-    case os = "OS"
-    case cute = "かわいい"
-    case others = "その他"
-    case application = "アプリケーション"
-    case character = "キャラクター"
-    case service = "サービス"
-    case deco = "デコ文字"
-    case action = "行動"
-    case face = "顔"
-    case foodAndDrink = "食べ物・飲み物"
-}
+//public enum Category: String, Codable{
+//    case logo = "Logo"
+//    case os = "OS"
+//    case cute = "かわいい"
+//    case others = "その他"
+//    case application = "アプリケーション"
+//    case character = "キャラクター"
+//    case service = "サービス"
+//    case deco = "デコ文字"
+//    case action = "行動"
+//    case face = "顔"
+//    case foodAndDrink = "食べ物・飲み物"
+//}
 
 // MARK: - Features
 public struct Features: Codable{
