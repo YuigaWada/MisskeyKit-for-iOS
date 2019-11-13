@@ -25,8 +25,7 @@ extension MisskeyKit {
             //If defaultEmoji was not set ...
             
             guard let path = bundle.path(forResource:"emojilist",
-                                         ofType: "json",
-                                         inDirectory: "Resources")
+                                         ofType: "json")
                 else { completion(nil); return }
             
             
