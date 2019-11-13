@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project (要望)
 title: ''
-labels: ''
+labels: "\U0001F97AEnhancement"
 assignees: ''
 
 ---
