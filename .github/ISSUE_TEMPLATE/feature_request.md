@@ -7,11 +7,13 @@ assignees: ''
 
 ---
 
-**Describe the request (概要)**
+<!---全部埋める必要はないです-->
+
+# **Describe the request (概要)**
 A clear and concise description of what your request is.
 
-**Purpose (目的)**
+# **Purpose (目的)**
 Add your clear idea of why we need this feature.
 
-*Todo*
+# **Todo**
 If you think of anything about todo, write down here.

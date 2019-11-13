@@ -7,22 +7,24 @@ assignees: ''
 
 ---
 
-**Describe the bug (概要)**
+<!---全部埋める必要はないです--->
+
+# **Describe the bug (概要)**
 A clear and concise description of what the bug is.
 
-**Expected behavior (想定されている挙動)**
+# **Expected behavior (想定されている挙動)**
 A clear and concise description of what you expected to happen.
 
-**To Reproduce (再現手順)**
+# **To Reproduce (再現手順)**
 Steps to reproduce the behavior:
 1. Go to '...'
 2. See error
 
-**Possible cause (考えられる原因)**
+# **Possible cause (考えられる原因)**
 If you think of anything that might have caused this bug, write down here.
 
-**Todo**
+# **Todo**
 If you wanna tell us todos, add possible todo.
 
-**Screenshots**
+# **Screenshots**
 If applicable, add screenshots to help explain your problem.
