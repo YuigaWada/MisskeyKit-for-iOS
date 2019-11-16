@@ -27,25 +27,51 @@ open class MisskeyKit {
         Api.instance = instance
     }
     
-    //MARK:- Internal Methods
-    internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
-        var params = params
-        
-        if needApiKey {
-            params["i"] = auth.getAPIKey()
-        }
-        
-        guard let rawJson = params.toRawJson()  else {
-            let error = NSError(domain: "Internal Error: Failed to generate json.", code: -1, userInfo: nil)
-            callback(nil, error)
-            return
-        }
-        
-        
-        Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: Error?) in
-             
-            let resultJson = arrayReactions(rawJson: resultRawJson!) // Changes a form of reactions to array.
-            
+     //MARK:- Internal Methods
+       internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
+           if let missingCount = missingCount
+           {
+               guard missingCount < 4 else {
+                   return callback(nil,NSError(domain: "Internal Error: Failed to communicate with Misskey Server.", code: -1, userInfo: nil))
+               }
+           }
+           
+           var params = params
+           if needApiKey {
+               params["i"] = auth.getAPIKey()
+           }
+           
+           guard let rawJson = params.toRawJson()  else {
+               let error = NSError(domain: "Internal Error: Failed to generate json.", code: -1, userInfo: nil)
+               callback(nil, error)
+               return
+           }
+           
+           
+           Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: Error?) in
+               guard let resultRawJson = resultRawJson else {
+                   if let missingCount = missingCount {
+                       self.handleAPI(needApiKey: needApiKey,
+                                      api: api,
+                                      params: params,
+                                      type: type,
+                                      missingCount: missingCount + 1,
+                                      callback: callback)
+                   }
+                   
+                   // If being initial error...
+                   self.handleAPI(needApiKey: needApiKey,
+                                  api: api,
+                                  params: params,
+                                  type: type,
+                                  missingCount: 1,
+                                  callback: callback)
+                   
+                   return
+               }
+               
+               let resultJson = arrayReactions(rawJson: resultRawJson) // Changes a form of reactions to array.
+               
             if let response = response, response.statusCode == 200, resultJson.count == 0  {
                 callback(nil, nil)
             }
