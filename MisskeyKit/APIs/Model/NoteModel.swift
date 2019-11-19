@@ -9,55 +9,60 @@
  import Foundation
 
  public class NoteModel: Codable {
-    public let id, createdAt, userId: String?
-    public let user: UserModel?
-    public let text, cw: String?
-    public let visibility: Visibility?
-    public let viaMobile: Bool?
-    public let isHidden: Bool?
-    public let renoteCount, repliesCount: Int?
-    public let reactions: [ReactionCount?]?
-    public let emojis: [EmojiModel?]?
-    public let files: [File?]?
-    public let replyId, renoteId: String?
-    public let renote: NoteModel?
-    public let mentions: [String?]?
-    public let visibleUserIds:[String?]?
-    public let reply: NoteModel?
-    public let tags: [String]?
-    public let myReaction: String?
-    public let fileIds: [String?]?
-    public let app: App?
-    public let poll: Poll?
-    public let geo: Geo?
+    public var id, createdAt, userId: String?
+    public var user: UserModel?
+    public var text, cw: String?
+    public var visibility: Visibility?
+    public var viaMobile: Bool?
+    public var isHidden: Bool?
+    public var renoteCount, repliesCount: Int?
+    public var reactions: [ReactionCount?]?
+    public var emojis: [EmojiModel?]?
+    public var files: [File?]?
+    public var replyId, renoteId: String?
+    public var renote: NoteModel?
+    public var mentions: [String?]?
+    public var visibleUserIds:[String?]?
+    public var reply: NoteModel?
+    public var tags: [String]?
+    public var myReaction: String?
+    public var fileIds: [String?]?
+    public var app: App?
+    public var poll: Poll?
+    public var geo: Geo?
  }
  
  public class App: Codable {
-     public let id, name, callbackUrl: String?
-     public let permission: [String]?
+     public var id, name, callbackUrl: String?
+     public var permission: [String]?
  }
 
  // MARK: - File
  public struct File: Codable {
-     public let id, createdAt, name, type: String?
-     public let md5: String?
-     public let size: Int?
-     public let isSensitive: Bool?
-     public let properties: Properties?
-     public let url, thumbnailUrl: String?
-     public let folderId, folder, user: String?
+     public var id, createdAt, name, type: String?
+     public var md5: String?
+     public var size: Int?
+     public var isSensitive: Bool?
+     public var properties: Properties?
+     public var url, thumbnailUrl: String?
+     public var folderId, folder, user: String?
  }
 
  // MARK: - Properties
  public struct Properties: Codable {
-     public let width, height: Int?
-     public let avgColor: String?
+     public var width, height: Int?
+     public var avgColor: String?
  }
 
  // MARK: - Reaction
  public struct ReactionCount: Codable {
-    public let name: String?
-    public let count: String?
+    public var name: String?
+    public var count: String?
+    
+    public init(name: String, count: String) {
+        self.name = name
+        self.count = count
+    }
  }
 
  // MARK: - Visibility
@@ -70,9 +75,9 @@
 
  // MARK: - Geo
  public struct Geo: Codable {
-     public let coordinates: [String?]?
-     public let altitude, accuracy, altitudeAccuracy, heading: Int?
-     public let speed: Int?
+     public var coordinates: [String?]?
+     public var altitude, accuracy, altitudeAccuracy, heading: Int?
+     public var speed: Int?
      
      public init(){
          self.coordinates = []
@@ -85,16 +90,16 @@
  }
 
  public struct ReactionModel: Codable {
-     public let id, createdAt, type: String?
-     public let user: UserModel?
+     public var id, createdAt, type: String?
+     public var user: UserModel?
  }
  
  
  // MARK: - Poll
  public struct Poll: Codable {
-     public let choices: [Choice?]?
-     public let multiple: Bool?
-     public let expiresAt, expiredAfter: String?
+     public var choices: [Choice?]?
+     public var multiple: Bool?
+     public var expiresAt, expiredAfter: String?
      
      public init() {
          self.multiple = nil
@@ -106,13 +111,13 @@
 
  
  public struct Choice: Codable {
-     public let text: String?
-     public let votes: Int?
-     public let isVoted: Bool?
+     public var text: String?
+     public var votes: Int?
+     public var isVoted: Bool?
  }
 
  public struct NoteState: Codable {
-     public let isFavorited, isWatching: Bool?
+     public var isFavorited, isWatching: Bool?
  }
 
  
