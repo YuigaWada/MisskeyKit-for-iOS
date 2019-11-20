@@ -57,16 +57,16 @@ extension MisskeyKit {
         
         //MARK:- FOR ME
         
-        public func getMyAccount(completion callback: @escaping UsersCallBack) {
+        public func getMyAccount(completion callback: @escaping OneUserCallBack) {
             self.i(completion: callback)
         }
         
         //I believe that "i" means I (me).
-        public func i(completion callback: @escaping UsersCallBack) {
+        public func i(completion callback: @escaping OneUserCallBack) {
             var params = [:] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "i", params: params, type: [UserModel].self) { users, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "i", params: params, type: UserModel.self) { users, error in
                 if let error = error  { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
