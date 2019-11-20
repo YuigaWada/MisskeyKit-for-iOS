@@ -18,7 +18,7 @@ extension MisskeyKit {
                           "host": host] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/show", params: params, type: UserModel.self) { user, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/show", params: params, type: UserModel.self) { user, error in
                 if let error = error  { callback(nil, error); return }
                 guard let user = user else { callback(nil, error); return }
                 
@@ -32,7 +32,7 @@ extension MisskeyKit {
                           "host": host] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/show", params: params, type: UserModel.self) { user, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/show", params: params, type: UserModel.self) { user, error in
                 if let error = error  { callback(nil, error); return }
                 guard let user = user else { callback(nil, error); return }
                 
@@ -47,7 +47,7 @@ extension MisskeyKit {
                           "host": host] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/show", params: params, type: [UserModel].self) { users, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/show", params: params, type: [UserModel].self) { users, error in
                 if let error = error  { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
@@ -66,7 +66,7 @@ extension MisskeyKit {
             var params = [:] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "i", params: params, type: [UserModel].self) { users, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "i", params: params, type: [UserModel].self) { users, error in
                 if let error = error  { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
@@ -81,7 +81,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "i/favorites", params: params, type: [NoteModel].self) { notes, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/favorites", params: params, type: [NoteModel].self) { notes, error in
                 if let error = error  { callback(nil, error); return }
                 guard let notes = notes else { callback(nil, error); return }
                 
@@ -96,7 +96,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "i/page-likes", params: params, type: [PageModel].self) { notes, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/page-likes", params: params, type: [PageModel].self) { notes, error in
                 if let error = error  { callback(nil, error); return }
                 guard let notes = notes else { callback(nil, error); return }
                 
@@ -111,7 +111,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "i/pages", params: params, type: [PageModel].self) { notes, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "i/pages", params: params, type: [PageModel].self) { notes, error in
                 if let error = error  { callback(nil, error); return }
                 guard let notes = notes else { callback(nil, error); return }
                 
@@ -206,7 +206,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/followers", params: params, type: [UserModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/followers", params: params, type: [UserModel].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
@@ -224,7 +224,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/following", params: params, type: [UserModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/following", params: params, type: [UserModel].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
@@ -238,7 +238,7 @@ extension MisskeyKit {
                           "limit": limit] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "users/get-frequently-replied-users", params: params, type: [UserModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "users/get-frequently-replied-users", params: params, type: [UserModel].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 

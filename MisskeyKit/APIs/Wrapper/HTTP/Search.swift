@@ -64,7 +64,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "notes/search-by-tag", params: params, type: [NoteModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/search-by-tag", params: params, type: [NoteModel].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
@@ -80,7 +80,7 @@ extension MisskeyKit {
                           "offset": offset] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "hashtags/search", params: params, type: [String].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "hashtags/search", params: params, type: [String].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 

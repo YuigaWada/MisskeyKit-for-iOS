@@ -25,7 +25,7 @@ extension MisskeyKit {
                           "untilId": untilId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(api: "notes", params: params, type: [NoteModel].self) { posts, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes", params: params, type: [NoteModel].self) { posts, error in
                 if let error = error  { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 

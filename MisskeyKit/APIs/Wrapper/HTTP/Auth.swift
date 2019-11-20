@@ -32,7 +32,7 @@ extension MisskeyKit {
             
             let params = ["appSecret": appSecret]
             
-            MisskeyKit.handleAPI(api: "auth/session/generate", params: params, type: Token.self) { token, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "auth/session/generate", params: params, type: Token.self) { token, error in
                 if let error = error  { callback(nil, error); return }
                 guard let token = token else { callback(nil, error); return }
                 
@@ -46,7 +46,7 @@ extension MisskeyKit {
             
             let params = ["appSecret": appSecret, "token": token.token]
             
-            MisskeyKit.handleAPI(api: "/auth/session/userkey", params: params, type: Me.self) { me, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "/auth/session/userkey", params: params, type: Me.self) { me, error in
                 if let error = error  { callback(nil, error); return }
                 guard let me = me else { callback(nil, error); return }
                 
