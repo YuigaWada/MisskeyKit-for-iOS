@@ -377,7 +377,7 @@ extension MisskeyKit {
             }
         }
         
-        public func getFollowRequests(result callback: @escaping ([FollowRequestModel]?,Error?)->()) {
+        public func getFollowRequests(result callback: @escaping ([FollowRequestModel]?,MisskeyKitError?)->()) {
             
             var params = [:] as [String : Any]
             

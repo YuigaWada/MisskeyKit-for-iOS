@@ -73,7 +73,7 @@ extension MisskeyKit {
         }
         
         
-        public func hashtags( limit: Int = 10, query: String, offset: Int = 0, completion callback: @escaping ([String]?,Error?)->()) {
+        public func hashtags( limit: Int = 10, query: String, offset: Int = 0, completion callback: @escaping ([String]?,MisskeyKitError?)->()) {
             
             var params = ["query": query,
                           "limit": limit,

@@ -9,7 +9,7 @@
 import Foundation
 
 
-internal typealias ResponseCallBack = (HTTPURLResponse?, String?, Error?) -> Void
+internal typealias ResponseCallBack = (HTTPURLResponse?, String?, MisskeyKitError?) -> Void
 internal class Requestor {
     
     static func get(url: String, completion: @escaping ResponseCallBack) {
@@ -18,8 +18,8 @@ internal class Requestor {
     
     static func get(url: URL, completion: @escaping ResponseCallBack) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completion(nil, nil, error)
+            if let _ = error {
+                completion(nil, nil, .FailedToCommunicateWithServer)
                 return
             }
             guard let response = response as? HTTPURLResponse else {
@@ -52,8 +52,8 @@ internal class Requestor {
         request.httpBody = rawJson.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(nil, nil, error)
+            if let _ = error {
+                completion(nil, nil, .FailedToCommunicateWithServer)
                 return
             }
             guard let response = response as? HTTPURLResponse else {

@@ -10,7 +10,7 @@ import Foundation
 import Starscream
 
 
-public typealias StreamingCallBack = (_ response: Any?, _ channel: SentStreamModel.Channel?, _ responseType: String?, Error?)->Void
+public typealias StreamingCallBack = (_ response: Any?, _ channel: SentStreamModel.Channel?, _ responseType: String?, MisskeyKitError?)->Void
 extension MisskeyKit {
     public class Streaming {
         
@@ -53,15 +53,14 @@ extension MisskeyKit {
             
             socket.onDisconnect = { (error: Error?) in
                 self.isConnected = false
-                callback(nil, nil, nil, error)
+                callback(nil, nil, nil, .CannotConnectStream)
             }
             
             socket.onText = { (text: String) in
                 let (response, channel, responseType) = self.handleEvent(rawJson: text)
                 
                 if response == nil {
-                    let error = NSError(domain: "Unknown type event was sent by server.", code:-1, userInfo: nil)
-                    callback(response, channel, responseType, error)
+                    callback(response, channel, responseType, .UnknownTypeResponse)
                     return
                 }
                 
@@ -70,7 +69,7 @@ extension MisskeyKit {
             
             socket.onData = { (data: Data) in
                 guard let text = String(data: data, encoding: .utf8) else {
-                    callback(nil, nil, nil, NSError(domain: "Unknown type data was sent by server.", code:-1, userInfo: nil))
+                    callback(nil, nil, nil, .UnknownTypeResponse)
                     return }
                 let (response, channel, responseType) = self.handleEvent(rawJson: text)
                 callback(response, channel, responseType, nil)
@@ -92,7 +91,7 @@ extension MisskeyKit {
                 do {
                     jsonData = try JSONEncoder().encode(sentTarget)
                 } catch {
-                    callback(nil, nil, nil, error)
+                    callback(nil, nil, nil, .FailedToDecodeJson)
                     return
                 }
                 
@@ -107,13 +106,13 @@ extension MisskeyKit {
         public func stopListening(channels: [SentStreamModel.Channel]) throws {
             try channels.forEach{
                 do { try self.stopListening(channel: $0) }
-                catch { throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)}
+                catch { throw MisskeyKitError.NoStreamConnection }
             }
         }
         
         public func stopListening(channel: SentStreamModel.Channel) throws {
             guard let socket = socket else {
-                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+                throw MisskeyKitError.NoStreamConnection
             }
             
             let disconnectJson = "{\"type\":\"disconnect\",\"body\":{\"id\":\"\(String(describing: ids.searchKey(value: channel)))\"}}"
@@ -123,13 +122,13 @@ extension MisskeyKit {
         public func stopListening(noteIds: [String]) throws {
             try noteIds.forEach{
                 do { try self.stopListening(noteId: $0) }
-                catch { throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)}
+                catch { throw MisskeyKitError.NoStreamConnection }
             }
         }
         
         public func stopListening(noteId: String) throws {
             guard let socket = socket else {
-                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+                throw MisskeyKitError.NoStreamConnection
             }
             
             let disconnectJson = "{\"type\":\"unsubNote\",\"body\":{\"id\":\"\(noteId)\"}}"
@@ -141,7 +140,7 @@ extension MisskeyKit {
         
         public func captureNote(noteId: String) throws {
             guard let socket = socket else {
-                throw NSError(domain: "No connection between server and client.", code:-1, userInfo: nil)
+                throw MisskeyKitError.NoStreamConnection
             }
             
             let requestJson = "{\"type\":\"subNote\",\"body\":{\"id\":\"\(noteId)\"}}"

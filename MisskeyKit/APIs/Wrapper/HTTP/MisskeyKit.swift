@@ -28,11 +28,11 @@ open class MisskeyKit {
     }
     
      //MARK:- Internal Methods
-       internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, Error?)->Void) where T : Decodable  {
+       internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, MisskeyKitError?)->Void) where T : Decodable  {
            if let missingCount = missingCount
            {
                guard missingCount < 4 else {
-                   return callback(nil,NSError(domain: "Internal Error: Failed to communicate with Misskey Server.", code: -1, userInfo: nil))
+                return callback(nil, .FailedToCommunicateWithServer)
                }
            }
            
@@ -42,13 +42,12 @@ open class MisskeyKit {
            }
            
            guard let rawJson = params.toRawJson()  else {
-               let error = NSError(domain: "Internal Error: Failed to generate json.", code: -1, userInfo: nil)
-               callback(nil, error)
+            callback(nil, .FailedToDecodeJson)
                return
            }
            
            
-           Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: Error?) in
+           Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: MisskeyKitError?) in
                guard let resultRawJson = resultRawJson else {
                    if let missingCount = missingCount {
                        self.handleAPI(needApiKey: needApiKey,
@@ -74,12 +73,13 @@ open class MisskeyKit {
                
             if let response = response, response.statusCode == 200, resultJson.count == 0  {
                 callback(nil, nil)
+                return
             }
             
             guard let json = resultJson.decodeJSON(type) else {
                 if resultJson.count == 0 {
                     guard String(reflecting: T.self) == "Swift.Bool" else {
-                        callback(nil, NSError(domain: "Internal Error: Failed to recieve json data correctly.", code: -1, userInfo: nil))
+                        callback(nil, .ResponseIsNull)
                         return
                     }
                     
@@ -87,7 +87,8 @@ open class MisskeyKit {
                     return
                 }
                 
-                let error = MisskeyError.checkNative(rawJson: resultJson, "Internal Error: Failed to decode json.")
+                //guard上のifでnilチェックできているので強制アンラップでOK
+                let error = ApiError.checkNative(rawJson: resultJson, response!.statusCode)
                 callback(nil, error)
                 return
             }

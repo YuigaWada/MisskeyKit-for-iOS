@@ -47,7 +47,7 @@ extension MisskeyKit {
             }
         }
         
-        public func getState(noteId: String, result callback: @escaping (NoteState?,Error?)->()) {
+        public func getState(noteId: String, result callback: @escaping (NoteState?,MisskeyKitError?)->()) {
             
             var params = ["noteId":noteId] as [String : Any]
             

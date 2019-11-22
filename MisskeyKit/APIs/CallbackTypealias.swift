@@ -6,31 +6,31 @@
 //
 
 
-public typealias AuthCallBack = (MisskeyKit.Auth?, Error?)->Void
-public typealias BooleanCallBack = (Bool, Error?)->Void
-public typealias OneNoteCallBack = (NoteModel?, Error?)->Void
-public typealias NotesCallBack = ([NoteModel]?, Error?)->Void
+public typealias AuthCallBack = (MisskeyKit.Auth?, MisskeyKitError?)->Void
+public typealias BooleanCallBack = (Bool, MisskeyKitError?)->Void
+public typealias OneNoteCallBack = (NoteModel?, MisskeyKitError?)->Void
+public typealias NotesCallBack = ([NoteModel]?, MisskeyKitError?)->Void
 
-public typealias OneUserCallBack = (UserModel?, Error?)->Void
-public typealias UsersCallBack = ([UserModel]?, Error?)->Void
+public typealias OneUserCallBack = (UserModel?, MisskeyKitError?)->Void
+public typealias UsersCallBack = ([UserModel]?, MisskeyKitError?)->Void
 
-public typealias OneUserRelationshipCallBack = (UserRelationship?, Error?)->Void
-public typealias UserRelationshipsCallBack = ([UserRelationship]?, Error?)->Void
+public typealias OneUserRelationshipCallBack = (UserRelationship?, MisskeyKitError?)->Void
+public typealias UserRelationshipsCallBack = ([UserRelationship]?, MisskeyKitError?)->Void
 
-public typealias ReactionsCallBack = ([ReactionModel]?, Error?)->Void
+public typealias ReactionsCallBack = ([ReactionModel]?, MisskeyKitError?)->Void
 
-public typealias NotificationsCallBack = ([NotificationModel]?, Error?)->Void
+public typealias NotificationsCallBack = ([NotificationModel]?, MisskeyKitError?)->Void
 
-public typealias OneMessageCallBack = (MessageModel?, Error?)->Void
-public typealias MessagesCallBack = ([MessageModel]?, Error?)->Void
+public typealias OneMessageCallBack = (MessageModel?, MisskeyKitError?)->Void
+public typealias MessagesCallBack = ([MessageModel]?, MisskeyKitError?)->Void
 
-public typealias MutesCallBack = ([MuteModel]?, Error?)->Void
+public typealias MutesCallBack = ([MuteModel]?, MisskeyKitError?)->Void
 
-public typealias ListCallBack = (ListModel?, Error?)->Void
-public typealias ListsCallBack = ([ListModel]?, Error?)->Void
+public typealias ListCallBack = (ListModel?, MisskeyKitError?)->Void
+public typealias ListsCallBack = ([ListModel]?, MisskeyKitError?)->Void
 
-public typealias PagesCallBack = ([PageModel]?, Error?)->Void
+public typealias PagesCallBack = ([PageModel]?, MisskeyKitError?)->Void
 
-public typealias BlockListCallBack = ([BlockList]?, Error?)->Void
+public typealias BlockListCallBack = ([BlockList]?, MisskeyKitError?)->Void
 
-public typealias MetaCallBack = (MetaModel?, Error?)->Void
+public typealias MetaCallBack = (MetaModel?, MisskeyKitError?)->Void
