@@ -78,6 +78,7 @@ extension MisskeyKit {
         }
         
         private func shakeHandsForChannnels(_ channels: [SentStreamModel.Channel], callback: StreamingCallBack) {
+            guard channels.count > 0 else { return }
             
             channels.forEach{ channel in
                 
@@ -99,6 +100,8 @@ extension MisskeyKit {
                 
                 self.socket!.write(string: rawJson)
             }
+            
+            callback(true, nil, "onConnect", nil)
         }
         
         
