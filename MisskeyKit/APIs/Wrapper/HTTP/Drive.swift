@@ -45,6 +45,24 @@ extension MisskeyKit {
             }
         }
         
+        // drive/streamの場合はフォルダ関係なしにfetchしてくる...?
+        public func getFilesWithStream(limit: Int = 10, sinceId: String = "", untilId: String = "", type: String = "", result callback: @escaping ([DriveFileModel]?, MisskeyKitError?)->()) {
+            
+            var params = ["limit":limit,
+                          "sinceId":sinceId,
+                          "untilId":untilId,
+                          "type":type] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "drive/stream", params: params, type: [DriveFileModel].self) { info, error in
+                
+                if let error = error  { callback(nil, error); return }
+                guard let info = info else { callback(nil, error); return }
+                
+                callback(info,nil)
+            }
+        }
+        
         
         
         public func findFileByHash(md5: String = "", result callback: @escaping ([DriveFileModel]?, MisskeyKitError?)->()) {
