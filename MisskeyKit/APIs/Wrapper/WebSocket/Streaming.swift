@@ -19,6 +19,8 @@ extension MisskeyKit {
         
         public var isConnected: Bool = false
         
+        public init() {}
+        
         deinit {
             guard let socket = socket else {return}
             socket.disconnect(forceTimeout: 0)
