@@ -10,6 +10,7 @@ import Foundation
 
 public struct StreamingModel: Codable {
     public let id: String?
+    public let reaction: String?
     public let createdAt: String?
     public let type: String?
     public let userId: String?
