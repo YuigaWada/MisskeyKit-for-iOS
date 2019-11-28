@@ -28,75 +28,45 @@ open class MisskeyKit {
         Api.instance = instance
     }
     
-     //MARK:- Internal Methods
-       internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, MisskeyKitError?)->Void) where T : Decodable  {
-           if let missingCount = missingCount
-           {
-               guard missingCount < 4 else {
-                return callback(nil, .FailedToCommunicateWithServer)
-               }
-           }
-           
-           var params = params
-           if needApiKey {
-               params["i"] = auth.getAPIKey()
-           }
-           
-           guard let rawJson = params.toRawJson()  else {
-            callback(nil, .FailedToDecodeJson)
-               return
-           }
-           
-           
-           Requestor.post(url: Api.fullUrl(api), rawJson: rawJson) { (response: HTTPURLResponse?, resultRawJson: String?, error: MisskeyKitError?) in
-               guard let resultRawJson = resultRawJson else {
-                   if let missingCount = missingCount {
-                       self.handleAPI(needApiKey: needApiKey,
-                                      api: api,
-                                      params: params,
-                                      type: type,
-                                      missingCount: missingCount + 1,
-                                      callback: callback)
-                   }
-                   
-                   // If being initial error...
-                   self.handleAPI(needApiKey: needApiKey,
-                                  api: api,
-                                  params: params,
-                                  type: type,
-                                  missingCount: 1,
-                                  callback: callback)
-                   
-                   return
-               }
-               
-               let resultJson = arrayReactions(rawJson: resultRawJson) // Changes a form of reactions to array.
-               
-            if let response = response, response.statusCode == 200, resultJson.count == 0  {
-                callback(nil, nil)
-                return
-            }
-            
-            guard let json = resultJson.decodeJSON(type) else {
-                if resultJson.count == 0 {
-                    guard String(reflecting: T.self) == "Swift.Bool" else {
-                        callback(nil, .ResponseIsNull)
-                        return
-                    }
-                    
-                    callback(nil, nil)
-                    return
-                }
-                
-                //guard上のifでnilチェックできているので強制アンラップでOK
-                let error = ApiError.checkNative(rawJson: resultJson, response!.statusCode)
-                callback(nil, error)
-                return
-            }
-            
-            callback(json, nil)
+    //MARK:- Internal Methods
+    internal static func handleAPI<T>(needApiKey: Bool = false, api: String, params: [String: Any], data: Data? = nil, fileType: String? = nil, type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, MisskeyKitError?)->Void) where T : Decodable  {
+        let hasAttachment = data != nil
+        
+        if hasAttachment && fileType == nil { return } // If fileType being nil ...
+        
+        if let missingCount = missingCount, missingCount >= 4 { return callback(nil, .FailedToCommunicateWithServer) }
+        
+        var params = params
+        if needApiKey {
+            params["i"] = auth.getAPIKey()
+        }
+        
+        let completion = { (response: HTTPURLResponse?, resultRawJson: String?, error: MisskeyKitError?) in
+            self.handleResponse(response: response,
+                                resultRawJson: resultRawJson,
+                                error: error,
+                                needApiKey: needApiKey,
+                                api: api,
+                                params: params,
+                                data: data,
+                                fileType: fileType,
+                                type: T.self,
+                                missingCount: missingCount,
+                                callback: callback)
+        }
+        
+        
+        
+        
+        if !hasAttachment {
+            guard let rawJson = params.toRawJson() else { callback(nil, .FailedToDecodeJson); return }
+            Requestor.post(url: Api.fullUrl(api), rawJson: rawJson, completion: completion)
+        }
+        else {
+            Requestor.post(url: Api.fullUrl(api), paramsDic: params, data: data, fileType: fileType, completion: completion)
         }
     }
+    
     
     
     // ** 参考 **
@@ -119,13 +89,66 @@ open class MisskeyKit {
             
             replaceList.append(shapedReactions)
         }
-       
+        
         var replacedRawJson = rawJson
         for i in 0...reactionsList.count-1 {
             replacedRawJson = replacedRawJson.replacingOccurrences(of: reactionsList[i][0], with: replaceList[i])
         }
         
         return replacedRawJson
+    }
+    
+    
+    
+    
+    //MARK: Private Methods
+    private static func handleResponse<T>(response: HTTPURLResponse?, resultRawJson: String?, error: MisskeyKitError?, needApiKey: Bool = false, api: String, params: [String: Any], data: Data? = nil, fileType: String? = nil, type: T.Type, missingCount: Int? = nil, callback: @escaping (T?, MisskeyKitError?)->Void) where T : Decodable {
+        guard let resultRawJson = resultRawJson else {
+            if let missingCount = missingCount {
+                self.handleAPI(needApiKey: needApiKey,
+                               api: api,
+                               params: params,
+                               type: type,
+                               missingCount: missingCount + 1,
+                               callback: callback)
+            }
+            
+            // If being initial error...
+            self.handleAPI(needApiKey: needApiKey,
+                           api: api,
+                           params: params,
+                           type: type,
+                           missingCount: 1,
+                           callback: callback)
+            
+            return
+        }
+        
+        let resultJson = arrayReactions(rawJson: resultRawJson) // Changes a form of reactions to array.
+        
+        if let response = response, response.statusCode == 200, resultJson.count == 0  {
+            callback(nil, nil)
+            return
+        }
+        
+        guard let json = resultJson.decodeJSON(type) else {
+            if resultJson.count == 0 {
+                guard String(reflecting: T.self) == "Swift.Bool" else {
+                    callback(nil, .ResponseIsNull)
+                    return
+                }
+                
+                callback(nil, nil)
+                return
+            }
+            
+            //guard上のifでnilチェックできているので強制アンラップでOK
+            let error = ApiError.checkNative(rawJson: resultJson, response!.statusCode)
+            callback(nil, error)
+            return
+        }
+        
+        callback(json, nil)
     }
     
 }

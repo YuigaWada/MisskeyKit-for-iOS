@@ -117,7 +117,7 @@ extension MisskeyKit {
         
         
         //MARK: Control Files
-        public func createFile(name: String, isSensitive: Bool = false, force: Bool = false, folderId: String = "", result callback: @escaping (DriveFileModel?, MisskeyKitError?)->()) {
+        public func createFile(fileData: Data, fileType: String, name: String, isSensitive: Bool = false, force: Bool = false, folderId: String = "", result callback: @escaping (DriveFileModel?, MisskeyKitError?)->()) {
             
             var params = ["name":name,
                           "isSensitive":isSensitive,
@@ -125,7 +125,7 @@ extension MisskeyKit {
                           "force":force] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "drive/files/create", params: params, type: DriveFileModel.self) { info, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "drive/files/create", params: params, data: fileData, fileType: fileType, type: DriveFileModel.self) { info, error in
                 
                 if let error = error  { callback(nil, error); return }
                 guard let info = info else { callback(nil, error); return }
