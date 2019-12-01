@@ -20,8 +20,7 @@ open class MisskeyKit {
     static public var notifications: MisskeyKit.Notifications = MisskeyKit.Notifications()
     static public var meta: MisskeyKit.Meta = MisskeyKit.Meta()
     static public var drive: MisskeyKit.Drive = MisskeyKit.Drive()
-    
-    static public var streaming: MisskeyKit.Streaming = MisskeyKit.Streaming()
+
     
     
     public static func changeInstance(instance: String = "misskey.io") {
