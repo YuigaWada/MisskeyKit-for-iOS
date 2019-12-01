@@ -16,7 +16,7 @@ extension MisskeyKit {
         
         public var me: Me? // infomation of logedin account, which have accessToken
         public var token: Token? // token of SESSION
-        public lazy var viewController: AuthViewController = .init()
+        public var viewController: AuthViewController { return .init() }
         
         private var apiKey: String?
         
