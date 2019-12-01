@@ -148,14 +148,16 @@ Misskeyのユーザー認証には本来、5つのステップが存在します
 
 ```swift
 MisskeyKit.auth.appSecret = "Enter your Secret Key"
-MisskeyKit.auth.viewController.resultApiKey() { apiKey in
+
+let authVC = MisskeyKit.auth.viewController
+authVC.resultApiKey() { apiKey in
 
     guard let apiKey = apiKey else { return }
     print(apiKey) // apiキーが取得できているのを確認できます
 
 }
 
-self.present(MisskeyKit.auth.viewController, animated: true)
+self.present(authVC, animated: true)
 ```
 
 
@@ -166,9 +168,11 @@ class ViewController: UIViewController, AuthViewControllerDelegate {
 
   func something() {
       MisskeyKit.auth.appSecret = "Enter your Secret Key"
-      MisskeyKit.auth.viewController.delegate = self
 
-      self.present(MisskeyKit.auth.viewController, animated: true)
+      let authVC = MisskeyKit.auth.viewController
+      authVC.delegate = self
+
+      self.present(authVC, animated: true)
   }
 
   //....
