@@ -57,6 +57,12 @@
 |mute/create|Mute.create|
 |mute/delete|Mute.delete|
 |mute/list|Mute.getList|
+|drive/files/attached-notes|Drive.getAttachedNotes|
+|drive/files/delete|Drive.deleteFile|
+|drive/files/update|Drive.updateFile|
+|drive/files/upload-from-url|Drive.uploadFileFromUrl|
+|drive/folders/delete|Drive.deleteFolder|
+|drive/folders/update|Drive.updateFolder|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|

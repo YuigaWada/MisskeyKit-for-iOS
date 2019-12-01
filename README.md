@@ -11,13 +11,6 @@
 MisskeyKit is a framework for [Misskey](https://misskey.io) written in swift. You can call Misskey API intuitively.
 (日本語は[こちら](https://github.com/YuigaWada/MisskeyKit-for-iOS/blob/master/README_JP.md))
 
-<br>
-
-Readme書いたけどまだ何も下準備してないので、これは正式公開ではないです。
-
-中間試験終わったら正式に公開する予定です。(たぶん)
-
-<!-- I've been writing test codes but because of problem about security I decided to postpone uploading test codes. -->
 
 <br>
 
@@ -28,12 +21,15 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 <br>
 
+## Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-## Contents
 
 - [Installation](#installation)
+    - [CocoaPods](#cocoapods)
+    - [Manually](#manually)
 - [How to use](#how-to-use)
   - [Singleton](#singleton)
   - [How to change Misskey Instance](#how-to-change-misskey-instance)
@@ -49,9 +45,11 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
   - [Api-Method correspondence table](#api-method-correspondence-table)
   - [Emojis](#emojis)
   - [Streaming API](#streaming-api)
-    - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
-    - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
-    - [```MisskeyKit.streaming.stopListening()```](#misskeykitstreamingstoplistening)
+    - [```MisskeyKit.Streaming.connect()```](#misskeykitstreamingconnect)
+    - [```MisskeyKit.Streaming.captureNote()```](#misskeykitstreamingcapturenote)
+    - [```MisskeyKit.Streaming.isConnected```](#misskeykitstreamingisconnected)
+    - [```MisskeyKit.Streaming.stopListening()```](#misskeykitstreamingstoplistening)
+  - [```MisskeyKitError```](#misskeykiterror)
 - [Contribute](#contribute)
 - [Others](#others)
 
@@ -95,7 +93,7 @@ github "YuigaWada/PolioPager"
 
 MisskeyKit adopts [singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern), because of keeping account information instead of developers.
 
-So you always have to communicate MisskeyKit via the following instances.
+So you always have to communicate with MisskeyKit via the following instances.
 
 ```swift
 open class MisskeyKit {
@@ -107,9 +105,6 @@ open class MisskeyKit {
   static public var search: Search
   static public var notifications: Notifications
   static public var meta: Meta
-
-  static public var streaming: Streaming
-
 ```
 
 <br>
@@ -263,7 +258,7 @@ MisskeyKit.auth.setAPIKey("Enter saved api key!")
 
 Look into my code of MisskeyKit and see how to describe.
 
-Oh, it's too much hassle? Hmmm... Okay, I'll give you two examples.
+Oh, it's too much hassle? Hmmm... Okay, I'll give you three examples.
 
 <br>
 
@@ -295,6 +290,20 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
             guard let posts = posts, error == nil else { /* Error */ return }
 
             print(posts) // You can check 100 notes if your request was accepted successfully.
+}
+```
+
+
+Final Example: ```MisskeyKit.drive.createFile``` , which is a method for "drive/create" api.
+
+When using ```MisskeyKit.drive.createFile```, you always have to add fileType. (fileType is expected to be [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types).)
+
+
+```swift
+MisskeyKit.drive.createFile(fileData: targetImage, fileType: "image/jpeg", name: UUID().uuidString + ".jpeg", isSensitive: false, force: false) { result, error in
+    guard let result = result, error == nil else { return }
+
+    print(result.id)
 }
 ```
 
@@ -362,6 +371,12 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |mute/create|Mute.create|
 |mute/delete|Mute.delete|
 |mute/list|Mute.getList|
+|drive/files/attached-notes|Drive.getAttachedNotes|
+|drive/files/delete|Drive.deleteFile|
+|drive/files/update|Drive.updateFile|
+|drive/files/upload-from-url|Drive.uploadFileFromUrl|
+|drive/folders/delete|Drive.deleteFolder|
+|drive/folders/update|Drive.updateFolder|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|
@@ -379,6 +394,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
 
 
 
@@ -423,7 +439,7 @@ Hence you don't have to communicate with Misskey Instance Server many times and 
 
 ### Streaming API
 
-MisskeyKit also provides wrapper of a [```streaming API```](https://misskey.kurume-nct.com/docs/ja-JP/stream) as well as REST API!
+MisskeyKit also provides wrapper of a [```streaming API```](https://misskey.io/docs/ja-JP/stream) as well as REST API!
 
 
 (```Streaming API``` is a subscription mechanism for binding client to server so that you can receive events **in near real time**.)
@@ -436,15 +452,18 @@ However it's so easy to connect via WebSocket by MisskeyKit !　
 
 <br>
 
-#### ```MisskeyKit.streaming.connect()```
+#### ```MisskeyKit.Streaming.connect()```
 
 
-All you have to do is just use ```MisskeyKit.streaming.connect()``` !
+All you have to do is just use ```MisskeyKit.Streaming.connect()``` !
+
+(```MisskeyKit.Streaming``` does not provide singleton instance, so you have to generate instance yourself.)
 
 ```swift
 guard let apiKey = MisskeyKit.auth.getAPIKey() else { return }
 
-MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) { response, channel, type, error in
+let streaming = MisskeyKit.Streaming() // u have to generate instance yourself.
+streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) { response, channel, type, error in
 
         // Do something ...
 
@@ -462,19 +481,19 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 ```
 <br><br>
 
-#### ```MisskeyKit.streaming.captureNote()```
+#### ```MisskeyKit.Streaming.captureNote()```
 
-Even if you use ```MisskeyKit.streaming.connect()``` and listen to events, there are some notes you cannot receive.
+Even if you use ```MisskeyKit.Streaming.connect()``` and listen to events, there are some notes you cannot receive.
 
-For these notes, you have to call API that provides you capturing functions.(Click [here](https://misskey.kurume-nct.com/docs/ja-JP/stream) for details.)
+For these notes, you have to call API that provides you capturing functions.(Click [here](https://misskey.io/docs/ja-JP/stream) for details.)
 
 <br>
 
-If you wanna capture some notes, use ```MisskeyKit.streaming.captureNote()```
+If you wanna capture some notes, use ```MisskeyKit.Streaming.captureNote()```
 
 ```swift
 do {
-  try MisskeyKit.streaming.captureNote(noteId: "Enter note Id.")
+  try streaming.captureNote(noteId: "Enter note Id.")
 }
 catch {
    /* Error */
@@ -485,18 +504,78 @@ Once you capture a note, each events related to the note will sent to your callb
 
 <br><br>
 
-#### ```MisskeyKit.streaming.stopListening()```
+#### ```MisskeyKit.Streaming.isConnected```
 
-If you want to disconnect specific channel, use ```MisskeyKit.streaming.stopListening()```.
+This variable enables us to check whether streaming is connected now.
+
+```swift
+guard streaming.isConnected else { return }
+
+// Good.
+```
+
+<br><br>
+
+#### ```MisskeyKit.Streaming.stopListening()```
+
+If you want to disconnect specific channel, use ```MisskeyKit.Streaming.stopListening()```.
 
 
 ```swift
-MisskeyKit.streaming.stopListening(channnel: SentStreamModel.Channel)
-MisskeyKit.streaming.stopListening(channnels: [SentStreamModel.Channel])
-MisskeyKit.streaming.stopListening(noteId: String)
-MisskeyKit.streaming.stopListening(noteIds: [String])
+streaming.stopListening(channnel: SentStreamModel.Channel)
+streaming.stopListening(channnels: [SentStreamModel.Channel])
+streaming.stopListening(noteId: String)
+streaming.stopListening(noteIds: [String])
 ```
 
+
+<br><br>
+
+
+### ```MisskeyKitError```
+
+MisskeyKit has own Error enumeration so that we could handle some error flexibility.
+
+```swift
+public enum MisskeyKitError: Error {
+
+    //These Error are corresponded to error codes sent by Misskey server.
+
+    //400
+    case ClientError
+
+    //401
+    case AuthenticationError
+
+    //403
+    case ForbiddonError
+
+    //418
+    case ImAI
+
+    //429
+    case TooManyError
+
+    //500
+    case InternalServerError
+
+
+
+    //These Error are related to internal error.
+
+    case CannotConnectStream
+
+    case NoStreamConnection
+
+    case FailedToDecodeJson
+
+    case FailedToCommunicateWithServer
+
+    case UnknownTypeResponse
+
+    case ResponseIsNull
+}
+```
 
 <br><br>
 

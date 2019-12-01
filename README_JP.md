@@ -13,13 +13,7 @@ MisskeyKitは直観性を重視したSwift用[Misskey](https://misskey.io)フレ
 
 <br>
 
-Readme書いたけどまだ何も下準備してないので、これは正式公開ではないです。
 
-中間試験終わったら正式に公開する予定です。(たぶん)
-
-<!-- I've been writing test codes but because of problem about security I decided to postpone uploading test codes. -->
-
-<br>
 
 ## 必要なもの
 
@@ -28,30 +22,35 @@ Readme書いたけどまだ何も下準備してないので、これは正式�
 
 <br>
 
+## 目次
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-## 目次
 
-- [導入方法](#導入方法)
-- [使い方](#使い方)
+- [導入方法](#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)
+    - [CocoaPods](#cocoapods)
+    - [直接導入するには](#%E7%9B%B4%E6%8E%A5%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF)
+- [使い方](#%E4%BD%BF%E3%81%84%E6%96%B9)
   - [Singleton](#singleton)
-  - [インスタンスの変更](#インスタンスの変更)
-  - [ユーザー認証](#ユーザー認証)
+  - [インスタンスの変更](#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E5%A4%89%E6%9B%B4)
+  - [ユーザー認証](#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC)
     - [CallBack Pattern](#callback-pattern)
     - [Delegation Pattern](#delegation-pattern)
-  - [ユーザー認証 (上級者向け)](#ユーザー認証-上級者向け)
-    - [```Session Token```の取得](#session-tokenの取得)
-    - [```Access Token```の取得](#access-tokenの取得)
-    - [ ```Api Key```の取得](#api-keyの取得)
-  - [APIキーの再利用](#APIキーの再利用)
-  - [APIの操作](#apiの操作)
-  - [Api-Method 対応表](#api-method-対応表)
-  - [絵文字](#絵文字)
+  - [ユーザー認証 (上級者向け)](#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC-%E4%B8%8A%E7%B4%9A%E8%80%85%E5%90%91%E3%81%91)
+    - [```Session Token```の取得](#session-token%E3%81%AE%E5%8F%96%E5%BE%97)
+    - [```Access Token```の取得](#access-token%E3%81%AE%E5%8F%96%E5%BE%97)
+    - [```Api Key```の取得](#api-key%E3%81%AE%E5%8F%96%E5%BE%97)
+  - [APIキーの再利用](#api%E3%82%AD%E3%83%BC%E3%81%AE%E5%86%8D%E5%88%A9%E7%94%A8)
+  - [APIの操作](#api%E3%81%AE%E6%93%8D%E4%BD%9C)
+  - [Api-Method 対応表](#api-method-%E5%AF%BE%E5%BF%9C%E8%A1%A8)
+  - [絵文字](#%E7%B5%B5%E6%96%87%E5%AD%97)
   - [Streaming API](#streaming-api)
-    - [```MisskeyKit.streaming.connect()```](#misskeykitstreamingconnect)
-    - [```MisskeyKit.streaming.captureNote()```](#misskeykitstreamingcapturenote)
-    - [```MisskeyKit.streaming.stopListening()```](#misskeykitstreamingstoplistening)
+    - [```MisskeyKit.Streaming.connect()```](#misskeykitstreamingconnect)
+    - [```MisskeyKit.Streaming.captureNote()```](#misskeykitstreamingcapturenote)
+    - [```MisskeyKit.Streaming.isConnected```](#misskeykitstreamingisconnected)
+    - [```MisskeyKit.Streaming.stopListening()```](#misskeykitstreamingstoplistening)
+  - [```MisskeyKitError```](#misskeykiterror)
 - [Contribute](#contribute)
 - [Others](#others)
 
@@ -108,9 +107,6 @@ open class MisskeyKit {
   static public var search: Search
   static public var notifications: Notifications
   static public var meta: Meta
-
-  static public var streaming: Streaming
-
 ```
 
 <br>
@@ -265,7 +261,7 @@ MisskeyKit.auth.setAPIKey("Enter saved api key!")
 
 APIが無数にあるので、全て個別に説明していくことはすいませんが面倒くさいので出来ません。
 
-一応2つだけ具体例を書いておくことにします。
+一応3つだけ具体例を書いておくことにします。
 
 <br>
 
@@ -299,6 +295,22 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
             guard let posts = posts, error == nil else { /* Error */ return }
 
             print(posts) // 100個確認できます
+}
+```
+
+３つ目に特殊なタイプの具体例```MisskeyKit.drive.createFile```について書いておきたいと思います。
+
+```MisskeyKit.drive.createFile```ではアップロードしたい生のデータfileDataの他に、fileTypeを渡す必要があります。
+
+この時fileTypeは[MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)に則る必要があることに留意してください。
+
+<br>
+
+```swift
+MisskeyKit.drive.createFile(fileData: targetImage, fileType: "image/jpeg", name: UUID().uuidString + ".jpeg", isSensitive: false, force: false) { result, error in
+    guard let result = result, error == nil else { return }
+
+    print(result.id)
 }
 ```
 
@@ -370,6 +382,12 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |mute/create|Mute.create|
 |mute/delete|Mute.delete|
 |mute/list|Mute.getList|
+|drive/files/attached-notes|Drive.getAttachedNotes|
+|drive/files/delete|Drive.deleteFile|
+|drive/files/update|Drive.updateFile|
+|drive/files/upload-from-url|Drive.uploadFileFromUrl|
+|drive/folders/delete|Drive.deleteFolder|
+|drive/folders/update|Drive.updateFolder|
 |users/lists/pull|Lists.pullUser|
 |users/lists/push|Lists.pushUser|
 |users/lists/create|Lists.create|
@@ -387,6 +405,7 @@ MisskeyKit.notes.getTimeline(limit: 100) { posts, error in
 |notes/search-by-tag|Search.notesByTag|
 |i/notifications|Notificaitons.get|
 |notifications/mark-all-as-read|Notificaitons.markAllAsRead|
+
 
 
 
@@ -428,7 +447,7 @@ guard let result = result else { /* Error */ return }
 
 ### Streaming API
 
-MisskeyKitはREST APIだけでなく[```streaming API```](https://misskey.kurume-nct.com/docs/ja-JP/stream)にも対応しています。
+MisskeyKitはREST APIだけでなく[```streaming API```](https://misskey.io/docs/ja-JP/stream)にも対応しています。
 
 
 (```Streaming API``` とはクライアントとサーバーを常時つなぎ合わせ、 **ほとんど遅延なしにリアルタイムで** 情報を取得できるような技術です。)
@@ -441,14 +460,17 @@ MisskeyKitでは、WebSocketについても直感的に操作できるような�
 
 <br>
 
-#### ```MisskeyKit.streaming.connect()```
+#### ```MisskeyKit.Streaming.connect()```
 
 
-Streaming APIと接続するのもたったワンステップ、 ```MisskeyKit.streaming.connect()```を使うだけです。
+Streaming APIと接続するのもたったワンステップ、 ```MisskeyKit.Streaming.connect()```を使うだけです。
+
+(```MisskeyKit.Streaming```はSingletonなインスタンスを提供していないので、各自自分でインスタンスを生成する必要があります。)
 
 ```swift
 guard let apiKey = MisskeyKit.auth.getAPIKey() else { return }
 
+let streaming = MisskeyKit.Streaming()
 MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) { response, channel, type, error in
 
         // Do something ...
@@ -467,9 +489,9 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 ```
 <br><br>
 
-#### ```MisskeyKit.streaming.captureNote()```
+#### ```MisskeyKit.Streaming.captureNote()```
 
-```MisskeyKit.streaming.connect()``` を使ってもキャッチ出来ないイベントが存在します。
+```MisskeyKit.Streaming.connect()``` を使ってもキャッチ出来ないイベントが存在します。
 
 たとえば、TLをstreaming apiで取得しても、すでに送られてきた投稿に対して新規のリアクションがついた場合、イベントは送られてきません。
 
@@ -477,33 +499,93 @@ MisskeyKit.streaming.connect(apiKey: apiKey, channels: [.main, .homeTimeline]) {
 
 <br>
 
-MisskeyKitでは投稿のキャプチャをするメソッド ```MisskeyKit.streaming.captureNote()```を用意しています。
+MisskeyKitでは投稿のキャプチャをするメソッド ```MisskeyKit.Streaming.captureNote()```を用意しています。
 
 ```swift
 do {
-  try MisskeyKit.streaming.captureNote(noteId: "Enter note Id.")
+  try streaming.captureNote(noteId: "Enter note Id.")
 }
 catch {
    /* Error */
 }
 ```
 
-投稿をキャプチャした場合その投稿に何らかのアクションがあれば、上で説明した ```MisskeyKit.streaming.connect()```メソッドのコールバック(クロージャー)に随時イベントが送られていきます。
+投稿をキャプチャした場合その投稿に何らかのアクションがあれば、上で説明した ```MisskeyKit.Streaming.connect()```メソッドのコールバック(クロージャー)に随時イベントが送られていきます。
 
 <br><br>
 
-#### ```MisskeyKit.streaming.stopListening()```
+#### ```MisskeyKit.Streaming.isConnected```
 
-もし特定のチャンネル、キャプチャについて接続を切断したい場合は、 ```MisskeyKit.streaming.stopListening()```を使ってください。
+ストリーミングが正常に接続されているかどうか確認することが出来ます。
+
+```swift
+guard streaming.isConnected else { return }
+
+// Good.
+```
+
+<br><br>
+
+#### ```MisskeyKit.Streaming.stopListening()```
+
+もし特定のチャンネル、キャプチャについて接続を切断したい場合は、 ```MisskeyKit.Streaming.stopListening()```を使ってください。
 
 
 ```swift
-MisskeyKit.streaming.stopListening(channnel: SentStreamModel.Channel)
-MisskeyKit.streaming.stopListening(channnels: [SentStreamModel.Channel])
-MisskeyKit.streaming.stopListening(noteId: String)
-MisskeyKit.streaming.stopListening(noteIds: [String])
+streaming.stopListening(channnel: SentStreamModel.Channel)
+streaming.stopListening(channnels: [SentStreamModel.Channel])
+streaming.stopListening(noteId: String)
+streaming.stopListening(noteIds: [String])
 ```
 
+
+<br><br>
+
+
+### ```MisskeyKitError```
+
+開発者側が柔軟にエラーハンドリングを行えるよう、MisskeyKitには独自のError列挙型が存在します。
+
+```swift
+public enum MisskeyKitError: Error {
+
+    //サーバーから送られてきたエラーコードと一対一に対応しています
+
+    //400
+    case ClientError
+
+    //401
+    case AuthenticationError
+
+    //403
+    case ForbiddonError
+
+    //418
+    case ImAI
+
+    //429
+    case TooManyError
+
+    //500
+    case InternalServerError
+
+
+
+    //MisskeyKitの内部エラー
+
+    case CannotConnectStream
+
+    case NoStreamConnection
+
+    case FailedToDecodeJson
+
+    case FailedToCommunicateWithServer
+
+    case UnknownTypeResponse
+
+    case ResponseIsNull
+}
+```
 
 <br><br>
 
