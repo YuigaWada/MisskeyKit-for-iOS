@@ -24,7 +24,7 @@ public struct NoteUpdatedModel: Codable {
     
     public let deletedAt: String?
     public let choice: Int?
-    public let uesrId: String?
+    public let userId: String?
     public let reaction: String?
 
     
