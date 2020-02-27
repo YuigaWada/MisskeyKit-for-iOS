@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8D4A29DA23733A6E00503685 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A29D923733A6E00503685 /* PageModel.swift */; };
-		8D71B7D0236EE6C900374F5A /* MisskeyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B7C6236EE6C900374F5A /* MisskeyKit.framework */; };
-		8D71B7D5236EE6C900374F5A /* MisskeyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7D4236EE6C900374F5A /* MisskeyKitTests.swift */; };
 		8D71B7D7236EE6C900374F5A /* MisskeyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D71B7C9236EE6C900374F5A /* MisskeyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D71B7E3236EE6F200374F5A /* String+MisskeyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7E2236EE6F200374F5A /* String+MisskeyKit.swift */; };
 		8D71B7E5236EED9100374F5A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7E4236EED9100374F5A /* Auth.swift */; };
@@ -22,8 +20,6 @@
 		8D71B7F9236F3DDD00374F5A /* MisskeyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7F8236F3DDD00374F5A /* MisskeyKit.swift */; };
 		8D71B7FB236F3E1100374F5A /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7FA236F3E1100374F5A /* Notes.swift */; };
 		8D71B7FD236F429E00374F5A /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7FC236F429E00374F5A /* NoteModel.swift */; };
-		8D71B7FF236F6C0800374F5A /* GetNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7FE236F6C0800374F5A /* GetNotesTests.swift */; };
-		8D71B801236F6F3E00374F5A /* PostNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B800236F6F3E00374F5A /* PostNotesTests.swift */; };
 		8D71B80323704F4300374F5A /* Array+MisskeyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B80223704F4300374F5A /* Array+MisskeyKit.swift */; };
 		8D71B8052371059D00374F5A /* CallbackTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8042371059D00374F5A /* CallbackTypealias.swift */; };
 		8D71B8072371081400374F5A /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8062371081400374F5A /* Users.swift */; };
@@ -32,13 +28,10 @@
 		8D71B80D23710B3200374F5A /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B80C23710B3200374F5A /* Search.swift */; };
 		8D71B80F237111BE00374F5A /* Notificaitons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B80E237111BE00374F5A /* Notificaitons.swift */; };
 		8D71B8112371161000374F5A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8102371161000374F5A /* NotificationModel.swift */; };
-		8D71B813237116EB00374F5A /* NotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B812237116EB00374F5A /* NotificationsTests.swift */; };
 		8D71B8152371844700374F5A /* MetaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8142371844700374F5A /* MetaModel.swift */; };
 		8D71B8172371859500374F5A /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8162371859500374F5A /* Meta.swift */; };
-		8D71B8192371864000374F5A /* MetaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8182371864000374F5A /* MetaTests.swift */; };
 		8D71B8292371A57900374F5A /* Streaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B8282371A57900374F5A /* Streaming.swift */; };
 		8D71B82B2371A8C700374F5A /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B82A2371A8C700374F5A /* ChannelModel.swift */; };
-		8D71B82D2371A9BC00374F5A /* StreamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B82C2371A9BC00374F5A /* StreamingTests.swift */; };
 		8D71B82F2372C95700374F5A /* StreamingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B82E2372C95700374F5A /* StreamingModel.swift */; };
 		8D71B83123730D2800374F5A /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B83023730D2700374F5A /* ListModel.swift */; };
 		8D7CD4582375C76900EF97A2 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 8D7CD4572375C76900EF97A2 /* Resources */; };
@@ -49,30 +42,16 @@
 		8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; };
 		8DD4559023745324003FA3C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD4558F23745324003FA3C4 /* AuthViewController.swift */; };
 		8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455942375C00A003FA3C4 /* Emoji.swift */; };
-		8DD455972375C3C9003FA3C4 /* EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455962375C3C9003FA3C4 /* EmojiTests.swift */; };
 		CE8F25B32408160500EC87DA /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B22408160500EC87DA /* Drive.swift */; };
 		CE8F25B52408162000EC87DA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B42408162000EC87DA /* DriveModel.swift */; };
 		CE8F25B72408163600EC87DA /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B62408163600EC87DA /* ApiError.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8D71B7D1236EE6C900374F5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8D71B7BD236EE6C900374F5A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D71B7C5236EE6C900374F5A;
-			remoteInfo = MisskeyKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8D4A29D923733A6E00503685 /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		8D71B7C6236EE6C900374F5A /* MisskeyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MisskeyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D71B7C9236EE6C900374F5A /* MisskeyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MisskeyKit.h; sourceTree = "<group>"; };
 		8D71B7CA236EE6C900374F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D71B7CF236EE6C900374F5A /* MisskeyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MisskeyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D71B7D4236EE6C900374F5A /* MisskeyKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisskeyKitTests.swift; sourceTree = "<group>"; };
-		8D71B7D6236EE6C900374F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D71B7E2236EE6F200374F5A /* String+MisskeyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MisskeyKit.swift"; sourceTree = "<group>"; };
 		8D71B7E4236EED9100374F5A /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		8D71B7E6236EEF0200374F5A /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
@@ -84,8 +63,6 @@
 		8D71B7F8236F3DDD00374F5A /* MisskeyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisskeyKit.swift; sourceTree = "<group>"; };
 		8D71B7FA236F3E1100374F5A /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		8D71B7FC236F429E00374F5A /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
-		8D71B7FE236F6C0800374F5A /* GetNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotesTests.swift; sourceTree = "<group>"; };
-		8D71B800236F6F3E00374F5A /* PostNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNotesTests.swift; sourceTree = "<group>"; };
 		8D71B80223704F4300374F5A /* Array+MisskeyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+MisskeyKit.swift"; sourceTree = "<group>"; };
 		8D71B8042371059D00374F5A /* CallbackTypealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackTypealias.swift; sourceTree = "<group>"; };
 		8D71B8062371081400374F5A /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -94,15 +71,12 @@
 		8D71B80C23710B3200374F5A /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		8D71B80E237111BE00374F5A /* Notificaitons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificaitons.swift; sourceTree = "<group>"; };
 		8D71B8102371161000374F5A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
-		8D71B812237116EB00374F5A /* NotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTests.swift; sourceTree = "<group>"; };
 		8D71B8142371844700374F5A /* MetaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaModel.swift; sourceTree = "<group>"; };
 		8D71B8162371859500374F5A /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
-		8D71B8182371864000374F5A /* MetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaTests.swift; sourceTree = "<group>"; };
 		8D71B81D237198AD00374F5A /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		8D71B8212371995B00374F5A /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = MisskeyKit/Starscream.framework; sourceTree = "<group>"; };
 		8D71B8282371A57900374F5A /* Streaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streaming.swift; sourceTree = "<group>"; };
 		8D71B82A2371A8C700374F5A /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
-		8D71B82C2371A9BC00374F5A /* StreamingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingTests.swift; sourceTree = "<group>"; };
 		8D71B82E2372C95700374F5A /* StreamingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingModel.swift; sourceTree = "<group>"; };
 		8D71B83023730D2700374F5A /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		8D7CD4572375C76900EF97A2 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
@@ -112,7 +86,6 @@
 		8D7CD46323782F7200EF97A2 /* MuteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteModel.swift; sourceTree = "<group>"; };
 		8DD4558F23745324003FA3C4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		8DD455942375C00A003FA3C4 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		8DD455962375C3C9003FA3C4 /* EmojiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTests.swift; sourceTree = "<group>"; };
 		CE8F25B22408160500EC87DA /* Drive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		CE8F25B42408162000EC87DA /* DriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveModel.swift; sourceTree = "<group>"; };
 		CE8F25B62408163600EC87DA /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
@@ -127,14 +100,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D71B7CC236EE6C900374F5A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D71B7D0236EE6C900374F5A /* MisskeyKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -142,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				8D71B7C8236EE6C900374F5A /* MisskeyKit */,
-				8D71B7D3236EE6C900374F5A /* MisskeyKitTests */,
 				8D71B7C7236EE6C900374F5A /* Products */,
 				8D71B81C237198AC00374F5A /* Frameworks */,
 			);
@@ -152,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				8D71B7C6236EE6C900374F5A /* MisskeyKit.framework */,
-				8D71B7CF236EE6C900374F5A /* MisskeyKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,21 +130,6 @@
 				8D7CD4572375C76900EF97A2 /* Resources */,
 			);
 			path = MisskeyKit;
-			sourceTree = "<group>";
-		};
-		8D71B7D3236EE6C900374F5A /* MisskeyKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				8D71B7D4236EE6C900374F5A /* MisskeyKitTests.swift */,
-				8D71B7D6236EE6C900374F5A /* Info.plist */,
-				8D71B7FE236F6C0800374F5A /* GetNotesTests.swift */,
-				8D71B800236F6F3E00374F5A /* PostNotesTests.swift */,
-				8D71B812237116EB00374F5A /* NotificationsTests.swift */,
-				8D71B8182371864000374F5A /* MetaTests.swift */,
-				8D71B82C2371A9BC00374F5A /* StreamingTests.swift */,
-				8DD455962375C3C9003FA3C4 /* EmojiTests.swift */,
-			);
-			path = MisskeyKitTests;
 			sourceTree = "<group>";
 		};
 		8D71B7E0236EE6D400374F5A /* APIs */ = {
@@ -307,24 +255,6 @@
 			productReference = 8D71B7C6236EE6C900374F5A /* MisskeyKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8D71B7CE236EE6C900374F5A /* MisskeyKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8D71B7DD236EE6C900374F5A /* Build configuration list for PBXNativeTarget "MisskeyKitTests" */;
-			buildPhases = (
-				8D71B7CB236EE6C900374F5A /* Sources */,
-				8D71B7CC236EE6C900374F5A /* Frameworks */,
-				8D71B7CD236EE6C900374F5A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8D71B7D2236EE6C900374F5A /* PBXTargetDependency */,
-			);
-			name = MisskeyKitTests;
-			productName = MisskeyKitTests;
-			productReference = 8D71B7CF236EE6C900374F5A /* MisskeyKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -338,9 +268,6 @@
 					8D71B7C5236EE6C900374F5A = {
 						CreatedOnToolsVersion = 11.2;
 						LastSwiftMigration = 1120;
-					};
-					8D71B7CE236EE6C900374F5A = {
-						CreatedOnToolsVersion = 11.2;
 					};
 				};
 			};
@@ -358,7 +285,6 @@
 			projectRoot = "";
 			targets = (
 				8D71B7C5236EE6C900374F5A /* MisskeyKit */,
-				8D71B7CE236EE6C900374F5A /* MisskeyKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -369,13 +295,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D7CD4582375C76900EF97A2 /* Resources in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D71B7CD236EE6C900374F5A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,29 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D71B7CB236EE6C900374F5A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D71B813237116EB00374F5A /* NotificationsTests.swift in Sources */,
-				8D71B7D5236EE6C900374F5A /* MisskeyKitTests.swift in Sources */,
-				8D71B82D2371A9BC00374F5A /* StreamingTests.swift in Sources */,
-				8D71B801236F6F3E00374F5A /* PostNotesTests.swift in Sources */,
-				8DD455972375C3C9003FA3C4 /* EmojiTests.swift in Sources */,
-				8D71B7FF236F6C0800374F5A /* GetNotesTests.swift in Sources */,
-				8D71B8192371864000374F5A /* MetaTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8D71B7D2236EE6C900374F5A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D71B7C5236EE6C900374F5A /* MisskeyKit */;
-			targetProxy = 8D71B7D1236EE6C900374F5A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8D71B7D8236EE6C900374F5A /* Debug */ = {
@@ -657,44 +554,6 @@
 			};
 			name = Release;
 		};
-		8D71B7DE236EE6C900374F5A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4LMTSU8RLS;
-				INFOPLIST_FILE = MisskeyKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = yuwd.MisskeyKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8D71B7DF236EE6C900374F5A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4LMTSU8RLS;
-				INFOPLIST_FILE = MisskeyKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = yuwd.MisskeyKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -712,15 +571,6 @@
 			buildConfigurations = (
 				8D71B7DB236EE6C900374F5A /* Debug */,
 				8D71B7DC236EE6C900374F5A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8D71B7DD236EE6C900374F5A /* Build configuration list for PBXNativeTarget "MisskeyKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8D71B7DE236EE6C900374F5A /* Debug */,
-				8D71B7DF236EE6C900374F5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
