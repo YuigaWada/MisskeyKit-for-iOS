@@ -17,7 +17,7 @@
 		8D71B7E9236EF61F00374F5A /* Requestor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7E8236EF61F00374F5A /* Requestor.swift */; };
 		8D71B7EC236EFA7E00374F5A /* +Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7EB236EFA7E00374F5A /* +Auth.swift */; };
 		8D71B7EE236EFBAD00374F5A /* Dictionary+MisskeyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7ED236EFBAD00374F5A /* Dictionary+MisskeyKit.swift */; };
-		8D71B7F0236F02AB00374F5A /* MisskeyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7EF236F02AB00374F5A /* MisskeyError.swift */; };
+		8D71B7F0236F02AB00374F5A /* MisskeyKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7EF236F02AB00374F5A /* MisskeyKitError.swift */; };
 		8D71B7F4236F26AC00374F5A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7F3236F26AC00374F5A /* UserModel.swift */; };
 		8D71B7F9236F3DDD00374F5A /* MisskeyKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7F8236F3DDD00374F5A /* MisskeyKit.swift */; };
 		8D71B7FB236F3E1100374F5A /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71B7FA236F3E1100374F5A /* Notes.swift */; };
@@ -50,6 +50,9 @@
 		8DD4559023745324003FA3C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD4558F23745324003FA3C4 /* AuthViewController.swift */; };
 		8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455942375C00A003FA3C4 /* Emoji.swift */; };
 		8DD455972375C3C9003FA3C4 /* EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455962375C3C9003FA3C4 /* EmojiTests.swift */; };
+		CE8F25B32408160500EC87DA /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B22408160500EC87DA /* Drive.swift */; };
+		CE8F25B52408162000EC87DA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B42408162000EC87DA /* DriveModel.swift */; };
+		CE8F25B72408163600EC87DA /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B62408163600EC87DA /* ApiError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +79,7 @@
 		8D71B7E8236EF61F00374F5A /* Requestor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestor.swift; sourceTree = "<group>"; };
 		8D71B7EB236EFA7E00374F5A /* +Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Auth.swift"; sourceTree = "<group>"; };
 		8D71B7ED236EFBAD00374F5A /* Dictionary+MisskeyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+MisskeyKit.swift"; sourceTree = "<group>"; };
-		8D71B7EF236F02AB00374F5A /* MisskeyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisskeyError.swift; sourceTree = "<group>"; };
+		8D71B7EF236F02AB00374F5A /* MisskeyKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisskeyKitError.swift; sourceTree = "<group>"; };
 		8D71B7F3236F26AC00374F5A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8D71B7F8236F3DDD00374F5A /* MisskeyKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisskeyKit.swift; sourceTree = "<group>"; };
 		8D71B7FA236F3E1100374F5A /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
@@ -110,6 +113,9 @@
 		8DD4558F23745324003FA3C4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		8DD455942375C00A003FA3C4 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		8DD455962375C3C9003FA3C4 /* EmojiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTests.swift; sourceTree = "<group>"; };
+		CE8F25B22408160500EC87DA /* Drive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
+		CE8F25B42408162000EC87DA /* DriveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveModel.swift; sourceTree = "<group>"; };
+		CE8F25B62408163600EC87DA /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,11 +198,12 @@
 		8D71B7E1236EE6DB00374F5A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CE8F25B62408163600EC87DA /* ApiError.swift */,
 				8D71B7E2236EE6F200374F5A /* String+MisskeyKit.swift */,
 				8D71B7E6236EEF0200374F5A /* ApiUrl.swift */,
 				8D71B7E8236EF61F00374F5A /* Requestor.swift */,
 				8D71B7ED236EFBAD00374F5A /* Dictionary+MisskeyKit.swift */,
-				8D71B7EF236F02AB00374F5A /* MisskeyError.swift */,
+				8D71B7EF236F02AB00374F5A /* MisskeyKitError.swift */,
 				8D71B80223704F4300374F5A /* Array+MisskeyKit.swift */,
 			);
 			path = Utilities;
@@ -205,6 +212,7 @@
 		8D71B7EA236EFA5F00374F5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE8F25B42408162000EC87DA /* DriveModel.swift */,
 				8D71B7EB236EFA7E00374F5A /* +Auth.swift */,
 				8D71B7F3236F26AC00374F5A /* UserModel.swift */,
 				8D71B7FC236F429E00374F5A /* NoteModel.swift */,
@@ -241,6 +249,7 @@
 		8D71B8262371A4EF00374F5A /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
+				CE8F25B22408160500EC87DA /* Drive.swift */,
 				8D71B7E4236EED9100374F5A /* Auth.swift */,
 				8D71B7F8236F3DDD00374F5A /* MisskeyKit.swift */,
 				8D71B7FA236F3E1100374F5A /* Notes.swift */,
@@ -416,6 +425,7 @@
 				8D71B8152371844700374F5A /* MetaModel.swift in Sources */,
 				8D71B7E3236EE6F200374F5A /* String+MisskeyKit.swift in Sources */,
 				8D71B8092371094700374F5A /* Groups.swift in Sources */,
+				CE8F25B32408160500EC87DA /* Drive.swift in Sources */,
 				8D71B7F4236F26AC00374F5A /* UserModel.swift in Sources */,
 				8D71B80323704F4300374F5A /* Array+MisskeyKit.swift in Sources */,
 				8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */,
@@ -423,10 +433,12 @@
 				8D7CD46423782F7200EF97A2 /* MuteModel.swift in Sources */,
 				8D71B7E5236EED9100374F5A /* Auth.swift in Sources */,
 				8D71B82F2372C95700374F5A /* StreamingModel.swift in Sources */,
+				CE8F25B52408162000EC87DA /* DriveModel.swift in Sources */,
 				8D71B8052371059D00374F5A /* CallbackTypealias.swift in Sources */,
+				CE8F25B72408163600EC87DA /* ApiError.swift in Sources */,
 				8D71B82B2371A8C700374F5A /* ChannelModel.swift in Sources */,
 				8D7CD46023782AED00EF97A2 /* MessageModel.swift in Sources */,
-				8D71B7F0236F02AB00374F5A /* MisskeyError.swift in Sources */,
+				8D71B7F0236F02AB00374F5A /* MisskeyKitError.swift in Sources */,
 				8D71B7E7236EEF0200374F5A /* ApiUrl.swift in Sources */,
 				8D71B8112371161000374F5A /* NotificationModel.swift in Sources */,
 				8D71B83123730D2800374F5A /* ListModel.swift in Sources */,
