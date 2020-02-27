@@ -39,12 +39,12 @@
 		8D7CD46023782AED00EF97A2 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD45F23782AED00EF97A2 /* MessageModel.swift */; };
 		8D7CD46223782ECC00EF97A2 /* Mute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46123782ECC00EF97A2 /* Mute.swift */; };
 		8D7CD46423782F7200EF97A2 /* MuteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CD46323782F7200EF97A2 /* MuteModel.swift */; };
-		8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; };
 		8DD4559023745324003FA3C4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD4558F23745324003FA3C4 /* AuthViewController.swift */; };
 		8DD455952375C00A003FA3C4 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD455942375C00A003FA3C4 /* Emoji.swift */; };
 		CE8F25B32408160500EC87DA /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B22408160500EC87DA /* Drive.swift */; };
 		CE8F25B52408162000EC87DA /* DriveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B42408162000EC87DA /* DriveModel.swift */; };
 		CE8F25B72408163600EC87DA /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F25B62408163600EC87DA /* ApiError.swift */; };
+		CEA7B0FC24086416008544E4 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D71B81D237198AD00374F5A /* Starscream.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D8CDD8F237848F000369EFF /* Starscream.framework in Frameworks */,
+				CEA7B0FC24086416008544E4 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +244,6 @@
 				8D71B7C2236EE6C900374F5A /* Sources */,
 				8D71B7C3236EE6C900374F5A /* Frameworks */,
 				8D71B7C4236EE6C900374F5A /* Resources */,
-				8D0491D123785C8A000433CD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -299,27 +298,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8D0491D123785C8A000433CD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D71B7C2236EE6C900374F5A /* Sources */ = {
