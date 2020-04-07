@@ -30,6 +30,7 @@ public struct NoteUpdatedModel: Codable {
     
     public enum UpdateType: String, Codable {
         case reacted = "reacted"
+        case unreacted = "unreacted"
         case pollVoted = "pollVoted"
         case deleted = "deleted"
     }
