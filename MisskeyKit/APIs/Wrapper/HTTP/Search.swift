@@ -13,11 +13,13 @@ extension MisskeyKit {
     public class Search {
         
         //MARK:- User
-        public func user(query: String = "", offset: Int = 0, limit: Int = 10, localOnly: Bool = true, detail: Bool = true, result callback: @escaping UsersCallBack) {
+        public func user(query: String = "", offset: Int = 0, limit: Int = 10, sinceId: String = "", untilId: String = "",  localOnly: Bool = true, detail: Bool = true, result callback: @escaping UsersCallBack) {
             
             var params = ["query":query,
                           "offset":offset,
                           "limit":limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId,
                           "localOnly":localOnly,
                           "detail":detail] as [String : Any]
             
@@ -33,21 +35,23 @@ extension MisskeyKit {
         
         //MARK:- Notes
         
-        public func notes(query: String = "", offset: Int = 0, limit: Int = 10, host: String = "", userId: String = "", result callback: @escaping UsersCallBack) {
+        public func notes(query: String = "", offset: Int = 0, limit: Int = 10, sinceId: String = "", untilId: String = "", host: String = "", userId: String = "", result callback: @escaping NotesCallBack) {
             
             var params = ["query":query,
                           "offset":offset,
                           "limit":limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId,
                           "host":host,
                           "userId":userId] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/search", params: params, type: [UserModel].self) { users, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "notes/search", params: params, type: [NoteModel].self) { notes, error in
                 
                 if let error = error  { callback(nil, error); return }
-                guard let users = users else { callback(nil, error); return }
+                guard let notes = notes else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(notes,nil)
             }
         }
         
