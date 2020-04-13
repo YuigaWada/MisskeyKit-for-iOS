@@ -92,5 +92,19 @@ extension MisskeyKit {
             }
         }
         
+        
+        public func trendHashtags(completion callback: @escaping ([Trend]?,MisskeyKitError?)->()) {
+            
+            var params = [:] as [String : Any]
+            
+            params = params.removeRedundant()
+            MisskeyKit.handleAPI(needApiKey: true, api: "hashtags/trend", params: params, type: [Trend].self) { posts, error in
+                if let error = error  { callback(nil, error); return }
+                guard let posts = posts else { callback(nil, error); return }
+                
+                callback(posts,nil)
+            }
+        }
+        
     }
 }

@@ -76,3 +76,11 @@ public struct Features: Codable{
     public let recaptcha, objectStorage, twitter, github: Bool?
     public let discord, serviceWorker: Bool?
 }
+
+// MARK: Trend
+
+public struct Trend: Codable {
+    public let tag: String?
+    public let chart: [Int]?
+    public let usersCount: Int?
+}
