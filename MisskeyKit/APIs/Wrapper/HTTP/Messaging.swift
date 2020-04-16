@@ -21,12 +21,12 @@ extension MisskeyKit {
             }
         }
         
-        public func getHistory(limit: Int = 10, result callback: @escaping MessagesCallBack) {
+        public func getHistory(limit: Int = 10, result callback: @escaping MessageHistoryCallBack) {
             
             var params = ["limit":limit] as [String : Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/history", params: params, type: [MessageModel].self) { users, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/history", params: params, type: [MessageHistoryModel].self) { users, error in
                 
                 if let error = error  { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
@@ -60,7 +60,7 @@ extension MisskeyKit {
                                "fileId":fileId]as [String : Any]
                  
                  params = params.removeRedundant()
-                 MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages", params: params, type: MessageModel.self) { users, error in
+                 MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages/create", params: params, type: MessageModel.self) { users, error in
                      
                      if let error = error  { callback(nil, error); return }
                      guard let users = users else { callback(nil, error); return }

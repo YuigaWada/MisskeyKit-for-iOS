@@ -23,6 +23,7 @@ public typealias NotificationsCallBack = ([NotificationModel]?, MisskeyKitError?
 
 public typealias OneMessageCallBack = (MessageModel?, MisskeyKitError?)->Void
 public typealias MessagesCallBack = ([MessageModel]?, MisskeyKitError?)->Void
+public typealias MessageHistoryCallBack = ([MessageHistoryModel]?, MisskeyKitError?)->Void
 
 public typealias MutesCallBack = ([MuteModel]?, MisskeyKitError?)->Void
 

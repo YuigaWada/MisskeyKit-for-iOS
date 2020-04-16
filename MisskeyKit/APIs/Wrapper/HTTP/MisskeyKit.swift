@@ -20,6 +20,7 @@ open class MisskeyKit {
     static public var notifications: MisskeyKit.Notifications = MisskeyKit.Notifications()
     static public var meta: MisskeyKit.Meta = MisskeyKit.Meta()
     static public var drive: MisskeyKit.Drive = MisskeyKit.Drive()
+    static public var messaging: MisskeyKit.Messaging = MisskeyKit.Messaging()
     static public var app: MisskeyKit.App = MisskeyKit.App()
 
     
@@ -111,7 +112,7 @@ open class MisskeyKit {
                                type: type,
                                missingCount: missingCount + 1,
                                callback: callback)
-                return 
+                return
             }
             
             // If being initial error...
