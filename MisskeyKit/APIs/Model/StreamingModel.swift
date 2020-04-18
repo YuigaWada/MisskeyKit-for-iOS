@@ -26,6 +26,7 @@ public struct NoteUpdatedModel: Codable {
     public let choice: Int?
     public let userId: String?
     public let reaction: String?
+    public let emoji: EmojiModel?
 
     
     public enum UpdateType: String, Codable {
