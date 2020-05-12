@@ -15,7 +15,7 @@ extension MisskeyKit {
             
             var params = ["endpoint":endpoint,
                           "auth":auth,
-                          "publicKey":publicKey] as [String : Any?]
+                          "publickey":publicKey] as [String : Any?]
             
             params = params.removeRedundant() as [String : Any]
             MisskeyKit.handleAPI(needApiKey: true, api: "sw/register", params: params as [String : Any], type: ServiceWorkerModel.self) { state, error in
