@@ -11,6 +11,8 @@ import Foundation
 extension MisskeyKit {
     public class ServiceWorker {
         
+        public init() {}
+        
         public func register(endpoint: String, auth: String, publicKey:String, result callback: @escaping SwCallBack) {
             
             var params = ["endpoint":endpoint,
