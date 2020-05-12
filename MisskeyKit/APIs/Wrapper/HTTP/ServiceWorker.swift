@@ -11,8 +11,6 @@ import Foundation
 extension MisskeyKit {
     public class ServiceWorker {
         
-        public init() {}
-        
         public func register(endpoint: String, auth: String, publicKey:String, result callback: @escaping SwCallBack) {
             
             var params = ["endpoint":endpoint,
@@ -20,7 +18,7 @@ extension MisskeyKit {
                           "publicKey":publicKey] as [String : Any?]
             
             params = params.removeRedundant() as [String : Any]
-            MisskeyKit.handleAPI(needApiKey: false, api: "sw/register", params: params as [String : Any], type: ServiceWorkerModel.self) { state, error in
+            MisskeyKit.handleAPI(needApiKey: true, api: "sw/register", params: params as [String : Any], type: ServiceWorkerModel.self) { state, error in
                 
                 if let error = error  { callback(nil, error); return }
                 guard let state = state else { callback(nil, error); return }

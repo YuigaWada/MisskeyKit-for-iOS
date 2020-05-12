@@ -22,6 +22,7 @@ open class MisskeyKit {
     static public var drive: MisskeyKit.Drive = MisskeyKit.Drive()
     static public var messaging: MisskeyKit.Messaging = MisskeyKit.Messaging()
     static public var app: MisskeyKit.App = MisskeyKit.App()
+    static public var serviceWorker: MisskeyKit.ServiceWorker = MisskeyKit.ServiceWorker()
 
     
     
