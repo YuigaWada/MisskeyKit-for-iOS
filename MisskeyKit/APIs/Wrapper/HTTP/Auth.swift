@@ -56,7 +56,7 @@ extension MisskeyKit {
         }
         
         public func getAPIKey()-> String? {
-            if let apiKey = apiKey {
+            if let apiKey = apiKey, !apiKey.isEmpty {
                 return apiKey
             }
             else {
