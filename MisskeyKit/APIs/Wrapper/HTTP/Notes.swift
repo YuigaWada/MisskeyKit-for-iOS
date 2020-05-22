@@ -281,6 +281,7 @@ extension MisskeyKit {
             var params = ["visibility": visibility.rawValue,
                           "visibleUserIds": visibleUserIds,
                           "text": text,
+                          "cw": cw,
                           "viaMobile": viaMobile,
                           "localOnly": localOnly,
                           "noExtractMentions": noExtractMentions,
