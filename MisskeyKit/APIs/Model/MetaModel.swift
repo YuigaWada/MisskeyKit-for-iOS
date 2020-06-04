@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MetaModel: Codable{
+public struct MetaModel: Codable {
     public let maintainerName, maintainerEmail, version, name: String?
     public let uri: String?
     public let welcomeDescription: String?
@@ -34,20 +34,23 @@ public struct MetaModel: Codable{
 }
 
 // MARK: - Announcement
-public struct Announcement: Codable{
+
+public struct Announcement: Codable {
     public let text: String?
     public let image: String?
     public let title: String?
 }
 
 // MARK: - CPU
-public struct CPU: Codable{
+
+public struct CPU: Codable {
     public let model: String?
     public let cores: Int?
 }
 
 // MARK: - Emoji
-public struct EmojiModel: Codable{
+
+public struct EmojiModel: Codable {
     public let id: String?
     public let aliases: [String]?
     public let name: String?
@@ -56,7 +59,7 @@ public struct EmojiModel: Codable{
     public let category: String?
 }
 
-//public enum Category: String, Codable{
+// public enum Category: String, Codable{
 //    case logo = "Logo"
 //    case os = "OS"
 //    case cute = "かわいい"
@@ -68,10 +71,11 @@ public struct EmojiModel: Codable{
 //    case action = "行動"
 //    case face = "顔"
 //    case foodAndDrink = "食べ物・飲み物"
-//}
+// }
 
 // MARK: - Features
-public struct Features: Codable{
+
+public struct Features: Codable {
     public let registration, localTimeLine, globalTimeLine, elasticsearch: Bool?
     public let recaptcha, objectStorage, twitter, github: Bool?
     public let discord, serviceWorker: Bool?

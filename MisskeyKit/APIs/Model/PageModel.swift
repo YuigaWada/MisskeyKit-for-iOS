@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct PageModel: Codable {
     public let id, createdAt, updatedAt, userId: String?
     public let user: _User? // isnt normal UserModel class.
@@ -51,6 +50,4 @@ public struct PageModel: Codable {
     public struct Arg: Codable {
         public let id, type, value: String?
     }
-    
 }
-

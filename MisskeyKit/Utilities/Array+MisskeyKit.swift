@@ -9,16 +9,13 @@
 import Foundation
 
 extension Array {
-    
-    func toRawJson() -> String?  {
+    func toRawJson() -> String? {
         do {
-        let data = try JSONSerialization.data(withJSONObject: self)
-        
-        return String(data: data, encoding: .utf8)
-        }
-        catch {
+            let data = try JSONSerialization.data(withJSONObject: self)
+            
+            return String(data: data, encoding: .utf8)
+        } catch {
             return nil
         }
     }
-    
 }

@@ -6,31 +6,26 @@
 //  Copyright © 2019 Yuiga Wada. All rights reserved.
 //
 
-
-
 public class ApiError: Codable {
-    
     let error: Details?
     
-    public class Details: Codable  {
+    public class Details: Codable {
         let message, code, id, kind: String?
     }
     
-    static func checkNative(rawJson: String, _ statusCode: Int)-> MisskeyKitError {
-        
+    static func checkNative(rawJson: String, _ statusCode: Int) -> MisskeyKitError {
         if let error = rawJson.decodeJSON(ApiError.self) {
             guard let details = error.error, let _ = details.message else {
                 return MisskeyKitError.FailedToDecodeJson
             }
             
-            return self.convertNativeError(code: statusCode)
+            return convertNativeError(code: statusCode)
         }
         
         return MisskeyKitError.FailedToDecodeJson
     }
     
-    
-    static func convertNativeError(code statusCode: Int)-> MisskeyKitError {
+    static func convertNativeError(code statusCode: Int) -> MisskeyKitError {
         switch statusCode {
         case 400:
             return .ClientError

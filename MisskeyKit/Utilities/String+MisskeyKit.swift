@@ -7,34 +7,33 @@
 //
 
 #if canImport(CryptoKit)
-import CryptoKit
+    import CryptoKit
 #elseif canImport(CommonCrypto)
-import CommonCrypto
+    import CommonCrypto
 #else
-#warning("No crypto import.")
+    #warning("No crypto import.")
 #endif
 import Foundation
 
 internal extension String {
-    func decodeJSON<T>(_ type: T.Type) -> T? where T : Decodable {
-        guard self.count > 0 else { return nil}
+    func decodeJSON<T>(_ type: T.Type) -> T? where T: Decodable {
+        guard count > 0 else { return nil }
         
         do {
-            return try JSONDecoder().decode(type, from: self.data(using: .utf8)!)
-        }
-        catch {
+            return try JSONDecoder().decode(type, from: data(using: .utf8)!)
+        } catch {
             print(error) // READ THIS CAREFULLY!
             return nil
         }
     }
     
-    func sha256()-> String? {
+    func sha256() -> String? {
         if #available(iOS 13.0, *) {
             guard let stringData = self.data(using: String.Encoding.utf8) else { return nil }
             return SHA256.hash(data: stringData).map { String(format: "%02hhx", $0) }.joined()
         } else {
             // Fallback on earlier versions
-            guard let stringData = self.data(using: String.Encoding.utf8) else { return nil }
+            guard let stringData = data(using: String.Encoding.utf8) else { return nil }
             var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
             stringData.withUnsafeBytes { bytes in
                 _ = CC_SHA256(bytes.baseAddress, CC_LONG(self.count), &digest)
@@ -43,19 +42,16 @@ internal extension String {
         }
     }
     
-    
     func regexMatches(pattern: String) -> [[String]] {
-        
         guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else { return [] }
-         let nsString = self as NSString
-         let results  = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
-         return results.map { result in
-             (0..<result.numberOfRanges).map {
-                 result.range(at: $0).location != NSNotFound
-                     ? nsString.substring(with: result.range(at: $0))
-                     : ""
-             }
-         }
+        let nsString = self as NSString
+        let results = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
+        return results.map { result in
+            (0 ..< result.numberOfRanges).map {
+                result.range(at: $0).location != NSNotFound
+                    ? nsString.substring(with: result.range(at: $0))
+                    : ""
+            }
+        }
     }
-    
 }

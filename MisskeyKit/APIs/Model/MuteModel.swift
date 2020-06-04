@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct MuteModel: Codable {
     public let id: String?
     public let createdAt: Date?

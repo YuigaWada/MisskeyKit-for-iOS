@@ -9,22 +9,25 @@
 import Foundation
 
 extension MisskeyKit {
-    public class App {
+    public class App: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
-        public func create(name: String, description: String, permission:[String], callbackUrl: String? = nil, result callback: @escaping AppCallBack) {
+        public func create(name: String, description: String, permission: [String], callbackUrl: String? = nil, result callback: @escaping AppCallBack) {
+            var params = ["name": name,
+                          "description": description,
+                          "permission": permission,
+                          "callbackUrl": callbackUrl] as [String: Any?]
             
-            var params = ["name":name,
-                          "description":description,
-                          "permission":permission,
-                          "callbackUrl":callbackUrl] as [String : Any?]
-            
-            params = params.removeRedundant() as [String : Any]
-            MisskeyKit.handleAPI(needApiKey: false, api: "app/create", params: params as [String : Any], type: AppModel.self) { app, error in
+            params = params.removeRedundant() as [String: Any]
+            handler.handleAPI(needApiKey: false, api: "app/create", params: params as [String: Any], type: AppModel.self) { app, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let app = app else { callback(nil, error); return }
                 
-                callback(app,nil)
+                callback(app, nil)
             }
         }
     }

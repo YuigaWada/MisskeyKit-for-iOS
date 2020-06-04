@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - Me
+
 public struct Me: Codable {
     public var accessToken: String
     public var user: UserModel?
@@ -16,7 +17,6 @@ public struct Me: Codable {
         self.accessToken = accessToken
         self.user = user
     }
-    
 }
 
 public struct UserModel: Codable {
@@ -89,4 +89,3 @@ public struct FollowRequestModel: Codable {
     public var followee: UserModel?
     public var follower: UserModel?
 }
-

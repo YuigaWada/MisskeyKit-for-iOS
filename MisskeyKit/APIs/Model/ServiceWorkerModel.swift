@@ -14,6 +14,6 @@ public struct ServiceWorkerModel: Codable {
     
     public enum State: String, Codable {
         case alreadySubscribed = "already-subscribed"
-        case subscribed = "subscribed"
+        case subscribed
     }
 }

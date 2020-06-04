@@ -10,56 +10,52 @@ import Foundation
 
 extension MisskeyKit {
     public class Emojis {
+        private let meta: Meta
+        required init(from meta: Meta) {
+            self.meta = meta
+        }
         
-        private static var bundle = Bundle(for: MisskeyKit.self)
-        private static var customEmojis: [EmojiModel]?
-        private static var defaultEmoji: [DefaultEmojiModel]?
+        private var bundle = Bundle(for: MisskeyKit.self)
+        private var customEmojis: [EmojiModel]?
+        private var defaultEmoji: [DefaultEmojiModel]?
         
-        public static func getDefault(completion: @escaping (([DefaultEmojiModel]?)->())) {
-            
+        public func getDefault(completion: @escaping (([DefaultEmojiModel]?) -> Void)) {
             if let defaultEmoji = defaultEmoji {
                 completion(defaultEmoji)
                 return
             }
             
-            //If defaultEmoji was not set ...
+            // If defaultEmoji was not set ...
             
-            guard let path = bundle.path(forResource:"emojilist",
+            guard let path = bundle.path(forResource: "emojilist",
                                          ofType: "json")
-                else { completion(nil); return }
-            
+            else { completion(nil); return }
             
             DispatchQueue.global(qos: .default).async {
-                
                 do {
                     let rawJson = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
-                    defaultEmoji = rawJson.decodeJSON([DefaultEmojiModel].self)
+                    self.defaultEmoji = rawJson.decodeJSON([DefaultEmojiModel].self)
                 } catch { completion(nil); return }
                 
-                completion(defaultEmoji)
+                completion(self.defaultEmoji)
             }
         }
         
-        public static func getCustom(completion: @escaping (([EmojiModel]?)->())) {
-            
+        public func getCustom(completion: @escaping (([EmojiModel]?) -> Void)) {
             if let customEmojis = customEmojis {
                 completion(customEmojis)
                 return
             }
             
-            MisskeyKit.meta.get{ result, error in
+            meta.get { result, error in
                 guard let result = result, error == nil else { completion(nil); return }
                 
-                customEmojis = result.emojis
-                completion(customEmojis)
+                self.customEmojis = result.emojis
+                completion(self.customEmojis)
             }
         }
-        
-        
-        
     }
 }
-
 
 public struct DefaultEmojiModel: Codable {
     public let category: Category?
@@ -67,14 +63,13 @@ public struct DefaultEmojiModel: Codable {
     public let keywords: [String]?
     
     public enum Category: String, Codable {
-        case activity = "activity"
+        case activity
         case animalsAndNature = "animals_and_nature"
-        case flags = "flags"
+        case flags
         case foodAndDrink = "food_and_drink"
-        case objects = "objects"
-        case people = "people"
-        case symbols = "symbols"
+        case objects
+        case people
+        case symbols
         case travelAndPlaces = "travel_and_places"
     }
 }
-

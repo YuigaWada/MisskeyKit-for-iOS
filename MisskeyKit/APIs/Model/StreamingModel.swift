@@ -27,18 +27,14 @@ public struct NoteUpdatedModel: Codable {
     public let userId: String?
     public let reaction: String?
     public let emoji: EmojiModel?
-
     
     public enum UpdateType: String, Codable {
-        case reacted = "reacted"
-        case unreacted = "unreacted"
-        case pollVoted = "pollVoted"
-        case deleted = "deleted"
+        case reacted
+        case unreacted
+        case pollVoted
+        case deleted
     }
-    
 }
-
-
 
 // ** for example **
 

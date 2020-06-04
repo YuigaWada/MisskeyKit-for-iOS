@@ -15,24 +15,24 @@ public struct SentStreamModel: Codable {
     public struct ChannelBody: Codable {
         public let channel: Channel?
         public let id: String?
-        public let params: [String:String]?
+        public let params: [String: String]?
         
-        init(channel: Channel, id: String, params: [String:String]){
+        init(channel: Channel, id: String, params: [String: String]) {
             self.channel = channel; self.id = id; self.params = params
         }
     }
     
     public enum Channel: String, Codable {
-        case main = "main"
-        case homeTimeline = "homeTimeline"
-        case localTimeline = "localTimeline"
-        case hybridTimeline = "hybridTimeline"
-        case globalTimeline = "globalTimeline"
+        case main
+        case homeTimeline
+        case localTimeline
+        case hybridTimeline
+        case globalTimeline
         
-        case CapturedNoteUpdated = "CapturedNoteUpdated"
+        case CapturedNoteUpdated
     }
     
-    init(type: String, body: ChannelBody){
+    init(type: String, body: ChannelBody) {
         self.type = type; self.body = body
     }
 }

@@ -8,28 +8,24 @@
 
 import Foundation
 
-
-internal class Api {
-    
-    internal static var instance: String = "misskey.io" {
+internal class UrlHelper {
+    internal var instance: String = "misskey.io" {
         didSet {
             self.instance = self.shapeUrl(self.instance)
         }
     }
     
-    internal static func fullUrl(_ api: String)-> String {
-        
+    internal func fullUrl(_ api: String) -> String {
         if api.prefix(1) == "/" {
-            return "https://\(self.instance)/api" +  api
+            return "https://\(instance)/api" + api
         }
         
-        return "https://\(self.instance)/api/" +  api
+        return "https://\(instance)/api/" + api
     }
     
-    private static func shapeUrl(_ url: String)-> String {
-         return url.replacingOccurrences(of: "http(s|)://([^/]+).+",
-                                         with: "$2",
-                                         options: .regularExpression)
+    private func shapeUrl(_ url: String) -> String {
+        return url.replacingOccurrences(of: "http(s|)://([^/]+).+",
+                                        with: "$2",
+                                        options: .regularExpression)
     }
-    
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct NotificationModel: Codable {
     public let id: String?
     public let createdAt: String?
@@ -19,15 +18,14 @@ public struct NotificationModel: Codable {
     public let note: NoteModel?
 }
 
-
 public enum ActionType: String, Codable {
-    case follow = "follow"
-    case mention = "mention"
-    case reply = "reply"
-    case renote = "renote"
-    case quote = "quote"
-    case reaction = "reaction"
-    case pollVote = "pollVote"
-    case receiveFollowRequest = "receiveFollowRequest"
-    case followRequestAccepted = "followRequestAccepted"
+    case follow
+    case mention
+    case reply
+    case renote
+    case quote
+    case reaction
+    case pollVote
+    case receiveFollowRequest
+    case followRequestAccepted
 }

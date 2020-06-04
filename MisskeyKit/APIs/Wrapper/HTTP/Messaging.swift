@@ -9,85 +9,82 @@
 import Foundation
 
 extension MisskeyKit {
-    public class Messaging {
+    public class Messaging: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
         public func readAllMessaging(result callback: @escaping BooleanCallBack) {
-            
-            var params = [:] as [String : Any]
+            var params = [:] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "i/read-all-messaging-messages", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "i/read-all-messaging-messages", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func getHistory(limit: Int = 10, result callback: @escaping MessageHistoryCallBack) {
-            
-            var params = ["limit":limit] as [String : Any]
+            var params = ["limit": limit] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/history", params: params, type: [MessageHistoryModel].self) { users, error in
+            handler.handleAPI(needApiKey: true, api: "messaging/history", params: params, type: [MessageHistoryModel].self) { users, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(users, nil)
             }
         }
         
-        public func getMessageWithUser(userId: String, limit: Int = 10,sinceId: String = "", untilId: String = "",markAsRead: Bool = true, result callback: @escaping MessagesCallBack) {
-            
-            var params = ["limit":limit,
-                          "userId":userId,
-                          "sinceId":sinceId,
-                          "untilId":untilId,
-                          "markAsRead":markAsRead] as [String : Any]
+        public func getMessageWithUser(userId: String, limit: Int = 10, sinceId: String = "", untilId: String = "", markAsRead: Bool = true, result callback: @escaping MessagesCallBack) {
+            var params = ["limit": limit,
+                          "userId": userId,
+                          "sinceId": sinceId,
+                          "untilId": untilId,
+                          "markAsRead": markAsRead] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages", params: params, type: [MessageModel].self) { users, error in
+            handler.handleAPI(needApiKey: true, api: "messaging/messages", params: params, type: [MessageModel].self) { users, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(users, nil)
             }
         }
         
-        public func create(userId: String,text: String, fileId: String = "", result callback: @escaping OneMessageCallBack) {
-                 
-                 var params = ["text":text,
-                               "userId":userId,
-                               "fileId":fileId]as [String : Any]
-                 
-                 params = params.removeRedundant()
-                 MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages/create", params: params, type: MessageModel.self) { users, error in
-                     
-                     if let error = error  { callback(nil, error); return }
-                     guard let users = users else { callback(nil, error); return }
-                     
-                     callback(users,nil)
-                 }
-             }
+        public func create(userId: String, text: String, fileId: String = "", result callback: @escaping OneMessageCallBack) {
+            var params = ["text": text,
+                          "userId": userId,
+                          "fileId": fileId] as [String: Any]
+            
+            params = params.removeRedundant()
+            handler.handleAPI(needApiKey: true, api: "messaging/messages/create", params: params, type: MessageModel.self) { users, error in
+                
+                if let error = error { callback(nil, error); return }
+                guard let users = users else { callback(nil, error); return }
+                
+                callback(users, nil)
+            }
+        }
         
         public func delete(messageId: String, result callback: @escaping BooleanCallBack) {
-            
-            var params = ["messageId":messageId] as [String : Any]
+            var params = ["messageId": messageId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages/delete", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "messaging/messages/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func read(messageId: String, result callback: @escaping BooleanCallBack) {
-            
-            var params = ["messageId":messageId] as [String : Any]
+            var params = ["messageId": messageId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "messaging/messages/read", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "messaging/messages/read", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
-        
     }
 }

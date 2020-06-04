@@ -9,42 +9,42 @@
 import Foundation
 
 extension MisskeyKit {
-    public class Mute {
+    public class Mute: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
         public func create(userId: String, result callback: @escaping BooleanCallBack) {
-            
-            var params = ["userId":userId] as [String : Any]
+            var params = ["userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "mute/create", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "mute/create", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func delete(userId: String, result callback: @escaping BooleanCallBack) {
-            
-            var params = ["userId":userId] as [String : Any]
+            var params = ["userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "mute/delete", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "mute/delete", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
-            
+        
         public func getList(limit: Int = 30, sinceId: String = "", untilId: String = "", result callback: @escaping MutesCallBack) {
-            
-            var params = ["limit":limit,
-                          "sinceId":sinceId,
-                          "untilId":untilId] as [String : Any]
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "mute/list", params: params, type: [MuteModel].self) { users, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "mute/list", params: params, type: [MuteModel].self) { users, error in
+                if let error = error { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(users, nil)
             }
         }
-        
     }
 }

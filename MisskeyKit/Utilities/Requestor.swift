@@ -8,19 +8,18 @@
 
 import Foundation
 
-
 internal typealias ResponseCallBack = (HTTPURLResponse?, String?, MisskeyKitError?) -> Void
 internal class Requestor {
-    
     private static let boundary = UUID().uuidString
     
-    //MARK: GET
+    // MARK: GET
+    
     static func get(url: String, completion: @escaping ResponseCallBack) {
-        self.get(url: URL(string: url)!, completion: completion)
+        get(url: URL(string: url)!, completion: completion)
     }
     
     static func get(url: URL, completion: @escaping ResponseCallBack) {
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let _ = error {
                 completion(nil, nil, .FailedToCommunicateWithServer)
                 return
@@ -30,7 +29,6 @@ internal class Requestor {
                 return
             }
             
-            
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 completion(response, dataString, nil)
             }
@@ -38,22 +36,20 @@ internal class Requestor {
         task.resume()
     }
     
+    // MARK: POST
     
-    //MARK: POST
-    
-    //With Attachment
+    // With Attachment
     static func post(url: String, paramsDic: [String: Any], data: Data?, fileType: String?, completion: @escaping ResponseCallBack) {
-        self.post(url: URL(string: url)!,
-                  paramsDic: paramsDic,
-                  data: data,
-                  fileType: fileType,
-                  completion: completion)
+        post(url: URL(string: url)!,
+             paramsDic: paramsDic,
+             data: data,
+             fileType: fileType,
+             completion: completion)
     }
-    
     
     // Generate a "multipart/form-data" request
     static func post(url: URL, paramsDic: [String: Any], data: Data?, fileType: String?, completion: @escaping ResponseCallBack) {
-        guard let data = data, let fileType = fileType else { completion(nil,nil,.FailedToCommunicateWithServer); return }
+        guard let data = data, let fileType = fileType else { completion(nil, nil, .FailedToCommunicateWithServer); return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -62,11 +58,9 @@ internal class Requestor {
         let uuid = UUID().uuidString
         var bodyData: Data = Data()
         
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        request.setValue("multipart/form-data; boundary=\(self.boundary)", forHTTPHeaderField: "Content-Type")
-        
-        
-        paramsDic.forEach{ params in
+        paramsDic.forEach { params in
             let value = String(describing: params.value)
             
             bodyData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
@@ -83,7 +77,7 @@ internal class Requestor {
         
         request.httpBody = bodyData
         
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { data, response, error in
             if let _ = error {
                 completion(nil, nil, .FailedToCommunicateWithServer)
                 return
@@ -93,21 +87,18 @@ internal class Requestor {
                 return
             }
             
-            
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 completion(response, dataString, nil)
             }
-            
         }
         task.resume()
     }
     
-    
-    //Without attachment
+    // Without attachment
     static func post(url: String, rawJson: String, completion: @escaping ResponseCallBack) {
-        self.post(url: URL(string: url)!,
-                  rawJson: rawJson,
-                  completion: completion)
+        post(url: URL(string: url)!,
+             rawJson: rawJson,
+             completion: completion)
     }
     
     static func post(url: URL, rawJson: String, completion: @escaping ResponseCallBack) {
@@ -116,7 +107,7 @@ internal class Requestor {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = rawJson.data(using: .utf8)
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = error {
                 completion(nil, nil, .FailedToCommunicateWithServer)
                 return
@@ -126,14 +117,10 @@ internal class Requestor {
                 return
             }
             
-            
-            
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 completion(response, dataString, nil)
             }
-            
         }
         task.resume()
     }
-    
 }

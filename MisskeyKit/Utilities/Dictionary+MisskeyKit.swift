@@ -9,45 +9,42 @@
 import Foundation
 
 extension Dictionary {
-    
-    func toRawJson() -> String?  {
+    func toRawJson() -> String? {
         do {
-        let data = try JSONSerialization.data(withJSONObject: self)
-        
-        return String(data: data, encoding: .utf8)
-        }
-        catch {
+            let data = try JSONSerialization.data(withJSONObject: self)
+            
+            return String(data: data, encoding: .utf8)
+        } catch {
             return nil
         }
     }
     
-    func removeRedundant()-> Dictionary {
-        guard let _self = self as? [String : Any] else { return self }
+    func removeRedundant() -> Dictionary {
+        guard let _self = self as? [String: Any] else { return self }
         
-        return _self.filter{ // remove stuff like "" or nil
+        return _self.filter { // remove stuff like "" or nil
             if let stringValue = $0.value as? String {
                 if stringValue == "" {
                     return false
                 }
             }
             
-            if let arrayValue = $0.value as? Array<Any> {
+            if let arrayValue = $0.value as? [Any] {
                 return arrayValue.count != 0
             }
             
             switch $0.value {
-            case Optional<Any>.none: //nil
+            case Optional<Any>.none: // nil
                 return false
             default:
                 break
             }
             return true
-            } as! Dictionary
+        } as! Dictionary
     }
     
-    func searchKey<T>(value targetValue: T)-> Any? where T : Equatable { // T: value's type
-        
-        let result = self.filter { key, value in
+    func searchKey<T>(value targetValue: T) -> Any? where T: Equatable { // T: value's type
+        let result = filter { _, value in
             if let value = value as? T {
                 return value == targetValue
             }
@@ -55,6 +52,4 @@ extension Dictionary {
         }
         return result
     }
-    
-  
 }

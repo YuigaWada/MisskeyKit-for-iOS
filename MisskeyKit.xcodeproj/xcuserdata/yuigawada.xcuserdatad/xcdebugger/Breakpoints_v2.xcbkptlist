@@ -256,7 +256,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "post(url:rawJson:completion:)"
+            landmarkName = "post(url:paramsDic:data:fileType:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -272,7 +272,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "post(url:rawJson:completion:)"
+            landmarkName = "post(url:paramsDic:data:fileType:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -288,7 +288,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "post(url:rawJson:completion:)"
+            landmarkName = "post(url:paramsDic:data:fileType:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -594,230 +594,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86831583-08E2-4631-802F-697960A154E8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "createNote(visibility:visibleUserIds:text:cw:viaMobile:localOnly:noExtractMentions:noExtractHashtags:noExtractEmojis:geo:fileIds:replyId:poll:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D0CAFA86-A4C0-4397-B95D-8D33AB126AF7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "createNote(visibility:visibleUserIds:text:cw:viaMobile:localOnly:noExtractMentions:noExtractHashtags:noExtractEmojis:geo:fileIds:replyId:poll:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D0CAFA86-A4C0-4397-B95D-8D33AB126AF7 - b321321918d0d918"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MisskeyKit.MisskeyKit.Notes.createFavorite(noteId: Swift.String, result: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MisskeyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuigawada/Documents/GitHub/MisskeyKit/MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "272"
-                  endingLineNumber = "272"
-                  offsetFromSymbolStart = "371">
-               </Location>
-               <Location
-                  uuid = "D0CAFA86-A4C0-4397-B95D-8D33AB126AF7 - a86b0adfb5e677a0"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;MisskeyKit.NoteModel&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MisskeyKit.MisskeyKit.Notes.createFavorite(noteId: Swift.String, result: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MisskeyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuigawada/Documents/GitHub/MisskeyKit/MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "273"
-                  endingLineNumber = "273"
-                  offsetFromSymbolStart = "91">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "93DAAC28-8552-48FF-8207-BBA3D14F7275"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "createNote(visibility:visibleUserIds:text:cw:viaMobile:localOnly:noExtractMentions:noExtractHashtags:noExtractEmojis:geo:fileIds:replyId:poll:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "54E76C4B-4D31-49B2-AE10-DC78F511391C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6CB53724-EAB7-4362-875D-058C8FE2D6C6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6CB53724-EAB7-4362-875D-058C8FE2D6C6 - 186dfc09058f6a7a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static MisskeyKit.MisskeyKit.handleAPI&lt;A where A: Swift.Decodable&gt;(needApiKey: Swift.Bool, api: Swift.String, params: Swift.Dictionary&lt;Swift.String, Any&gt;, type: A.Type, callback: (Swift.Optional&lt;A&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MisskeyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuigawada/Documents/GitHub/MisskeyKit/MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "881">
-               </Location>
-               <Location
-                  uuid = "6CB53724-EAB7-4362-875D-058C8FE2D6C6 - cf4fbd5be22580e3"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSHTTPURLResponse&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static MisskeyKit.MisskeyKit.handleAPI&lt;A where A: Swift.Decodable&gt;(needApiKey: Swift.Bool, api: Swift.String, params: Swift.Dictionary&lt;Swift.String, Any&gt;, type: A.Type, callback: (Swift.Optional&lt;A&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MisskeyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuigawada/Documents/GitHub/MisskeyKit/MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "364">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5B2FEB24-FEDD-4715-B85A-88886E8BD736"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "42A92361-BD5F-4E7D-B497-472CABB7C7A5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C45CAF07-B3F0-4090-81E8-FECC61A602E5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "124FEAA5-AED5-4119-A03E-E30B650D3AD7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8EFC5C87-690F-4024-AAEB-D8D4FBBEE68F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/Notes.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "createNote(visibility:visibleUserIds:text:cw:viaMobile:localOnly:noExtractMentions:noExtractHashtags:noExtractEmojis:geo:fileIds:replyId:poll:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7B54244C-BAB2-4686-8D21-ADD428A06801"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -828,54 +604,6 @@
             startingLineNumber = "79"
             endingLineNumber = "79"
             landmarkName = "testCreateReaction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "899C1A03-61A4-479D-80BA-C64F83345682"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6E58BF23-E295-4D69-B6CC-EEC38CB432C6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E2F2F18D-A40E-4F62-92A3-95DC8D6B992C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -940,22 +668,6 @@
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "checkNative(rawJson:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3443363A-9E68-4E7F-9B70-C126DC662CEC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MisskeyKit/APIs/Wrapper/HTTP/MisskeyKit.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "handleAPI(needApiKey:api:params:data:fileType:type:missingCount:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

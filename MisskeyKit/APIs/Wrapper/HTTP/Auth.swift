@@ -9,31 +9,39 @@
 import Foundation
 
 extension MisskeyKit {
-    
-    public class Auth {
+    public class Auth: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
         public var appSecret: String?
         
         public var me: Me? // infomation of logedin account, which have accessToken
         public var token: Token? // token of SESSION
-        public var viewController: AuthViewController { return .init() }
+        public var viewController: AuthViewController {
+            let authVC = AuthViewController()
+            authVC.setup(from: self)
+            return authVC
+        }
         
         private var apiKey: String?
         
-        //MARK:- SET
+        // MARK: - SET
+        
         public func setAPIKey(_ apiKey: String) {
             self.apiKey = apiKey
         }
         
+        // MARK: - GET
         
-        //MARK:- GET
         public func startSession(appSecret: String, completion callback: @escaping AuthCallBack) {
             self.appSecret = appSecret
             
             let params = ["appSecret": appSecret]
             
-            MisskeyKit.handleAPI(needApiKey: true, api: "auth/session/generate", params: params, type: Token.self) { token, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "auth/session/generate", params: params, type: Token.self) { token, error in
+                if let error = error { callback(nil, error); return }
                 guard let token = token else { callback(nil, error); return }
                 
                 self.token = token
@@ -46,8 +54,8 @@ extension MisskeyKit {
             
             let params = ["appSecret": appSecret, "token": token.token]
             
-            MisskeyKit.handleAPI(needApiKey: true, api: "/auth/session/userkey", params: params, type: Me.self) { me, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "/auth/session/userkey", params: params, type: Me.self) { me, error in
+                if let error = error { callback(nil, error); return }
                 guard let me = me else { callback(nil, error); return }
                 
                 self.me = me
@@ -55,17 +63,15 @@ extension MisskeyKit {
             }
         }
         
-        public func getAPIKey()-> String? {
+        public func getAPIKey() -> String? {
             if let apiKey = apiKey, !apiKey.isEmpty {
                 return apiKey
-            }
-            else {
+            } else {
                 guard let me = me, let appSecret = appSecret else { return nil }
                 let seed = me.accessToken + appSecret
                 
                 return seed.sha256()
             }
         }
-        
     }
 }

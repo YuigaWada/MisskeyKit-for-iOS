@@ -8,55 +8,56 @@
 
 import Foundation
 
-
 extension MisskeyKit {
-    public class Search {
+    public class Search: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
-        //MARK:- User
-        public func user(query: String = "", offset: Int = 0, limit: Int = 10, sinceId: String = "", untilId: String = "",  localOnly: Bool = true, detail: Bool = true, result callback: @escaping UsersCallBack) {
-            
-            var params = ["query":query,
-                          "offset":offset,
-                          "limit":limit,
+        // MARK: - User
+        
+        public func user(query: String = "", offset: Int = 0, limit: Int = 10, sinceId: String = "", untilId: String = "", localOnly: Bool = true, detail: Bool = true, result callback: @escaping UsersCallBack) {
+            var params = ["query": query,
+                          "offset": offset,
+                          "limit": limit,
                           "sinceId": sinceId,
                           "untilId": untilId,
-                          "localOnly":localOnly,
-                          "detail":detail] as [String : Any]
+                          "localOnly": localOnly,
+                          "detail": detail] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/search", params: params, type: [UserModel].self) { users, error in
+            handler.handleAPI(needApiKey: true, api: "users/search", params: params, type: [UserModel].self) { users, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(users, nil)
             }
         }
         
-        //MARK:- Notes
+        // MARK: - Notes
         
         public func notes(query: String = "", offset: Int = 0, limit: Int = 10, sinceId: String = "", untilId: String = "", host: String = "", userId: String = "", result callback: @escaping NotesCallBack) {
-            
-            var params = ["query":query,
-                          "offset":offset,
-                          "limit":limit,
+            var params = ["query": query,
+                          "offset": offset,
+                          "limit": limit,
                           "sinceId": sinceId,
                           "untilId": untilId,
-                          "host":host,
-                          "userId":userId] as [String : Any]
+                          "host": host,
+                          "userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/search", params: params, type: [NoteModel].self) { notes, error in
+            handler.handleAPI(needApiKey: true, api: "notes/search", params: params, type: [NoteModel].self) { notes, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let notes = notes else { callback(nil, error); return }
                 
-                callback(notes,nil)
+                callback(notes, nil)
             }
         }
         
-        public func notesByTag( query: [[String]]=[], tag: String = "", reply: Bool = false, renote: Bool = false, withFiles: Bool = false, poll: Bool = false, limit: Int=10, sinceId:String="", untilId: String="", completion callback: @escaping NotesCallBack) {
-            
+        public func notesByTag(query: [[String]] = [], tag: String = "", reply: Bool = false, renote: Bool = false, withFiles: Bool = false, poll: Bool = false, limit: Int = 10, sinceId: String = "", untilId: String = "", completion callback: @escaping NotesCallBack) {
             var params = ["query": query,
                           "tag": tag,
                           "reply": reply,
@@ -65,46 +66,41 @@ extension MisskeyKit {
                           "poll": poll,
                           "limit": limit,
                           "sinceId": sinceId,
-                          "untilId": untilId] as [String : Any]
+                          "untilId": untilId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notes/search-by-tag", params: params, type: [NoteModel].self) { posts, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "notes/search-by-tag", params: params, type: [NoteModel].self) { posts, error in
+                if let error = error { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
-                callback(posts,nil)
+                callback(posts, nil)
             }
         }
         
-        
-        public func hashtags( limit: Int = 10, query: String, offset: Int = 0, completion callback: @escaping ([String]?,MisskeyKitError?)->()) {
-            
+        public func hashtags(limit: Int = 10, query: String, offset: Int = 0, completion callback: @escaping ([String]?, MisskeyKitError?) -> Void) {
             var params = ["query": query,
                           "limit": limit,
-                          "offset": offset] as [String : Any]
+                          "offset": offset] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "hashtags/search", params: params, type: [String].self) { posts, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "hashtags/search", params: params, type: [String].self) { posts, error in
+                if let error = error { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
-                callback(posts,nil)
+                callback(posts, nil)
             }
         }
         
-        
-        public func trendHashtags(completion callback: @escaping ([Trend]?,MisskeyKitError?)->()) {
-            
-            var params = [:] as [String : Any]
+        public func trendHashtags(completion callback: @escaping ([Trend]?, MisskeyKitError?) -> Void) {
+            var params = [:] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "hashtags/trend", params: params, type: [Trend].self) { posts, error in
-                if let error = error  { callback(nil, error); return }
+            handler.handleAPI(needApiKey: true, api: "hashtags/trend", params: params, type: [Trend].self) { posts, error in
+                if let error = error { callback(nil, error); return }
                 guard let posts = posts else { callback(nil, error); return }
                 
-                callback(posts,nil)
+                callback(posts, nil)
             }
         }
-        
     }
 }

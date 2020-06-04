@@ -9,30 +9,27 @@
 import Foundation
 
 public enum MisskeyKitError: Error {
+    // MARK: NATIVE
     
-    //MARK: NATIVE
-    
-    //400
+    // 400
     case ClientError
     
-    //401
+    // 401
     case AuthenticationError
     
-    //403
+    // 403
     case ForbiddonError
     
-    //418
+    // 418
     case ImAI
     
-    //429
+    // 429
     case TooManyError
     
-    //500
+    // 500
     case InternalServerError
     
-    
-    
-    //MARK: ORIGINAL
+    // MARK: ORIGINAL
     
     case CannotConnectStream
     
@@ -44,7 +41,5 @@ public enum MisskeyKitError: Error {
     
     case UnknownTypeResponse
     
-    
     case ResponseIsNull
-    
 }

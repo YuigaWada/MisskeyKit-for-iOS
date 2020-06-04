@@ -12,7 +12,6 @@ public struct DriveInfoModel: Codable {
     public let capacity, usage: Int?
 }
 
-
 public struct DriveFileModel: Codable {
     public let id, createdAt, name: String?
     public let type: TypeEnum?
@@ -21,7 +20,7 @@ public struct DriveFileModel: Codable {
     public let isSensitive: Bool?
     public let properties: Properties?
     public let url: String?
-    public  let thumbnailURL: String?
+    public let thumbnailURL: String?
     public let folderId, folder, user: String?
     
     public struct Properties: Codable {
@@ -34,7 +33,6 @@ public struct DriveFileModel: Codable {
         case imagePNG = "image/png"
         case videoMp4 = "video/mp4"
     }
-    
 }
 
 public class DriveFolderModel: Codable {
@@ -45,4 +43,3 @@ public class DriveFolderModel: Codable {
     public let parentId: String?
     public let parent: DriveFolderModel?
 }
-

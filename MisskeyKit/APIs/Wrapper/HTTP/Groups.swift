@@ -9,63 +9,60 @@
 import Foundation
 
 extension MisskeyKit {
-    public class Groups {
+    public class Groups: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
-        //MARK:- Invitation
+        // MARK: - Invitation
+        
         public func acceptInvitation(inviteId: String = "", result callback: @escaping BooleanCallBack) {
-            
-            var params = ["inviteId":inviteId] as [String : Any]
+            var params = ["inviteId": inviteId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/accept", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "users/groups/invitations/accept", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func rejectInvitation(inviteId: String = "", result callback: @escaping BooleanCallBack) {
-            
-            var params = ["inviteId":inviteId] as [String : Any]
+            var params = ["inviteId": inviteId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invitations/reject", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "users/groups/invitations/reject", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func invite(groupId: String = "", userId: String = "", result callback: @escaping BooleanCallBack) {
-            
-            var params = ["groupId":groupId,
-                          "userId":userId] as [String : Any]
+            var params = ["groupId": groupId,
+                          "userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/invite", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "users/groups/invite", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func pullUser(groupId: String = "", userId: String = "", result callback: @escaping BooleanCallBack) {
-            
-            var params = ["groupId":groupId,
-                          "userId":userId] as [String : Any]
+            var params = ["groupId": groupId,
+                          "userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/pull", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "users/groups/pull", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
         
         public func transferUser(groupId: String = "", userId: String = "", result callback: @escaping BooleanCallBack) {
-            
-            var params = ["groupId":groupId,
-                          "userId":userId] as [String : Any]
+            var params = ["groupId": groupId,
+                          "userId": userId] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "users/groups/transfer", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "users/groups/transfer", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
-        
-        
-        
     }
 }

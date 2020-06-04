@@ -9,19 +9,22 @@
 import Foundation
 
 extension MisskeyKit {
-    public class Meta {
+    public class Meta: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
         public func get(result callback: @escaping MetaCallBack) {
-            
-            var params = [:] as [String : Any]
+            var params = [:] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "meta", params: params, type: MetaModel.self) { meta, error in
+            handler.handleAPI(needApiKey: true, api: "meta", params: params, type: MetaModel.self) { meta, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let meta = meta else { callback(nil, error); return }
                 
-                callback(meta,nil)
+                callback(meta, nil)
             }
         }
     }

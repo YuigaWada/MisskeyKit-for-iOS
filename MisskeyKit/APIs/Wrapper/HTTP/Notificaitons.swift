@@ -9,36 +9,38 @@
 import Foundation
 
 extension MisskeyKit {
-    public class Notifications {
+    public class Notifications: Api {
+        private let handler: ApiHandler
+        required init(from handler: ApiHandler) {
+            self.handler = handler
+        }
         
         public func get(limit: Int = 10, sinceId: String = "", untilId: String = "", following: Bool = true, markAsRead: Bool = true, includeTypes: [ActionType] = [], excludeTypes: [ActionType] = [], result callback: @escaping NotificationsCallBack) {
-            
-            var params = ["limit":limit,
-                          "sinceId":sinceId,
-                          "untilId":untilId,
-                          "following":following,
-                          "includeTypes":includeTypes,
-                          "excludeTypes":excludeTypes,
-                          "markAsRead":markAsRead] as [String : Any]
+            var params = ["limit": limit,
+                          "sinceId": sinceId,
+                          "untilId": untilId,
+                          "following": following,
+                          "includeTypes": includeTypes,
+                          "excludeTypes": excludeTypes,
+                          "markAsRead": markAsRead] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "i/notifications", params: params, type: [NotificationModel].self) { users, error in
+            handler.handleAPI(needApiKey: true, api: "i/notifications", params: params, type: [NotificationModel].self) { users, error in
                 
-                if let error = error  { callback(nil, error); return }
+                if let error = error { callback(nil, error); return }
                 guard let users = users else { callback(nil, error); return }
                 
-                callback(users,nil)
+                callback(users, nil)
             }
         }
         
         public func markAllAsRead(result callback: @escaping BooleanCallBack) {
-            var params = [:] as [String : Any]
+            var params = [:] as [String: Any]
             
             params = params.removeRedundant()
-            MisskeyKit.handleAPI(needApiKey: true, api: "notifications/mark-all-as-read", params: params, type: Bool.self) { _, error in
+            handler.handleAPI(needApiKey: true, api: "notifications/mark-all-as-read", params: params, type: Bool.self) { _, error in
                 callback(error == nil, error)
             }
         }
     }
 }
-
