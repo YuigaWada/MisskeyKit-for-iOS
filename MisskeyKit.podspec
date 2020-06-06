@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "MisskeyKit"
-s.version      = "2.6.1"
+s.version      = "3.0.1"
 s.summary      = "An elegant Misskey framework written in Swift."
 s.license      = { :type => 'MIT', :file => 'LICENSE' }
 s.homepage     = "https://github.com/yuigawada/MisskeyKit-for-iOS"
