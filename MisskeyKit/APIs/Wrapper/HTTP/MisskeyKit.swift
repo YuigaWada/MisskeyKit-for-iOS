@@ -50,6 +50,7 @@ open class MisskeyKit: ApiHandler {
     
     public lazy var app: MisskeyKit.App = .init(from: self)
     public lazy var meta: MisskeyKit.Meta = .init(from: self)
+    public lazy var serviceWorker: MisskeyKit.ServiceWorker = .init(from: self)
     public lazy var emojis: MisskeyKit.Emojis = .init(from: meta)
     
     // MARK: Main Streaming
