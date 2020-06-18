@@ -18,7 +18,6 @@ public struct MetaModel: Codable {
     public let secure: Bool?
     public let machine, os, node, psql: String?
     public let redis: String?
-    public let cpu: CPU?
     public let announcements: [Announcement]?
     public let disableRegistration, disableLocalTimeline, disableGlobalTimeline, enableEmojiReaction: Bool?
     public let driveCapacityPerLocalUserMB, driveCapacityPerRemoteUserMB: Int?
