@@ -41,9 +41,6 @@ public struct UserModel: Codable {
     public var pinnedPageId: String?
     public var pinnedPage: PageModel?
     public var twoFactorEnabled, usePasswordLessLogin, securityKeys: Bool?
-    public var twitter: Twitter?
-    public var github: GitHub?
-    public var discord: Discord?
     public var hasUnreadSpecifiedNotes, hasUnreadMentions: Bool?
     public var avatarId, bannerId: String?
     public var autoWatch, alwaysMarkNsfw, carefulBot, autoAcceptFollowed: Bool?
