@@ -23,9 +23,7 @@ extension MisskeyKit {
         public var isConnected: Bool = false
         
         deinit {
-            guard let socket = socket else { return }
-            socket.disconnect(forceTimeout: 0)
-            self.socket = nil
+            self.disconnect()
         }
         
         // MARK: - Connection
@@ -39,6 +37,12 @@ extension MisskeyKit {
             
             socket!.connect()
             return true
+        }
+        
+        public func disconnect() {
+            guard let socket = socket else { return }
+            socket.disconnect(forceTimeout: 0)
+            self.socket = nil
         }
         
         // Private Methods
