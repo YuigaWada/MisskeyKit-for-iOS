@@ -11,6 +11,7 @@ import Foundation
 extension MisskeyKit {
     public class Emojis {
         private let meta: Meta
+        
         required init(from meta: Meta) {
             self.meta = meta
         }
@@ -47,10 +48,11 @@ extension MisskeyKit {
                 return
             }
             
-            meta.get { result, error in
+            
+            meta.getEmojis { result, error in
                 guard let result = result, error == nil else { completion(nil); return }
                 
-                self.customEmojis = result.emojis
+                self.customEmojis = result
                 completion(self.customEmojis)
             }
         }

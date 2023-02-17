@@ -28,7 +28,7 @@ public struct UserModel: Codable {
     public var avatarUrl: String?
 //    public var avatarColor: String?
     public var isAdmin, isBot, isCat: Bool?
-    public var emojis: [EmojiModel?]?
+    public var emojis: [String:String]?
     public var url: String?
     public var createdAt, updatedAt: String?
     public var bannerUrl, bannerColor: String?

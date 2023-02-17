@@ -49,6 +49,20 @@ extension MisskeyKit {
             }
         }
         
+        
+        public func getEmojis(result callback: @escaping EmojisCallBack) {
+            var params = [:] as [String: Any]
+            
+            params = params.removeRedundant()
+            handler.handleAPI(needApiKey: true, api: "emojis", params: params, type: [String:[EmojiModel]].self) { items, error in
+                
+                if let error = error { callback(nil, error); return }
+                guard let items = items else { callback(nil, error); return }
+                
+                callback(items["emojis"], nil)
+            }
+        }
+        
         public func getState(noteId: String, result callback: @escaping (NoteState?, MisskeyKitError?) -> Void) {
             var params = ["noteId": noteId] as [String: Any]
             

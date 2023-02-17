@@ -49,13 +49,22 @@ public struct CPU: Codable {
 
 // MARK: - Emoji
 
-public struct EmojiModel: Codable {
+public class EmojiModel: Codable {
     public let id: String?
     public let aliases: [String]?
     public let name: String?
     public let url: String?
     public let uri: String?
     public let category: String?
+    
+    public init(id: String?, aliases: [String]?, name: String?, url: String?, uri: String?, category: String?) {
+        self.id = id
+        self.aliases = aliases
+        self.name = name
+        self.url = url
+        self.uri = uri
+        self.category = category
+    }
 }
 
 // public enum Category: String, Codable{

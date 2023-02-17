@@ -17,7 +17,7 @@ public class NoteModel: Codable {
     public var isHidden: Bool?
     public var renoteCount, repliesCount: Int?
     public var reactions: [ReactionCount?]?
-    public var emojis: [EmojiModel?]?
+    public var emojis: [String:String]?
     public var files: [File?]?
     public var replyId, renoteId: String?
     public var renote: NoteModel?

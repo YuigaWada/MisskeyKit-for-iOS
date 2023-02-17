@@ -9,6 +9,7 @@ public typealias AuthCallBack = (MisskeyKit.Auth?, MisskeyKitError?) -> Void
 public typealias BooleanCallBack = (Bool, MisskeyKitError?) -> Void
 public typealias OneNoteCallBack = (NoteModel?, MisskeyKitError?) -> Void
 public typealias NotesCallBack = ([NoteModel]?, MisskeyKitError?) -> Void
+public typealias EmojisCallBack = ([EmojiModel]?, MisskeyKitError?) -> Void
 
 public typealias OneUserCallBack = (UserModel?, MisskeyKitError?) -> Void
 public typealias UsersCallBack = ([UserModel]?, MisskeyKitError?) -> Void
